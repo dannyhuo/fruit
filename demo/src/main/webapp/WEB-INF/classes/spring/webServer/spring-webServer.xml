@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+<beans>
+
+
+    <import resource="classpath*:org/codehaus/xfire/spring/xfire.xml"/>   <!-- xfire-all-1.2.6.jar包的配置文件,为web service接口提供 -->
+	
+	<bean name="echoService" class="org.codehaus.xfire.spring.ServiceBean">
+		<property name="serviceBean" ref="echo"/><!-- 提供服务接口实现类 -->
+		<property name="serviceClass" value="org.codehaus.xfire.test.Echo"/><!-- 提供服务接口，这个接口是向客户端暴露的 -->
+		<property name="inHandlers"><!-- 指定验证的handler -->
+			<list>
+				<ref bean="addressingHandler"/>
+			</list>
+		</property>
+	</bean>
+	
+    <bean id="echo" class="org.codehaus.xfire.test.EchoImpl"/>
+
+	<bean id="addressingHandler" class="org.codehaus.xfire.addressing.AddressingInHandler"/>
+	
+   	<bean name="bookService" class="org.codehaus.xfire.spring.ServiceBean"> 
+        <property name="serviceBean" ref="bookServiceBean"/>
+		<property name="serviceClass" value="org.codehaus.xfire.demo.BookService"/>
+	</bean>
+	
+    <bean id="bookServiceBean" class="org.codehaus.xfire.demo.BookServiceImpl"/>
+</beans>

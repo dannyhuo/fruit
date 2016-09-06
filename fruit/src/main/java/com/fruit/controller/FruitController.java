@@ -1,6 +1,7 @@
 package com.fruit.controller;
 
 import java.io.Serializable;
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.fruit.model.UserUser;
+import com.fruit.service.MobileFavoriteArchivingService;
 import com.fruit.service.UserUserService;
 
 /**
@@ -24,6 +26,9 @@ public class FruitController implements Serializable{
 	
 	@Autowired
 	UserUserService userUserService;
+	
+	@Autowired
+	MobileFavoriteArchivingService mobileFavoriteArchivingService;
 	
 
 	/**
@@ -98,6 +103,14 @@ public class FruitController implements Serializable{
 			userUserService.batchInsert(userUserService.queryByParam(param));
 		}
 		System.out.println(count);
+	}
+	
+	@RequestMapping(value = "/favoriteSync.do")
+	public void favoriteSync(){
+		Calendar calendar = Calendar.getInstance();
+		calendar.setTimeInMillis(System.currentTimeMillis());
+		calendar.add(Calendar.MONTH, -6);
+		mobileFavoriteArchivingService.archarving(calendar.getTime());
 	}
 
 }

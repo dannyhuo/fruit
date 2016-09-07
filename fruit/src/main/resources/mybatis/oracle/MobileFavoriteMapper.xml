@@ -1,0 +1,279 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.fruit.dao.MobileFavoriteMapper" >
+  <resultMap id="BaseResultMap" type="com.fruit.model.MobileFavorite" >
+    <id column="ID" property="id" jdbcType="DECIMAL" />
+    <result column="OBJECT_ID" property="objectId" jdbcType="DECIMAL" />
+    <result column="OBJECT_TYPE" property="objectType" jdbcType="VARCHAR" />
+    <result column="CREATED_TIME" property="createdTime" jdbcType="TIMESTAMP" />
+    <result column="OBJECT_IMAGE_URL" property="objectImageUrl" jdbcType="VARCHAR" />
+    <result column="OBJECT_NAME" property="objectName" jdbcType="VARCHAR" />
+    <result column="IS_VALID" property="isValid" jdbcType="VARCHAR" />
+    <result column="USER_ID" property="userId" jdbcType="DECIMAL" />
+    <result column="DATA_FROM" property="dataFrom" jdbcType="VARCHAR" />
+    <result column="BAK2" property="bak2" jdbcType="VARCHAR" />
+    <result column="CURRENT_VERSION" property="currentVersion" jdbcType="VARCHAR" />
+    <result column="SNAPSHOT_SELL_PRICE" property="snapshotSellPrice" jdbcType="DECIMAL" />
+    <result column="MARKET_SELL_PRICE" property="marketSellPrice" jdbcType="DECIMAL" />
+    <result column="BRANCHTYPE" property="branchtype" jdbcType="VARCHAR" />
+    <result column="ORIGIN_ID" property="originId" jdbcType="DECIMAL" />
+    <result column="COLLECTION_FROM" property="collectionFrom" jdbcType="DECIMAL" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, OBJECT_ID, OBJECT_TYPE, CREATED_TIME, OBJECT_IMAGE_URL, OBJECT_NAME, IS_VALID, 
+    USER_ID, DATA_FROM, BAK2, CURRENT_VERSION, SNAPSHOT_SELL_PRICE, MARKET_SELL_PRICE, 
+    BRANCHTYPE, ORIGIN_ID, COLLECTION_FROM
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.math.BigDecimal" >
+    select 
+    <include refid="Base_Column_List" />
+    from MOBILE_FAVORITE
+    where ID = #{id,jdbcType=DECIMAL}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.math.BigDecimal" >
+    delete from MOBILE_FAVORITE
+    where ID = #{id,jdbcType=DECIMAL}
+  </delete>
+  <insert id="insert" parameterType="com.fruit.model.MobileFavorite" >
+    insert into MOBILE_FAVORITE (ID, OBJECT_ID, OBJECT_TYPE, 
+      CREATED_TIME, OBJECT_IMAGE_URL, OBJECT_NAME, 
+      IS_VALID, USER_ID, DATA_FROM, 
+      BAK2, CURRENT_VERSION, SNAPSHOT_SELL_PRICE, 
+      MARKET_SELL_PRICE, BRANCHTYPE, ORIGIN_ID, 
+      COLLECTION_FROM)
+    values (#{id,jdbcType=DECIMAL}, #{objectId,jdbcType=DECIMAL}, #{objectType,jdbcType=VARCHAR}, 
+      #{createdTime,jdbcType=TIMESTAMP}, #{objectImageUrl,jdbcType=VARCHAR}, #{objectName,jdbcType=VARCHAR}, 
+      #{isValid,jdbcType=VARCHAR}, #{userId,jdbcType=DECIMAL}, #{dataFrom,jdbcType=VARCHAR}, 
+      #{bak2,jdbcType=VARCHAR}, #{currentVersion,jdbcType=VARCHAR}, #{snapshotSellPrice,jdbcType=DECIMAL}, 
+      #{marketSellPrice,jdbcType=DECIMAL}, #{branchtype,jdbcType=VARCHAR}, #{originId,jdbcType=DECIMAL}, 
+      #{collectionFrom,jdbcType=DECIMAL})
+  </insert>
+  <insert id="insertSelective" parameterType="com.fruit.model.MobileFavorite" >
+    insert into MOBILE_FAVORITE
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="objectId != null" >
+        OBJECT_ID,
+      </if>
+      <if test="objectType != null" >
+        OBJECT_TYPE,
+      </if>
+      <if test="createdTime != null" >
+        CREATED_TIME,
+      </if>
+      <if test="objectImageUrl != null" >
+        OBJECT_IMAGE_URL,
+      </if>
+      <if test="objectName != null" >
+        OBJECT_NAME,
+      </if>
+      <if test="isValid != null" >
+        IS_VALID,
+      </if>
+      <if test="userId != null" >
+        USER_ID,
+      </if>
+      <if test="dataFrom != null" >
+        DATA_FROM,
+      </if>
+      <if test="bak2 != null" >
+        BAK2,
+      </if>
+      <if test="currentVersion != null" >
+        CURRENT_VERSION,
+      </if>
+      <if test="snapshotSellPrice != null" >
+        SNAPSHOT_SELL_PRICE,
+      </if>
+      <if test="marketSellPrice != null" >
+        MARKET_SELL_PRICE,
+      </if>
+      <if test="branchtype != null" >
+        BRANCHTYPE,
+      </if>
+      <if test="originId != null" >
+        ORIGIN_ID,
+      </if>
+      <if test="collectionFrom != null" >
+        COLLECTION_FROM,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=DECIMAL},
+      </if>
+      <if test="objectId != null" >
+        #{objectId,jdbcType=DECIMAL},
+      </if>
+      <if test="objectType != null" >
+        #{objectType,jdbcType=VARCHAR},
+      </if>
+      <if test="createdTime != null" >
+        #{createdTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="objectImageUrl != null" >
+        #{objectImageUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="objectName != null" >
+        #{objectName,jdbcType=VARCHAR},
+      </if>
+      <if test="isValid != null" >
+        #{isValid,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=DECIMAL},
+      </if>
+      <if test="dataFrom != null" >
+        #{dataFrom,jdbcType=VARCHAR},
+      </if>
+      <if test="bak2 != null" >
+        #{bak2,jdbcType=VARCHAR},
+      </if>
+      <if test="currentVersion != null" >
+        #{currentVersion,jdbcType=VARCHAR},
+      </if>
+      <if test="snapshotSellPrice != null" >
+        #{snapshotSellPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="marketSellPrice != null" >
+        #{marketSellPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="branchtype != null" >
+        #{branchtype,jdbcType=VARCHAR},
+      </if>
+      <if test="originId != null" >
+        #{originId,jdbcType=DECIMAL},
+      </if>
+      <if test="collectionFrom != null" >
+        #{collectionFrom,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.fruit.model.MobileFavorite" >
+    update MOBILE_FAVORITE
+    <set >
+      <if test="objectId != null" >
+        OBJECT_ID = #{objectId,jdbcType=DECIMAL},
+      </if>
+      <if test="objectType != null" >
+        OBJECT_TYPE = #{objectType,jdbcType=VARCHAR},
+      </if>
+      <if test="createdTime != null" >
+        CREATED_TIME = #{createdTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="objectImageUrl != null" >
+        OBJECT_IMAGE_URL = #{objectImageUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="objectName != null" >
+        OBJECT_NAME = #{objectName,jdbcType=VARCHAR},
+      </if>
+      <if test="isValid != null" >
+        IS_VALID = #{isValid,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null" >
+        USER_ID = #{userId,jdbcType=DECIMAL},
+      </if>
+      <if test="dataFrom != null" >
+        DATA_FROM = #{dataFrom,jdbcType=VARCHAR},
+      </if>
+      <if test="bak2 != null" >
+        BAK2 = #{bak2,jdbcType=VARCHAR},
+      </if>
+      <if test="currentVersion != null" >
+        CURRENT_VERSION = #{currentVersion,jdbcType=VARCHAR},
+      </if>
+      <if test="snapshotSellPrice != null" >
+        SNAPSHOT_SELL_PRICE = #{snapshotSellPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="marketSellPrice != null" >
+        MARKET_SELL_PRICE = #{marketSellPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="branchtype != null" >
+        BRANCHTYPE = #{branchtype,jdbcType=VARCHAR},
+      </if>
+      <if test="originId != null" >
+        ORIGIN_ID = #{originId,jdbcType=DECIMAL},
+      </if>
+      <if test="collectionFrom != null" >
+        COLLECTION_FROM = #{collectionFrom,jdbcType=DECIMAL},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=DECIMAL}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.fruit.model.MobileFavorite" >
+    update MOBILE_FAVORITE
+    set OBJECT_ID = #{objectId,jdbcType=DECIMAL},
+      OBJECT_TYPE = #{objectType,jdbcType=VARCHAR},
+      CREATED_TIME = #{createdTime,jdbcType=TIMESTAMP},
+      OBJECT_IMAGE_URL = #{objectImageUrl,jdbcType=VARCHAR},
+      OBJECT_NAME = #{objectName,jdbcType=VARCHAR},
+      IS_VALID = #{isValid,jdbcType=VARCHAR},
+      USER_ID = #{userId,jdbcType=DECIMAL},
+      DATA_FROM = #{dataFrom,jdbcType=VARCHAR},
+      BAK2 = #{bak2,jdbcType=VARCHAR},
+      CURRENT_VERSION = #{currentVersion,jdbcType=VARCHAR},
+      SNAPSHOT_SELL_PRICE = #{snapshotSellPrice,jdbcType=DECIMAL},
+      MARKET_SELL_PRICE = #{marketSellPrice,jdbcType=DECIMAL},
+      BRANCHTYPE = #{branchtype,jdbcType=VARCHAR},
+      ORIGIN_ID = #{originId,jdbcType=DECIMAL},
+      COLLECTION_FROM = #{collectionFrom,jdbcType=DECIMAL}
+    where ID = #{id,jdbcType=DECIMAL}
+  </update>
+  
+  <!-- 分页查询 头部 -->
+  <sql id="pageHeader">
+		 SELECT * FROM (
+       SELECT A.*, ROWNUM RN FROM (
+  </sql>
+  
+  <!-- 分页查询 尾部 -->
+  <sql id="pageFooter">
+  	) A
+  	<if test="endRows != null">
+  		where ROWNUM &lt;= #{endRows,jdbcType=DECIMAL}
+  	</if>
+  	)
+  	<if test="startRows != null">
+  		where rn &gt;= #{startRows,jdbcType=DECIMAL}
+  	</if>
+  </sql>
+  
+  <!-- 查询条件 -->
+  <sql id="queryListWhere">
+      where 1 = 1
+      <if test="id != null"> and ID = #id#</if>
+      <if test="userId != null">and USER_ID = #userId#</if>
+	  <if test="objectId != null">and OBJECT_ID = #objectId#</if>
+	  <if test="objectName != null">and OBJECT_NAME like '%'||#objectName#||'%'</if>
+	  <if test="isValid != null">and IS_VALID = #isValid#</if>
+	  <if test="objectImageUrl != null">and OBJECT_IMAGE_URL like '%'||#objectImageUrl#||'%'</if>
+	  <if test="objectType != null">and OBJECT_TYPE in (#objectType#)</if>
+	  <if test="startDate != null">and CREATED_TIME &gt;= #startDate#</if>
+	  <if test="endDate != null">and CREATED_TIME &lt;= #{endDate,jdbcType=TIMESTAMP}</if>
+	  <if test="branchType != null">and BRANCHTYPE = #branchType#</if>
+	  <if test="originId != null">and ORIGIN_ID = #originId#</if>
+	  order by CREATED_TIME desc
+  </sql>
+  
+  <!-- 查询列表  -->
+  <select id="queryFavoriterList" parameterType="java.util.Map" resultMap="BaseResultMap">
+  	<if test="isPaging != null">
+  		<include refid="pageHeader"/>
+  	</if>
+	SELECT * FROM MOBILE_FAVORITE
+	<include refid="queryListWhere"/>
+	<if test="isPaging != null">
+		<include refid="pageFooter"/>
+		order by CREATED_TIME desc
+	</if>
+   </select>
+
+  
+    <!-- 总数  -->
+	<select id="countFavoriterList" resultType="java.lang.Integer" parameterType="java.util.Map">
+		SELECT COUNT(*) FROM MOBILE_FAVORITE
+		<include refid="queryListWhere"/>
+	</select>
+</mapper>

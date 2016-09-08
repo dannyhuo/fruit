@@ -105,8 +105,7 @@ public class FruitController implements Serializable{
 		System.out.println(count);
 	}
 	
-<<<<<<< HEAD
-=======
+
 	@RequestMapping(value = "/favoriteSync.do")
 	public void favoriteSync(){
 		Calendar calendar = Calendar.getInstance();
@@ -115,5 +114,4 @@ public class FruitController implements Serializable{
 		mobileFavoriteArchivingService.archarving(calendar.getTime());
 	}
 
->>>>>>> 538de552eb464b903271f8acdaa53616379c46e2
 }

@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.fruit.dao.EmployeeMapper" >
+  <resultMap id="BaseResultMap" type="com.fruit.model.Employee" >
+    <id column="employee_id" property="employeeId" jdbcType="BIGINT" />
+    <result column="login_name" property="loginName" jdbcType="VARCHAR" />
+    <result column="password" property="password" jdbcType="VARCHAR" />
+    <result column="real_name" property="realName" jdbcType="VARCHAR" />
+    <result column="gender" property="gender" jdbcType="CHAR" />
+    <result column="birthday" property="birthday" jdbcType="TIMESTAMP" />
+    <result column="dept" property="dept" jdbcType="SMALLINT" />
+    <result column="position" property="position" jdbcType="VARCHAR" />
+    <result column="rank" property="rank" jdbcType="CHAR" />
+    <result column="monthly_pay" property="monthlyPay" jdbcType="DECIMAL" />
+    <result column="hired_time" property="hiredTime" jdbcType="TIMESTAMP" />
+    <result column="hire_year" property="hireYear" jdbcType="SMALLINT" />
+    <result column="employee_status" property="employeeStatus" jdbcType="SMALLINT" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    employee_id, login_name, password, real_name, gender, birthday, dept, position, rank, 
+    monthly_pay, hired_time, hire_year, employee_status
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from employee
+    where employee_id = #{employeeId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from employee
+    where employee_id = #{employeeId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.fruit.model.Employee" >
+    insert into employee (employee_id, login_name, password, 
+      real_name, gender, birthday, 
+      dept, position, rank, 
+      monthly_pay, hired_time, hire_year, 
+      employee_status)
+    values (#{employeeId,jdbcType=BIGINT}, #{loginName,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
+      #{realName,jdbcType=VARCHAR}, #{gender,jdbcType=CHAR}, #{birthday,jdbcType=TIMESTAMP}, 
+      #{dept,jdbcType=SMALLINT}, #{position,jdbcType=VARCHAR}, #{rank,jdbcType=CHAR}, 
+      #{monthlyPay,jdbcType=DECIMAL}, #{hiredTime,jdbcType=TIMESTAMP}, #{hireYear,jdbcType=SMALLINT}, 
+      #{employeeStatus,jdbcType=SMALLINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.fruit.model.Employee" >
+    insert into employee
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="employeeId != null" >
+        employee_id,
+      </if>
+      <if test="loginName != null" >
+        login_name,
+      </if>
+      <if test="password != null" >
+        password,
+      </if>
+      <if test="realName != null" >
+        real_name,
+      </if>
+      <if test="gender != null" >
+        gender,
+      </if>
+      <if test="birthday != null" >
+        birthday,
+      </if>
+      <if test="dept != null" >
+        dept,
+      </if>
+      <if test="position != null" >
+        position,
+      </if>
+      <if test="rank != null" >
+        rank,
+      </if>
+      <if test="monthlyPay != null" >
+        monthly_pay,
+      </if>
+      <if test="hiredTime != null" >
+        hired_time,
+      </if>
+      <if test="hireYear != null" >
+        hire_year,
+      </if>
+      <if test="employeeStatus != null" >
+        employee_status,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="employeeId != null" >
+        #{employeeId,jdbcType=BIGINT},
+      </if>
+      <if test="loginName != null" >
+        #{loginName,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null" >
+        #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="realName != null" >
+        #{realName,jdbcType=VARCHAR},
+      </if>
+      <if test="gender != null" >
+        #{gender,jdbcType=CHAR},
+      </if>
+      <if test="birthday != null" >
+        #{birthday,jdbcType=TIMESTAMP},
+      </if>
+      <if test="dept != null" >
+        #{dept,jdbcType=SMALLINT},
+      </if>
+      <if test="position != null" >
+        #{position,jdbcType=VARCHAR},
+      </if>
+      <if test="rank != null" >
+        #{rank,jdbcType=CHAR},
+      </if>
+      <if test="monthlyPay != null" >
+        #{monthlyPay,jdbcType=DECIMAL},
+      </if>
+      <if test="hiredTime != null" >
+        #{hiredTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="hireYear != null" >
+        #{hireYear,jdbcType=SMALLINT},
+      </if>
+      <if test="employeeStatus != null" >
+        #{employeeStatus,jdbcType=SMALLINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.fruit.model.Employee" >
+    update employee
+    <set >
+      <if test="loginName != null" >
+        login_name = #{loginName,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null" >
+        password = #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="realName != null" >
+        real_name = #{realName,jdbcType=VARCHAR},
+      </if>
+      <if test="gender != null" >
+        gender = #{gender,jdbcType=CHAR},
+      </if>
+      <if test="birthday != null" >
+        birthday = #{birthday,jdbcType=TIMESTAMP},
+      </if>
+      <if test="dept != null" >
+        dept = #{dept,jdbcType=SMALLINT},
+      </if>
+      <if test="position != null" >
+        position = #{position,jdbcType=VARCHAR},
+      </if>
+      <if test="rank != null" >
+        rank = #{rank,jdbcType=CHAR},
+      </if>
+      <if test="monthlyPay != null" >
+        monthly_pay = #{monthlyPay,jdbcType=DECIMAL},
+      </if>
+      <if test="hiredTime != null" >
+        hired_time = #{hiredTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="hireYear != null" >
+        hire_year = #{hireYear,jdbcType=SMALLINT},
+      </if>
+      <if test="employeeStatus != null" >
+        employee_status = #{employeeStatus,jdbcType=SMALLINT},
+      </if>
+    </set>
+    where employee_id = #{employeeId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.fruit.model.Employee" >
+    update employee
+    set login_name = #{loginName,jdbcType=VARCHAR},
+      password = #{password,jdbcType=VARCHAR},
+      real_name = #{realName,jdbcType=VARCHAR},
+      gender = #{gender,jdbcType=CHAR},
+      birthday = #{birthday,jdbcType=TIMESTAMP},
+      dept = #{dept,jdbcType=SMALLINT},
+      position = #{position,jdbcType=VARCHAR},
+      rank = #{rank,jdbcType=CHAR},
+      monthly_pay = #{monthlyPay,jdbcType=DECIMAL},
+      hired_time = #{hiredTime,jdbcType=TIMESTAMP},
+      hire_year = #{hireYear,jdbcType=SMALLINT},
+      employee_status = #{employeeStatus,jdbcType=SMALLINT}
+    where employee_id = #{employeeId,jdbcType=BIGINT}
+  </update>
+</mapper>

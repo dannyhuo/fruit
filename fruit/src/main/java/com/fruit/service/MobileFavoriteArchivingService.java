@@ -12,8 +12,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.context.WebApplicationContext;
 
-import com.fruit.dao.MobileFavoriteHistoryMapper;
-import com.fruit.dao.MobileFavoriteMapper;
+import com.fruit.dao.oracle.MobileFavoriteHistoryMapper;
+import com.fruit.dao.oracle.MobileFavoriteMapper;
 import com.fruit.model.MobileFavorite;
 
 @Service("mobileFavoriteArchivingService")

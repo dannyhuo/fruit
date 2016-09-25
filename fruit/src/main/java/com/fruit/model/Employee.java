@@ -24,11 +24,15 @@ public class Employee {
 
     private BigDecimal monthlyPay;
 
-    private Date hiredTime;
+    private Date hiredDate;
 
     private Short hireYear;
 
     private Short employeeStatus;
+
+    private Date createTime;
+
+    private String remark;
 
     public Long getEmployeeId() {
         return employeeId;
@@ -110,12 +114,12 @@ public class Employee {
         this.monthlyPay = monthlyPay;
     }
 
-    public Date getHiredTime() {
-        return hiredTime;
+    public Date getHiredDate() {
+        return hiredDate;
     }
 
-    public void setHiredTime(Date hiredTime) {
-        this.hiredTime = hiredTime;
+    public void setHiredDate(Date hiredDate) {
+        this.hiredDate = hiredDate;
     }
 
     public Short getHireYear() {
@@ -132,5 +136,21 @@ public class Employee {
 
     public void setEmployeeStatus(Short employeeStatus) {
         this.employeeStatus = employeeStatus;
+    }
+
+    public Date getCreateTime() {
+        return createTime;
+    }
+
+    public void setCreateTime(Date createTime) {
+        this.createTime = createTime;
+    }
+
+    public String getRemark() {
+        return remark;
+    }
+
+    public void setRemark(String remark) {
+        this.remark = remark == null ? null : remark.trim();
     }
 }

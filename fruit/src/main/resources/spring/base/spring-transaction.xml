@@ -13,14 +13,14 @@
 	default-autowire="byName" default-lazy-init="false">
 
     <!-- MySQL数据源的事务管理配置 -->
-	<bean id="transactionManager_mysql" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+	<bean id="transactionManager_fruit_mysql" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
 		<property name="dataSource" ref="dataSource_fruit_mysql" />
-		<qualifier value="transactionManager_mysql" />
+		<qualifier value="transactionManager_fruit_mysql" />
 	</bean>
 	
-	<tx:annotation-driven transaction-manager="transactionManager_mysql"/>
+	<tx:annotation-driven transaction-manager="transactionManager_fruit_mysql"/>
 	
-	<tx:advice id="crmTxAdvice" transaction-manager="transactionManager_mysql">
+	<tx:advice id="crmTxAdvice" transaction-manager="transactionManager_fruit_mysql">
 		<tx:attributes>
 			<tx:method name="get*" read-only="true"/>
 			<tx:method name="find*" read-only="true"/>

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.fruit.dao.DeliveryAddressMapper" >
+<mapper namespace="com.fruit.dao.mysql.DeliveryAddressMapper" >
   <resultMap id="BaseResultMap" type="com.fruit.model.DeliveryAddress" >
     <id column="address_id" property="addressId" jdbcType="BIGINT" />
     <result column="address_no" property="addressNo" jdbcType="CHAR" />

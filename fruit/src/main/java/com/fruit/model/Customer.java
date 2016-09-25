@@ -41,6 +41,8 @@ public class Customer {
 
     private Short costomerStatus;
 
+    private String remark;
+
     public Long getCustomerId() {
         return customerId;
     }
@@ -191,5 +193,13 @@ public class Customer {
 
     public void setCostomerStatus(Short costomerStatus) {
         this.costomerStatus = costomerStatus;
+    }
+
+    public String getRemark() {
+        return remark;
+    }
+
+    public void setRemark(String remark) {
+        this.remark = remark == null ? null : remark.trim();
     }
 }

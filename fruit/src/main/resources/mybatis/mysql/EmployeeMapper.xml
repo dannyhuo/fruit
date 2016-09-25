@@ -1,24 +1,26 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.fruit.dao.EmployeeMapper" >
+<mapper namespace="com.fruit.dao.mysql.EmployeeMapper" >
   <resultMap id="BaseResultMap" type="com.fruit.model.Employee" >
     <id column="employee_id" property="employeeId" jdbcType="BIGINT" />
     <result column="login_name" property="loginName" jdbcType="VARCHAR" />
     <result column="password" property="password" jdbcType="VARCHAR" />
     <result column="real_name" property="realName" jdbcType="VARCHAR" />
     <result column="gender" property="gender" jdbcType="CHAR" />
-    <result column="birthday" property="birthday" jdbcType="TIMESTAMP" />
+    <result column="birthday" property="birthday" jdbcType="DATE" />
     <result column="dept" property="dept" jdbcType="SMALLINT" />
     <result column="position" property="position" jdbcType="VARCHAR" />
     <result column="rank" property="rank" jdbcType="CHAR" />
     <result column="monthly_pay" property="monthlyPay" jdbcType="DECIMAL" />
-    <result column="hired_time" property="hiredTime" jdbcType="TIMESTAMP" />
+    <result column="hired_date" property="hiredDate" jdbcType="DATE" />
     <result column="hire_year" property="hireYear" jdbcType="SMALLINT" />
     <result column="employee_status" property="employeeStatus" jdbcType="SMALLINT" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Base_Column_List" >
     employee_id, login_name, password, real_name, gender, birthday, dept, position, rank, 
-    monthly_pay, hired_time, hire_year, employee_status
+    monthly_pay, hired_date, hire_year, employee_status, create_time, remark
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
     select 
@@ -34,13 +36,15 @@
     insert into employee (employee_id, login_name, password, 
       real_name, gender, birthday, 
       dept, position, rank, 
-      monthly_pay, hired_time, hire_year, 
-      employee_status)
+      monthly_pay, hired_date, hire_year, 
+      employee_status, create_time, remark
+      )
     values (#{employeeId,jdbcType=BIGINT}, #{loginName,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
-      #{realName,jdbcType=VARCHAR}, #{gender,jdbcType=CHAR}, #{birthday,jdbcType=TIMESTAMP}, 
+      #{realName,jdbcType=VARCHAR}, #{gender,jdbcType=CHAR}, #{birthday,jdbcType=DATE}, 
       #{dept,jdbcType=SMALLINT}, #{position,jdbcType=VARCHAR}, #{rank,jdbcType=CHAR}, 
-      #{monthlyPay,jdbcType=DECIMAL}, #{hiredTime,jdbcType=TIMESTAMP}, #{hireYear,jdbcType=SMALLINT}, 
-      #{employeeStatus,jdbcType=SMALLINT})
+      #{monthlyPay,jdbcType=DECIMAL}, #{hiredDate,jdbcType=DATE}, #{hireYear,jdbcType=SMALLINT}, 
+      #{employeeStatus,jdbcType=SMALLINT}, #{createTime,jdbcType=TIMESTAMP}, #{remark,jdbcType=VARCHAR}
+      )
   </insert>
   <insert id="insertSelective" parameterType="com.fruit.model.Employee" >
     insert into employee
@@ -75,14 +79,20 @@
       <if test="monthlyPay != null" >
         monthly_pay,
       </if>
-      <if test="hiredTime != null" >
-        hired_time,
+      <if test="hiredDate != null" >
+        hired_date,
       </if>
       <if test="hireYear != null" >
         hire_year,
       </if>
       <if test="employeeStatus != null" >
         employee_status,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="remark != null" >
+        remark,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
@@ -102,7 +112,7 @@
         #{gender,jdbcType=CHAR},
       </if>
       <if test="birthday != null" >
-        #{birthday,jdbcType=TIMESTAMP},
+        #{birthday,jdbcType=DATE},
       </if>
       <if test="dept != null" >
         #{dept,jdbcType=SMALLINT},
@@ -116,14 +126,20 @@
       <if test="monthlyPay != null" >
         #{monthlyPay,jdbcType=DECIMAL},
       </if>
-      <if test="hiredTime != null" >
-        #{hiredTime,jdbcType=TIMESTAMP},
+      <if test="hiredDate != null" >
+        #{hiredDate,jdbcType=DATE},
       </if>
       <if test="hireYear != null" >
         #{hireYear,jdbcType=SMALLINT},
       </if>
       <if test="employeeStatus != null" >
         #{employeeStatus,jdbcType=SMALLINT},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -143,7 +159,7 @@
         gender = #{gender,jdbcType=CHAR},
       </if>
       <if test="birthday != null" >
-        birthday = #{birthday,jdbcType=TIMESTAMP},
+        birthday = #{birthday,jdbcType=DATE},
       </if>
       <if test="dept != null" >
         dept = #{dept,jdbcType=SMALLINT},
@@ -157,14 +173,20 @@
       <if test="monthlyPay != null" >
         monthly_pay = #{monthlyPay,jdbcType=DECIMAL},
       </if>
-      <if test="hiredTime != null" >
-        hired_time = #{hiredTime,jdbcType=TIMESTAMP},
+      <if test="hiredDate != null" >
+        hired_date = #{hiredDate,jdbcType=DATE},
       </if>
       <if test="hireYear != null" >
         hire_year = #{hireYear,jdbcType=SMALLINT},
       </if>
       <if test="employeeStatus != null" >
         employee_status = #{employeeStatus,jdbcType=SMALLINT},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=VARCHAR},
       </if>
     </set>
     where employee_id = #{employeeId,jdbcType=BIGINT}
@@ -175,14 +197,16 @@
       password = #{password,jdbcType=VARCHAR},
       real_name = #{realName,jdbcType=VARCHAR},
       gender = #{gender,jdbcType=CHAR},
-      birthday = #{birthday,jdbcType=TIMESTAMP},
+      birthday = #{birthday,jdbcType=DATE},
       dept = #{dept,jdbcType=SMALLINT},
       position = #{position,jdbcType=VARCHAR},
       rank = #{rank,jdbcType=CHAR},
       monthly_pay = #{monthlyPay,jdbcType=DECIMAL},
-      hired_time = #{hiredTime,jdbcType=TIMESTAMP},
+      hired_date = #{hiredDate,jdbcType=DATE},
       hire_year = #{hireYear,jdbcType=SMALLINT},
-      employee_status = #{employeeStatus,jdbcType=SMALLINT}
+      employee_status = #{employeeStatus,jdbcType=SMALLINT},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      remark = #{remark,jdbcType=VARCHAR}
     where employee_id = #{employeeId,jdbcType=BIGINT}
   </update>
 </mapper>

@@ -1,4 +1,4 @@
-package com.fruit.dao;
+package com.fruit.dao.oracle;
 
 import java.util.List;
 import java.util.Map;

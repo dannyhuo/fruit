@@ -11,7 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.context.WebApplicationContext;
 
-import com.fruit.dao.UserUserMapper;
+import com.fruit.dao.oracle.UserUserMapper;
 import com.fruit.model.UserUser;
 
 @Service("userUserService")

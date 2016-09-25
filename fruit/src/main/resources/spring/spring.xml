@@ -17,7 +17,8 @@
  	
     <!-- ==================本工程内的配置文件 Start================= -->
 	<import resource="classpath:spring/base/spring-resources.xml" />
-	<import resource="classpath:spring/base/spring-datasource.xml" />
+	<import resource="classpath:spring/base/spring-datasource-mysql.xml" />
+	<import resource="classpath:spring/base/spring-datasource-oracle.xml" />
 	<import resource="classpath:spring/base/spring-transaction.xml" />
 	<import resource="classpath:spring/base/spring-aop.xml" />
 	<!-- <import resource="classpath:spring/base/spring-dubbo-service-provider.xml" /> -->

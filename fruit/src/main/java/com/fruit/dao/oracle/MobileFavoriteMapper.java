@@ -1,4 +1,4 @@
-package com.fruit.dao;
+package com.fruit.dao.oracle;
 
 import com.fruit.model.MobileFavorite;
 import java.math.BigDecimal;

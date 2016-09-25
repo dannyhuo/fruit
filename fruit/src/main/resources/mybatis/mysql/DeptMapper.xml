@@ -1,14 +1,15 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.fruit.dao.DeptMapper" >
+<mapper namespace="com.fruit.dao.mysql.DeptMapper" >
   <resultMap id="BaseResultMap" type="com.fruit.model.Dept" >
     <id column="dept_id" property="deptId" jdbcType="SMALLINT" />
     <result column="dept_name" property="deptName" jdbcType="VARCHAR" />
     <result column="establish_date" property="establishDate" jdbcType="TIMESTAMP" />
     <result column="is_valid" property="isValid" jdbcType="CHAR" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Base_Column_List" >
-    dept_id, dept_name, establish_date, is_valid
+    dept_id, dept_name, establish_date, is_valid, remark
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Short" >
     select 
@@ -22,9 +23,9 @@
   </delete>
   <insert id="insert" parameterType="com.fruit.model.Dept" >
     insert into dept (dept_id, dept_name, establish_date, 
-      is_valid)
+      is_valid, remark)
     values (#{deptId,jdbcType=SMALLINT}, #{deptName,jdbcType=VARCHAR}, #{establishDate,jdbcType=TIMESTAMP}, 
-      #{isValid,jdbcType=CHAR})
+      #{isValid,jdbcType=CHAR}, #{remark,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.fruit.model.Dept" >
     insert into dept
@@ -41,6 +42,9 @@
       <if test="isValid != null" >
         is_valid,
       </if>
+      <if test="remark != null" >
+        remark,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="deptId != null" >
@@ -54,6 +58,9 @@
       </if>
       <if test="isValid != null" >
         #{isValid,jdbcType=CHAR},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -69,6 +76,9 @@
       <if test="isValid != null" >
         is_valid = #{isValid,jdbcType=CHAR},
       </if>
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
     </set>
     where dept_id = #{deptId,jdbcType=SMALLINT}
   </update>
@@ -76,7 +86,8 @@
     update dept
     set dept_name = #{deptName,jdbcType=VARCHAR},
       establish_date = #{establishDate,jdbcType=TIMESTAMP},
-      is_valid = #{isValid,jdbcType=CHAR}
+      is_valid = #{isValid,jdbcType=CHAR},
+      remark = #{remark,jdbcType=VARCHAR}
     where dept_id = #{deptId,jdbcType=SMALLINT}
   </update>
 </mapper>

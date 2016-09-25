@@ -40,10 +40,15 @@
         </sqlMapGenerator>
 
 		<!-- 生成的DAO存放位置 -->
-        <javaClientGenerator targetPackage="com.fruit.dao"
+        <javaClientGenerator targetPackage="com.fruit.dao.mysql"
                              targetProject="F:/git/fruit/fruit/src/main/java" type="XMLMAPPER">
             <property name="enableSubPackages" value="true"/>
         </javaClientGenerator>
+		
+		
+		
+		
+		
 		
 		
 		<!--消费者-->

@@ -11,6 +11,8 @@ public class Dept {
 
     private String isValid;
 
+    private String remark;
+
     public Short getDeptId() {
         return deptId;
     }
@@ -41,5 +43,13 @@ public class Dept {
 
     public void setIsValid(String isValid) {
         this.isValid = isValid == null ? null : isValid.trim();
+    }
+
+    public String getRemark() {
+        return remark;
+    }
+
+    public void setRemark(String remark) {
+        this.remark = remark == null ? null : remark.trim();
     }
 }

@@ -1,4 +1,4 @@
-package com.fruit.dao;
+package com.fruit.dao.mysql;
 
 import com.fruit.model.Employee;
 

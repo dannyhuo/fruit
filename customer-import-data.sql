@@ -1,0 +1,4 @@
+REM INSERTING into EXPORT_TABLE
+SET DEFINE OFF;
+Insert into EXPORT_TABLE ("customer_id","customer_no","login_name","password","real_name","nick_name","mobile_number","email","gender","qq","wechat","birthday","image_url","vip_level","create_time","update_time","last_login_time","is_valid","costomer_status","remark") values (1,'12de42dacd51421290dcd6abe1d09999','danny','111111','ªÙ«ø','danny','18016389333','javatech@163.com',null,null,null,null,null,'0',null,null,null,null,'1',null);
+Insert into EXPORT_TABLE ("customer_id","customer_no","login_name","password","real_name","nick_name","mobile_number","email","gender","qq","wechat","birthday","image_url","vip_level","create_time","update_time","last_login_time","is_valid","costomer_status","remark") values (2,'2ebc6dbcaf1d49c78543eeb9cf6499a4','Yolanda.H','10008235','ª∆–°Ω„','','18016389333','javatech@163.com',null,null,null,null,null,'0',null,null,null,null,'1',null);

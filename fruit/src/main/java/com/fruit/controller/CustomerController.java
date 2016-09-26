@@ -1,16 +1,24 @@
 package com.fruit.controller;
 
 import java.io.Serializable;
-import java.util.UUID;
+import java.io.UnsupportedEncodingException;
+import java.security.NoSuchAlgorithmException;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.fruit.dao.mysql.CustomerMapper;
+import com.fruit.model.Customer;
 import com.fruit.model.vo.CustomerVo;
 import com.fruit.util.IDManager;
+import com.fruit.util.PwdUtil;
 
 /**
  * 测试
@@ -20,6 +28,8 @@ import com.fruit.util.IDManager;
 @Controller
 @RequestMapping(value = "/customerController")
 public class CustomerController implements Serializable{
+	
+	private Logger log = LoggerFactory.getLogger(this.getClass());
 
 	/**
 	 * 
@@ -39,12 +49,65 @@ public class CustomerController implements Serializable{
 	public ModelAndView doRegister(CustomerVo customerVo){
 		ModelAndView mav = new ModelAndView("/webpage/front/registerResult");
 		
+		if(null == customerVo.getPassword()){
+			mav.addObject("message","密码不可为空");
+			mav.addObject("success", false);
+			return mav;
+		}
+		
+		if(!customerVo.getPassword().equals(customerVo.getConfirmPassword())){
+			mav.addObject("message","确认密码输入不一致");
+			mav.addObject("success", false);
+			return mav;
+		}
 		
 		customerVo.setCustomerNo(IDManager.generHaxi32());
+		
+		try {
+			customerVo.setSafetyFactor(PwdUtil.generank(customerVo.getPassword()));
+			customerVo.setPassword(PwdUtil.password(customerVo.getPassword(), customerVo.getSafetyFactor()));
+		} catch (UnsupportedEncodingException e) {
+			log.error("Generate the secret factor found error.", e);
+		} catch (NoSuchAlgorithmException e) {
+			log.error("Encrept the password found error.", e);
+		}
 		
 		int result = customerMapper.insertSelective(customerVo);
 		
 		mav.addObject("result",result);
+		mav.addObject("success", true);
 		return mav;
 	}
+	
+	
+	@RequestMapping(value = "/tologin")
+	public ModelAndView tologin(){
+		ModelAndView mav = new ModelAndView("/webpage/login");
+		return mav;
+	}
+	
+	@RequestMapping(value = "/login")
+	public ModelAndView login(CustomerVo customerVo) throws UnsupportedEncodingException, NoSuchAlgorithmException{
+		ModelAndView mav = new ModelAndView("/webpage/front/loginResult");
+		Map<String, Object> param = new HashMap<String, Object>();
+		param.put("login_name", customerVo.getLoginName());
+		List<Customer> customers = customerMapper.querySelective(param);
+		if(null != customers && customers.size() > 0){
+			Customer customer = customers.get(0);
+			String password = PwdUtil.password(customerVo.getPassword(), customer.getSafetyFactor());
+			if(customer.getPassword().equals(password)){
+				mav.addObject("message", "登录成功");
+				mav.addObject("success", true);
+			}else{
+				mav.addObject("message", "用户名或密码错误");
+				mav.addObject("success", false);
+			}
+		}else{
+			mav.addObject("message", "用户名或密码错误");
+			mav.addObject("success", false);
+		}
+		
+		return mav;
+	}
+	
 }

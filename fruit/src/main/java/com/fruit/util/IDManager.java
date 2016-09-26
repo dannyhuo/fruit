@@ -59,13 +59,4 @@ public class IDManager {
 		return time + sb.toString();
 	}
 	
-	public static void main(String[] args) {
-		for(int i = 0; i < 10; i++){
-			System.out.println(generHaxi32());
-		}
-		
-		Long ab = 15L;
-		System.out.println(Long.toHexString(System.currentTimeMillis()));
-	}
-	
 }

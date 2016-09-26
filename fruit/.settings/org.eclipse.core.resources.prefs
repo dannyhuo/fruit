@@ -1,4 +1,5 @@
 eclipse.preferences.version=1
+encoding//src/main/java/com/fruit/util/IDManager.java=UTF-8
 encoding//src/main/resources/properties/dubbo.properties=UTF-8
 encoding//src/main/resources/properties/hessian.properties=UTF-8
 encoding//src/main/resources/properties/jdbc.properties=UTF-8

@@ -1,10 +1,6 @@
 package com.fruit.controller;
 
 import java.io.Serializable;
-import java.util.Calendar;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,11 +9,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.fruit.dao.mysql.CustomerMapper;
-import com.fruit.model.Customer;
-import com.fruit.model.UserUser;
 import com.fruit.model.vo.CustomerVo;
-import com.fruit.service.MobileFavoriteArchivingService;
-import com.fruit.service.UserUserService;
+import com.fruit.util.IDManager;
 
 /**
  * 测试
@@ -47,8 +40,7 @@ public class CustomerController implements Serializable{
 		ModelAndView mav = new ModelAndView("/webpage/front/registerResult");
 		
 		
-		UUID uuid = UUID.randomUUID();
-		customerVo.setCustomerNo(uuid.toString().replaceAll("-", ""));
+		customerVo.setCustomerNo(IDManager.generHaxi32());
 		
 		int result = customerMapper.insertSelective(customerVo);
 		

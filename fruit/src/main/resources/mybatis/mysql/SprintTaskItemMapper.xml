@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.scrum.dao.mysql.SprintTaskItemMapper" >
+  <resultMap id="BaseResultMap" type="com.scrum.model.SprintTaskItem" >
+    <id column="task_item_id" property="taskItemId" jdbcType="BIGINT" />
+    <result column="task_item_no" property="taskItemNo" jdbcType="CHAR" />
+    <result column="task_id" property="taskId" jdbcType="BIGINT" />
+    <result column="task_item_name" property="taskItemName" jdbcType="VARCHAR" />
+    <result column="elapsed_time" property="elapsedTime" jdbcType="SMALLINT" />
+    <result column="developer" property="developer" jdbcType="BIGINT" />
+    <result column="developer_percent" property="developerPercent" jdbcType="SMALLINT" />
+    <result column="is_test" property="isTest" jdbcType="CHAR" />
+    <result column="testor" property="testor" jdbcType="VARCHAR" />
+    <result column="test_no" property="testNo" jdbcType="VARCHAR" />
+    <result column="test_percent" property="testPercent" jdbcType="SMALLINT" />
+    <result column="is_on_line" property="isOnLine" jdbcType="CHAR" />
+    <result column="on_line_date" property="onLineDate" jdbcType="DATE" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    task_item_id, task_item_no, task_id, task_item_name, elapsed_time, developer, developer_percent, 
+    is_test, testor, test_no, test_percent, is_on_line, on_line_date, create_time, remark
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from sprint_task_item
+    where task_item_id = #{taskItemId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from sprint_task_item
+    where task_item_id = #{taskItemId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.scrum.model.SprintTaskItem" >
+    insert into sprint_task_item (task_item_id, task_item_no, task_id, 
+      task_item_name, elapsed_time, developer, 
+      developer_percent, is_test, testor, 
+      test_no, test_percent, is_on_line, 
+      on_line_date, create_time, remark
+      )
+    values (#{taskItemId,jdbcType=BIGINT}, #{taskItemNo,jdbcType=CHAR}, #{taskId,jdbcType=BIGINT}, 
+      #{taskItemName,jdbcType=VARCHAR}, #{elapsedTime,jdbcType=SMALLINT}, #{developer,jdbcType=BIGINT}, 
+      #{developerPercent,jdbcType=SMALLINT}, #{isTest,jdbcType=CHAR}, #{testor,jdbcType=VARCHAR}, 
+      #{testNo,jdbcType=VARCHAR}, #{testPercent,jdbcType=SMALLINT}, #{isOnLine,jdbcType=CHAR}, 
+      #{onLineDate,jdbcType=DATE}, #{createTime,jdbcType=TIMESTAMP}, #{remark,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.scrum.model.SprintTaskItem" >
+    insert into sprint_task_item
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="taskItemId != null" >
+        task_item_id,
+      </if>
+      <if test="taskItemNo != null" >
+        task_item_no,
+      </if>
+      <if test="taskId != null" >
+        task_id,
+      </if>
+      <if test="taskItemName != null" >
+        task_item_name,
+      </if>
+      <if test="elapsedTime != null" >
+        elapsed_time,
+      </if>
+      <if test="developer != null" >
+        developer,
+      </if>
+      <if test="developerPercent != null" >
+        developer_percent,
+      </if>
+      <if test="isTest != null" >
+        is_test,
+      </if>
+      <if test="testor != null" >
+        testor,
+      </if>
+      <if test="testNo != null" >
+        test_no,
+      </if>
+      <if test="testPercent != null" >
+        test_percent,
+      </if>
+      <if test="isOnLine != null" >
+        is_on_line,
+      </if>
+      <if test="onLineDate != null" >
+        on_line_date,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="taskItemId != null" >
+        #{taskItemId,jdbcType=BIGINT},
+      </if>
+      <if test="taskItemNo != null" >
+        #{taskItemNo,jdbcType=CHAR},
+      </if>
+      <if test="taskId != null" >
+        #{taskId,jdbcType=BIGINT},
+      </if>
+      <if test="taskItemName != null" >
+        #{taskItemName,jdbcType=VARCHAR},
+      </if>
+      <if test="elapsedTime != null" >
+        #{elapsedTime,jdbcType=SMALLINT},
+      </if>
+      <if test="developer != null" >
+        #{developer,jdbcType=BIGINT},
+      </if>
+      <if test="developerPercent != null" >
+        #{developerPercent,jdbcType=SMALLINT},
+      </if>
+      <if test="isTest != null" >
+        #{isTest,jdbcType=CHAR},
+      </if>
+      <if test="testor != null" >
+        #{testor,jdbcType=VARCHAR},
+      </if>
+      <if test="testNo != null" >
+        #{testNo,jdbcType=VARCHAR},
+      </if>
+      <if test="testPercent != null" >
+        #{testPercent,jdbcType=SMALLINT},
+      </if>
+      <if test="isOnLine != null" >
+        #{isOnLine,jdbcType=CHAR},
+      </if>
+      <if test="onLineDate != null" >
+        #{onLineDate,jdbcType=DATE},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.scrum.model.SprintTaskItem" >
+    update sprint_task_item
+    <set >
+      <if test="taskItemNo != null" >
+        task_item_no = #{taskItemNo,jdbcType=CHAR},
+      </if>
+      <if test="taskId != null" >
+        task_id = #{taskId,jdbcType=BIGINT},
+      </if>
+      <if test="taskItemName != null" >
+        task_item_name = #{taskItemName,jdbcType=VARCHAR},
+      </if>
+      <if test="elapsedTime != null" >
+        elapsed_time = #{elapsedTime,jdbcType=SMALLINT},
+      </if>
+      <if test="developer != null" >
+        developer = #{developer,jdbcType=BIGINT},
+      </if>
+      <if test="developerPercent != null" >
+        developer_percent = #{developerPercent,jdbcType=SMALLINT},
+      </if>
+      <if test="isTest != null" >
+        is_test = #{isTest,jdbcType=CHAR},
+      </if>
+      <if test="testor != null" >
+        testor = #{testor,jdbcType=VARCHAR},
+      </if>
+      <if test="testNo != null" >
+        test_no = #{testNo,jdbcType=VARCHAR},
+      </if>
+      <if test="testPercent != null" >
+        test_percent = #{testPercent,jdbcType=SMALLINT},
+      </if>
+      <if test="isOnLine != null" >
+        is_on_line = #{isOnLine,jdbcType=CHAR},
+      </if>
+      <if test="onLineDate != null" >
+        on_line_date = #{onLineDate,jdbcType=DATE},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where task_item_id = #{taskItemId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.scrum.model.SprintTaskItem" >
+    update sprint_task_item
+    set task_item_no = #{taskItemNo,jdbcType=CHAR},
+      task_id = #{taskId,jdbcType=BIGINT},
+      task_item_name = #{taskItemName,jdbcType=VARCHAR},
+      elapsed_time = #{elapsedTime,jdbcType=SMALLINT},
+      developer = #{developer,jdbcType=BIGINT},
+      developer_percent = #{developerPercent,jdbcType=SMALLINT},
+      is_test = #{isTest,jdbcType=CHAR},
+      testor = #{testor,jdbcType=VARCHAR},
+      test_no = #{testNo,jdbcType=VARCHAR},
+      test_percent = #{testPercent,jdbcType=SMALLINT},
+      is_on_line = #{isOnLine,jdbcType=CHAR},
+      on_line_date = #{onLineDate,jdbcType=DATE},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      remark = #{remark,jdbcType=VARCHAR}
+    where task_item_id = #{taskItemId,jdbcType=BIGINT}
+  </update>
+</mapper>

@@ -5,5 +5,7 @@
 	<body>
 		登录结果<br/>${success}
 		${message}
+		${customer.password}
+		${customer.loginName}
 	</body>
 </html>

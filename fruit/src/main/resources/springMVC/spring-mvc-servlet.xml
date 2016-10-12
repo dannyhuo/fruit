@@ -71,4 +71,13 @@
     <!-- 自动扫描注解的路径 -->  
     <context:component-scan base-package="com.fruit.controller.**" />
    
+    <!-- spring mvc 拦截器 -->
+  	<mvc:interceptors>
+   		<mvc:interceptor>
+   			<mvc:mapping path="/customerController/*.do"/>
+   			<bean class="com.fruit.interceptor.LoginInterceptor"/>
+   		</mvc:interceptor>
+	</mvc:interceptors>
+   	
 </beans>
+

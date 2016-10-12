@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.scrum.dao.mysql.ScrumSprintMapper" >
+  <resultMap id="BaseResultMap" type="com.scrum.model.ScrumSprint" >
+    <id column="sprint_id" property="sprintId" jdbcType="BIGINT" />
+    <result column="team_name" property="teamName" jdbcType="VARCHAR" />
+    <result column="sprint_name" property="sprintName" jdbcType="VARCHAR" />
+    <result column="send_emails" property="sendEmails" jdbcType="VARCHAR" />
+    <result column="auto_send_email" property="autoSendEmail" jdbcType="CHAR" />
+    <result column="plan_cycle" property="planCycle" jdbcType="VARCHAR" />
+    <result column="real_cycle" property="realCycle" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    sprint_id, team_name, sprint_name, send_emails, auto_send_email, plan_cycle, real_cycle, 
+    create_time, remark
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from scrum_sprint
+    where sprint_id = #{sprintId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from scrum_sprint
+    where sprint_id = #{sprintId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.scrum.model.ScrumSprint" >
+    insert into scrum_sprint (sprint_id, team_name, sprint_name, 
+      send_emails, auto_send_email, plan_cycle, 
+      real_cycle, create_time, remark
+      )
+    values (#{sprintId,jdbcType=BIGINT}, #{teamName,jdbcType=VARCHAR}, #{sprintName,jdbcType=VARCHAR}, 
+      #{sendEmails,jdbcType=VARCHAR}, #{autoSendEmail,jdbcType=CHAR}, #{planCycle,jdbcType=VARCHAR}, 
+      #{realCycle,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{remark,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.scrum.model.ScrumSprint" >
+    insert into scrum_sprint
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="sprintId != null" >
+        sprint_id,
+      </if>
+      <if test="teamName != null" >
+        team_name,
+      </if>
+      <if test="sprintName != null" >
+        sprint_name,
+      </if>
+      <if test="sendEmails != null" >
+        send_emails,
+      </if>
+      <if test="autoSendEmail != null" >
+        auto_send_email,
+      </if>
+      <if test="planCycle != null" >
+        plan_cycle,
+      </if>
+      <if test="realCycle != null" >
+        real_cycle,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="sprintId != null" >
+        #{sprintId,jdbcType=BIGINT},
+      </if>
+      <if test="teamName != null" >
+        #{teamName,jdbcType=VARCHAR},
+      </if>
+      <if test="sprintName != null" >
+        #{sprintName,jdbcType=VARCHAR},
+      </if>
+      <if test="sendEmails != null" >
+        #{sendEmails,jdbcType=VARCHAR},
+      </if>
+      <if test="autoSendEmail != null" >
+        #{autoSendEmail,jdbcType=CHAR},
+      </if>
+      <if test="planCycle != null" >
+        #{planCycle,jdbcType=VARCHAR},
+      </if>
+      <if test="realCycle != null" >
+        #{realCycle,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.scrum.model.ScrumSprint" >
+    update scrum_sprint
+    <set >
+      <if test="teamName != null" >
+        team_name = #{teamName,jdbcType=VARCHAR},
+      </if>
+      <if test="sprintName != null" >
+        sprint_name = #{sprintName,jdbcType=VARCHAR},
+      </if>
+      <if test="sendEmails != null" >
+        send_emails = #{sendEmails,jdbcType=VARCHAR},
+      </if>
+      <if test="autoSendEmail != null" >
+        auto_send_email = #{autoSendEmail,jdbcType=CHAR},
+      </if>
+      <if test="planCycle != null" >
+        plan_cycle = #{planCycle,jdbcType=VARCHAR},
+      </if>
+      <if test="realCycle != null" >
+        real_cycle = #{realCycle,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where sprint_id = #{sprintId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.scrum.model.ScrumSprint" >
+    update scrum_sprint
+    set team_name = #{teamName,jdbcType=VARCHAR},
+      sprint_name = #{sprintName,jdbcType=VARCHAR},
+      send_emails = #{sendEmails,jdbcType=VARCHAR},
+      auto_send_email = #{autoSendEmail,jdbcType=CHAR},
+      plan_cycle = #{planCycle,jdbcType=VARCHAR},
+      real_cycle = #{realCycle,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      remark = #{remark,jdbcType=VARCHAR}
+    where sprint_id = #{sprintId,jdbcType=BIGINT}
+  </update>
+</mapper>

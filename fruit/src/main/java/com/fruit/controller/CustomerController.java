@@ -7,11 +7,15 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpSession;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.fruit.dao.mysql.CustomerMapper;
@@ -81,14 +85,33 @@ public class CustomerController implements Serializable{
 	
 	
 	@RequestMapping(value = "/tologin")
-	public ModelAndView tologin(){
+	public ModelAndView tologin(HttpSession session){
 		ModelAndView mav = new ModelAndView("/webpage/login");
+		
+		//1、判断session中是否做过登录
+		Customer sessionCustomer = (Customer) session.getAttribute("customer");
+		if(null != sessionCustomer){
+			mav.setViewName("/webpage/front/loginResult");;
+			return mav;
+		}
+		
 		return mav;
 	}
 	
 	@RequestMapping(value = "/login")
-	public ModelAndView login(CustomerVo customerVo) throws UnsupportedEncodingException, NoSuchAlgorithmException{
+	public ModelAndView login(CustomerVo customerVo, HttpSession session) 
+			throws UnsupportedEncodingException, NoSuchAlgorithmException{
 		ModelAndView mav = new ModelAndView("/webpage/front/loginResult");
+		
+		//1、判断session中是否做过登录
+		Customer sessionCustomer = (Customer) session.getAttribute("customer");
+		if(null != sessionCustomer){
+			mav.addObject("message", "登录成功");
+			mav.addObject("success", true);
+			return mav;
+		}
+		
+		//2、登录逻辑
 		Map<String, Object> param = new HashMap<String, Object>();
 		param.put("login_name", customerVo.getLoginName());
 		List<Customer> customers = customerMapper.querySelective(param);
@@ -98,6 +121,8 @@ public class CustomerController implements Serializable{
 			if(customer.getPassword().equals(password)){
 				mav.addObject("message", "登录成功");
 				mav.addObject("success", true);
+				
+				session.setAttribute("customer", customer);
 			}else{
 				mav.addObject("message", "用户名或密码错误");
 				mav.addObject("success", false);

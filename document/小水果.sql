@@ -1,6 +1,6 @@
 
 -- ----------------------------
---tab29 Table structure for `customer`
+--tab1 Table structure for `customer`
 -- ----------------------------
 DROP TABLE IF EXISTS `customer`;
 CREATE TABLE `customer` (
@@ -68,6 +68,7 @@ PRIMARY KEY (`address_id`)
 )
 ENGINE=InnoDB
 DEFAULT CHARACTER SET=utf8 COLLATE=utf8_general_ci
+COMMENT=' ’ªıµÿ÷∑'
 ;
 
 CREATE INDEX `IDX_ADDRESS_CUSTOMER_ID` ON `delivery_address`(`customer_id`) USING BTREE ;

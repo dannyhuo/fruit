@@ -22,7 +22,7 @@ CREATE TABLE `customer` (
 `create_time`  datetime NULL DEFAULT NOW() COMMENT '创建时间' ,
 `update_time`  datetime NULL DEFAULT NULL COMMENT '更新时间' ,
 `last_login_time`  datetime NULL DEFAULT NULL COMMENT '最近一次登录时间' ,
-`is_valid`  char(1) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '是否有效，Y/N' ,
+`is_valid`  char(1) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT 'Y' COMMENT '是否有效，Y/N' ,
 `costomer_status`  smallint(2) NOT NULL DEFAULT 1 COMMENT '用户当前状态  1:正常   2：己冻结  3:己注销' ,
 `remark` varchar(500) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '备注' ,
 PRIMARY KEY (`customer_id`)
@@ -61,7 +61,7 @@ CREATE TABLE `delivery_address` (
 `county`  varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '区/县' ,
 `address`  varchar(200) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '地址' ,
 `postcode`  varchar(10) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '邮编' ,
-`is_valid`  char(1) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL  COMMENT '是否有效,Y/N' ,
+`is_valid`  char(1) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT 'Y'  COMMENT '是否有效,Y/N' ,
 `create_time`  datetime NULL DEFAULT now() COMMENT '创建时间' ,
 `update_time`  datetime NULL DEFAULT NULL COMMENT '最近修改时间' ,
 PRIMARY KEY (`address_id`)
@@ -103,7 +103,7 @@ CREATE TABLE `dept` (
 `dept_id`  smallint(3) NOT NULL AUTO_INCREMENT COMMENT 'PK,部门编号' ,
 `dept_name`  varchar(60) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '部门名称' ,
 `establish_date`  DATETIME NULL COMMENT '创立日期' ,
-`is_valid` char(1) NULL DEFAULT NULL COMMENT '是否有效' ,
+`is_valid`  char(1) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT 'Y' COMMENT '是否有效,Y/N' ,
 `remark` varchar(200) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '备注' ,
 PRIMARY KEY (`dept_id`)
 )
@@ -132,6 +132,7 @@ CREATE TABLE `employee` (
 `hire_year`	smallint(2) NULL DEFAULT NULL COMMENT '雇佣时限,年' ,
 `employee_status` smallint(2) NOT NULL DEFAULT 0 COMMENT '员工状态 => 0：未入职，1：实习生，2：试用期，3：已转正，4：离职，5：被解雇' ,
 `create_time` datetime not null default NOW() COMMENT '创建时间' ,
+`is_valid`  char(1) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT 'Y'  COMMENT '是否有效,Y/N' ,
 `remark` varchar(500) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '备注' ,
 PRIMARY KEY (`employee_id`)
 )

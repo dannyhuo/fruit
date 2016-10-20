@@ -47,10 +47,6 @@
 		
 		
 		
-		
-		
-		
-		
 		<!--消费者-->
 		<table tableName="customer" domainObjectName="Customer"
                enableCountByExample="false" enableUpdateByExample="false"
@@ -69,7 +65,6 @@
                                 replaceString=""/>-->
         </table>
 		
-		
 		<!--部门-->
 		<table tableName="dept" domainObjectName="Dept"
                enableCountByExample="false" enableUpdateByExample="false"
@@ -87,6 +82,117 @@
             <!--<columnRenamingRule searchString="^D_"
                                 replaceString=""/>-->
         </table>
+		
+		
+		<!--商品-->
+		<table tableName="goods" domainObjectName="Goods"
+               enableCountByExample="false" enableUpdateByExample="false"
+               enableDeleteByExample="false" enableSelectByExample="false"
+               selectByExampleQueryId="false">
+            <!--<columnRenamingRule searchString="^D_"
+                                replaceString=""/>-->
+        </table>
+		
+		<!--商品类型，名称-->
+		<table tableName="goods_type" domainObjectName="GoodsType"
+               enableCountByExample="false" enableUpdateByExample="false"
+               enableDeleteByExample="false" enableSelectByExample="false"
+               selectByExampleQueryId="false">
+            <!--<columnRenamingRule searchString="^D_"
+                                replaceString=""/>-->
+        </table>
+		
+		<!--商品库存-->
+		<table tableName="goods_inventory" domainObjectName="GoodsInventory"
+               enableCountByExample="false" enableUpdateByExample="false"
+               enableDeleteByExample="false" enableSelectByExample="false"
+               selectByExampleQueryId="false">
+            <!--<columnRenamingRule searchString="^D_"
+                                replaceString=""/>-->
+        </table>
+		
+		<!--购物车-->
+		<table tableName="shopping_cart" domainObjectName="ShoppingCart"
+               enableCountByExample="false" enableUpdateByExample="false"
+               enableDeleteByExample="false" enableSelectByExample="false"
+               selectByExampleQueryId="false">
+            <!--<columnRenamingRule searchString="^D_"
+                                replaceString=""/>-->
+        </table>
+		
+		<!--订单-->
+		<table tableName="order" domainObjectName="Order"
+               enableCountByExample="false" enableUpdateByExample="false"
+               enableDeleteByExample="false" enableSelectByExample="false"
+               selectByExampleQueryId="false">
+            <!--<columnRenamingRule searchString="^D_"
+                                replaceString=""/>-->
+        </table>
+		
+		<!--订单详情-->
+		<table tableName="order_detail" domainObjectName="OrderDetail"
+               enableCountByExample="false" enableUpdateByExample="false"
+               enableDeleteByExample="false" enableSelectByExample="false"
+               selectByExampleQueryId="false">
+            <!--<columnRenamingRule searchString="^D_"
+                                replaceString=""/>-->
+        </table>
 
+		<!--供应商-->
+		<table tableName="supplier" domainObjectName="Supplier"
+               enableCountByExample="false" enableUpdateByExample="false"
+               enableDeleteByExample="false" enableSelectByExample="false"
+               selectByExampleQueryId="false">
+            <!--<columnRenamingRule searchString="^D_"
+                                replaceString=""/>-->
+        </table>
+		
+		
+		<!--仓库-->
+		<table tableName="repostory" domainObjectName="Repostory"
+               enableCountByExample="false" enableUpdateByExample="false"
+               enableDeleteByExample="false" enableSelectByExample="false"
+               selectByExampleQueryId="false">
+            <!--<columnRenamingRule searchString="^D_"
+                                replaceString=""/>-->
+        </table>
+		
+		
+		<!--采购单-->
+		<table tableName="purchase_order" domainObjectName="PurchaseOrder"
+               enableCountByExample="false" enableUpdateByExample="false"
+               enableDeleteByExample="false" enableSelectByExample="false"
+               selectByExampleQueryId="false">
+            <!--<columnRenamingRule searchString="^D_"
+                                replaceString=""/>-->
+        </table>
+		
+		<!--采购明细-->
+		<table tableName="purchase_order_detail" domainObjectName="PurchaseOrderDetail"
+               enableCountByExample="false" enableUpdateByExample="false"
+               enableDeleteByExample="false" enableSelectByExample="false"
+               selectByExampleQueryId="false">
+            <!--<columnRenamingRule searchString="^D_"
+                                replaceString=""/>-->
+        </table>
+		
+		<!--出库单-->
+		<table tableName="outbound_order" domainObjectName="OutboundOrder"
+               enableCountByExample="false" enableUpdateByExample="false"
+               enableDeleteByExample="false" enableSelectByExample="false"
+               selectByExampleQueryId="false">
+            <!--<columnRenamingRule searchString="^D_"
+                                replaceString=""/>-->
+        </table>
+		
+		<!--出库单明细-->
+		<table tableName="outbound_order_detail" domainObjectName="OutboundOrderDetail"
+               enableCountByExample="false" enableUpdateByExample="false"
+               enableDeleteByExample="false" enableSelectByExample="false"
+               selectByExampleQueryId="false">
+            <!--<columnRenamingRule searchString="^D_"
+                                replaceString=""/>-->
+        </table>
+		
     </context>
 </generatorConfiguration>

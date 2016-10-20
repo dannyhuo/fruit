@@ -144,3 +144,29 @@ COMMENT='员工'
 --创建索引
 CREATE INDEX `IDX_EMPLOYEE_LOGIN_NAME` ON `employee`(`login_name`) USING BTREE ;
 
+
+
+
+-- ----------------------------
+--tab Table structure for `goods_type`
+-- ----------------------------
+DROP TABLE IF EXISTS `goods_type`;
+CREATE TABLE `goods_type` (
+`goods_type_id`  bigint(11) NOT NULL AUTO_INCREMENT COMMENT 'PK,商品ID' ,
+`goods_type_name`  varchar(60) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '商品类型名称，苹果、橘子、柚子。。。' ,
+`goods_category` tinyint(2) NULL DEFAULT NULL COMMENT '商品分类，水果分的大类别' ,
+`create_time` datetime not null default NOW() COMMENT '创建时间' ,
+`remark` varchar(500) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '备注' ,
+PRIMARY KEY (`goods_type_id`)
+)
+ENGINE=InnoDB
+DEFAULT CHARACTER SET=utf8 COLLATE=utf8_general_ci
+COMMENT='商品类型'
+;
+
+--创建索引
+CREATE INDEX `IDX_GOODS_TYPE_TYPE_NAME` ON `goods_type`(`goods_type_name`) USING BTREE ;
+CREATE INDEX `IDX_GOODS_TYPE_GOODS_CATEGORY` ON `goods_type`(`goods_category`) USING BTREE ;
+CREATE INDEX `IDX_GOODS_TYPE_CREATE_TIME` ON `goods_type`(`create_time`) USING BTREE ;
+
+

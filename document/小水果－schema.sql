@@ -87,6 +87,7 @@ CREATE TABLE `goods_inventory` (
 `goods_inventory_id`  bigint(11) NOT NULL AUTO_INCREMENT COMMENT '库存ID' ,
 `goods_id`  bigint(11) NOT NULL COMMENT 'FK、商品编号' ,
 `goods_batch_no`  bigint(11) NOT NULL COMMENT 'FK、商品批次号' ,
+`repostory_id`  bigint(11) NOT NULL COMMENT 'FK、仓库编号' ,
 `expired_time` datetime not null COMMENT '过期时间' ,
 `quantity`  smallint(5) NOT NULL COMMENT '库存数量' ,
 `selling_quantity`  smallint(5) NOT NULL COMMENT '可售库存数量' ,
@@ -103,11 +104,13 @@ COMMENT='商品库存'
 --创建索引
 CREATE INDEX `IDX_GOODS_INVENTORY_GOODS_ID` ON `goods_inventory`(`goods_id`) USING BTREE ;
 CREATE INDEX `IDX_GOODS_INVENTORY_GOODS_BATCH_NO` ON `goods_inventory`(`goods_batch_no`) USING BTREE ;
+CREATE UNIQUE INDEX `UNQ_IDX_GOODS_INVENTORY_REPOSTORY_ID` ON `goods_inventory`(`repostory_id`) USING BTREE ;
 CREATE INDEX `IDX_GOODS_INVENTORY_EXPIRED_TIME` ON `goods_inventory`(`expired_time`) USING BTREE ;
 CREATE INDEX `IDX_GOODS_INVENTORY_QUANTITY` ON `goods_inventory`(`quantity`) USING BTREE ;
 CREATE INDEX `IDX_GOODS_INVENTORY_SELLING_QUANTITY` ON `goods_inventory`(`selling_quantity`) USING BTREE ;
 CREATE INDEX `IDX_GOODS_INVENTORY_SOLD_QUANTITY` ON `goods_inventory`(`sold_quantity`) USING BTREE ;
 CREATE INDEX `IDX_GOODS_INVENTORY_CREATE_TIME` ON `goods_inventory`(`create_time`) USING BTREE ;
+CREATE UNIQUE INDEX `UNQ_IDX_GOODS_INVENTORY` ON `goods_inventory`(`goods_id`,`goods_batch_no`,`repostory_id`) USING BTREE ;
 
 
 
@@ -153,7 +156,6 @@ CREATE TABLE `purchase_order` (
 `employee_id`  bigint(11) NOT NULL COMMENT '采购员编号' ,
 `create_time` datetime not null default NOW() COMMENT '采购时间' ,
 `supply_time` datetime not null default NOW() COMMENT '最后供货时间' ,
-
 `remark` varchar(500) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '备注' ,
 PRIMARY KEY (`purchase_order_id`)
 )
@@ -180,9 +182,9 @@ DROP TABLE IF EXISTS `repostory`;
 CREATE TABLE `repostory` (
 `repostory_id`  bigint(11) NOT NULL AUTO_INCREMENT COMMENT '仓库ID' ,
 `repostory_name` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '仓库名称' ,
-`repostory_area` varchar(30) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '仓库地址' ,
-`repostory_province` varchar(30) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '仓库地址' ,
-`repostory_city` varchar(30) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '仓库地址' ,
+`repostory_area` varchar(30) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '仓库所属区域' ,
+`repostory_province` varchar(30) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '仓库所在省' ,
+`repostory_city` varchar(30) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '仓库所在市' ,
 `repostory_address` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '仓库地址' ,
 `repostory_acreage`  bigint(11) NOT NULL COMMENT '仓库面积' ,
 `employee_id`  bigint(11) NOT NULL COMMENT '仓管员编号' ,
@@ -245,7 +247,7 @@ CREATE INDEX `IDX_SUPPLIER_CONTACTS_PHONE` ON `supplier`(`contacts_phone`) USING
 
 
 -- ----------------------------
---tab Table structure for `order_detail`
+--tab Table structure for `order_detail` 是否添加发货状态
 -- ----------------------------
 DROP TABLE IF EXISTS `order_detail`;
 CREATE TABLE `order_detail` (
@@ -274,7 +276,7 @@ CREATE INDEX `IDX_ORDER_DETAIL_CREATE_TIME` ON `order_detail`(`create_time`) USI
 
 
 -- ----------------------------
---tab Table structure for `order`
+--tab Table structure for `order`  是否添加收货状态
 -- ----------------------------
 DROP TABLE IF EXISTS `order`;
 CREATE TABLE `order` (
@@ -327,7 +329,6 @@ CREATE INDEX `IDX_SHOPPING_CART_CREATE_TIME` ON `shopping_cart`(`create_time`) U
 
 
 
-
 -- ----------------------------
 --tab Table structure for `goods`
 -- ----------------------------
@@ -339,10 +340,11 @@ CREATE TABLE `goods` (
 `price` bigint(11) NOT NULL COMMENT '售价' ,
 `description`  varchar(500) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '商品描述' ,
 `tag`  varchar(60) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '标签' ,
-`goods_type` smallint(2) NULL DEFAULT NULL COMMENT '商品类别' ,
-`employee_id`  bigint(11) NOT NULL COMMENT '运营专员编号' ,
-`goods_status`  bigint(11) NOT NULL COMMENT '商品状态' ,
-`putaway_time` datetime not null default NOW() COMMENT '上架时间' ,
+`goods_type_id` bigint(11) NULL DEFAULT NULL COMMENT 'FK，商品类型ID(苹果、橘子、柚子、。。。)' ,
+`goods_category` tinyint(2) NULL DEFAULT NULL COMMENT '商品分类，水果分的大类别' ,
+`employee_id`  bigint(11) NOT NULL COMMENT '运营专员编号,哪个运营专员上架的商品' ,
+`goods_status`  tinyint(11) NOT NULL COMMENT '0：待上架，1：已上架，2：已下架' ,
+`putaway_time` datetime null COMMENT '上架时间' ,
 `sold_out_time` datetime null default null COMMENT '下架时间' ,
 `create_time` datetime not null default NOW() COMMENT '创建时间' ,
 `remark` varchar(500) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '备注' ,

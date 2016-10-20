@@ -16,11 +16,12 @@
     <result column="hire_year" property="hireYear" jdbcType="SMALLINT" />
     <result column="employee_status" property="employeeStatus" jdbcType="SMALLINT" />
     <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="is_valid" property="isValid" jdbcType="CHAR" />
     <result column="remark" property="remark" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Base_Column_List" >
     employee_id, login_name, password, real_name, gender, birthday, dept, position, rank, 
-    monthly_pay, hired_date, hire_year, employee_status, create_time, remark
+    monthly_pay, hired_date, hire_year, employee_status, create_time, is_valid, remark
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
     select 
@@ -37,14 +38,14 @@
       real_name, gender, birthday, 
       dept, position, rank, 
       monthly_pay, hired_date, hire_year, 
-      employee_status, create_time, remark
-      )
+      employee_status, create_time, is_valid, 
+      remark)
     values (#{employeeId,jdbcType=BIGINT}, #{loginName,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
       #{realName,jdbcType=VARCHAR}, #{gender,jdbcType=CHAR}, #{birthday,jdbcType=DATE}, 
       #{dept,jdbcType=SMALLINT}, #{position,jdbcType=VARCHAR}, #{rank,jdbcType=CHAR}, 
       #{monthlyPay,jdbcType=DECIMAL}, #{hiredDate,jdbcType=DATE}, #{hireYear,jdbcType=SMALLINT}, 
-      #{employeeStatus,jdbcType=SMALLINT}, #{createTime,jdbcType=TIMESTAMP}, #{remark,jdbcType=VARCHAR}
-      )
+      #{employeeStatus,jdbcType=SMALLINT}, #{createTime,jdbcType=TIMESTAMP}, #{isValid,jdbcType=CHAR}, 
+      #{remark,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.fruit.model.Employee" >
     insert into employee
@@ -90,6 +91,9 @@
       </if>
       <if test="createTime != null" >
         create_time,
+      </if>
+      <if test="isValid != null" >
+        is_valid,
       </if>
       <if test="remark != null" >
         remark,
@@ -138,6 +142,9 @@
       <if test="createTime != null" >
         #{createTime,jdbcType=TIMESTAMP},
       </if>
+      <if test="isValid != null" >
+        #{isValid,jdbcType=CHAR},
+      </if>
       <if test="remark != null" >
         #{remark,jdbcType=VARCHAR},
       </if>
@@ -185,6 +192,9 @@
       <if test="createTime != null" >
         create_time = #{createTime,jdbcType=TIMESTAMP},
       </if>
+      <if test="isValid != null" >
+        is_valid = #{isValid,jdbcType=CHAR},
+      </if>
       <if test="remark != null" >
         remark = #{remark,jdbcType=VARCHAR},
       </if>
@@ -206,6 +216,7 @@
       hire_year = #{hireYear,jdbcType=SMALLINT},
       employee_status = #{employeeStatus,jdbcType=SMALLINT},
       create_time = #{createTime,jdbcType=TIMESTAMP},
+      is_valid = #{isValid,jdbcType=CHAR},
       remark = #{remark,jdbcType=VARCHAR}
     where employee_id = #{employeeId,jdbcType=BIGINT}
   </update>

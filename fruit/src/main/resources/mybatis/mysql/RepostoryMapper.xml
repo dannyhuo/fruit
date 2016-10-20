@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.fruit.dao.mysql.RepostoryMapper" >
+  <resultMap id="BaseResultMap" type="com.fruit.model.Repostory" >
+    <id column="repostory_id" property="repostoryId" jdbcType="BIGINT" />
+    <result column="repostory_name" property="repostoryName" jdbcType="VARCHAR" />
+    <result column="repostory_area" property="repostoryArea" jdbcType="VARCHAR" />
+    <result column="repostory_province" property="repostoryProvince" jdbcType="VARCHAR" />
+    <result column="repostory_city" property="repostoryCity" jdbcType="VARCHAR" />
+    <result column="repostory_address" property="repostoryAddress" jdbcType="VARCHAR" />
+    <result column="repostory_acreage" property="repostoryAcreage" jdbcType="BIGINT" />
+    <result column="employee_id" property="employeeId" jdbcType="BIGINT" />
+    <result column="start_using_date" property="startUsingDate" jdbcType="DATE" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    repostory_id, repostory_name, repostory_area, repostory_province, repostory_city, 
+    repostory_address, repostory_acreage, employee_id, start_using_date, create_time, 
+    remark
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from repostory
+    where repostory_id = #{repostoryId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from repostory
+    where repostory_id = #{repostoryId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.fruit.model.Repostory" >
+    insert into repostory (repostory_id, repostory_name, repostory_area, 
+      repostory_province, repostory_city, repostory_address, 
+      repostory_acreage, employee_id, start_using_date, 
+      create_time, remark)
+    values (#{repostoryId,jdbcType=BIGINT}, #{repostoryName,jdbcType=VARCHAR}, #{repostoryArea,jdbcType=VARCHAR}, 
+      #{repostoryProvince,jdbcType=VARCHAR}, #{repostoryCity,jdbcType=VARCHAR}, #{repostoryAddress,jdbcType=VARCHAR}, 
+      #{repostoryAcreage,jdbcType=BIGINT}, #{employeeId,jdbcType=BIGINT}, #{startUsingDate,jdbcType=DATE}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{remark,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.fruit.model.Repostory" >
+    insert into repostory
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="repostoryId != null" >
+        repostory_id,
+      </if>
+      <if test="repostoryName != null" >
+        repostory_name,
+      </if>
+      <if test="repostoryArea != null" >
+        repostory_area,
+      </if>
+      <if test="repostoryProvince != null" >
+        repostory_province,
+      </if>
+      <if test="repostoryCity != null" >
+        repostory_city,
+      </if>
+      <if test="repostoryAddress != null" >
+        repostory_address,
+      </if>
+      <if test="repostoryAcreage != null" >
+        repostory_acreage,
+      </if>
+      <if test="employeeId != null" >
+        employee_id,
+      </if>
+      <if test="startUsingDate != null" >
+        start_using_date,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="repostoryId != null" >
+        #{repostoryId,jdbcType=BIGINT},
+      </if>
+      <if test="repostoryName != null" >
+        #{repostoryName,jdbcType=VARCHAR},
+      </if>
+      <if test="repostoryArea != null" >
+        #{repostoryArea,jdbcType=VARCHAR},
+      </if>
+      <if test="repostoryProvince != null" >
+        #{repostoryProvince,jdbcType=VARCHAR},
+      </if>
+      <if test="repostoryCity != null" >
+        #{repostoryCity,jdbcType=VARCHAR},
+      </if>
+      <if test="repostoryAddress != null" >
+        #{repostoryAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="repostoryAcreage != null" >
+        #{repostoryAcreage,jdbcType=BIGINT},
+      </if>
+      <if test="employeeId != null" >
+        #{employeeId,jdbcType=BIGINT},
+      </if>
+      <if test="startUsingDate != null" >
+        #{startUsingDate,jdbcType=DATE},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.fruit.model.Repostory" >
+    update repostory
+    <set >
+      <if test="repostoryName != null" >
+        repostory_name = #{repostoryName,jdbcType=VARCHAR},
+      </if>
+      <if test="repostoryArea != null" >
+        repostory_area = #{repostoryArea,jdbcType=VARCHAR},
+      </if>
+      <if test="repostoryProvince != null" >
+        repostory_province = #{repostoryProvince,jdbcType=VARCHAR},
+      </if>
+      <if test="repostoryCity != null" >
+        repostory_city = #{repostoryCity,jdbcType=VARCHAR},
+      </if>
+      <if test="repostoryAddress != null" >
+        repostory_address = #{repostoryAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="repostoryAcreage != null" >
+        repostory_acreage = #{repostoryAcreage,jdbcType=BIGINT},
+      </if>
+      <if test="employeeId != null" >
+        employee_id = #{employeeId,jdbcType=BIGINT},
+      </if>
+      <if test="startUsingDate != null" >
+        start_using_date = #{startUsingDate,jdbcType=DATE},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where repostory_id = #{repostoryId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.fruit.model.Repostory" >
+    update repostory
+    set repostory_name = #{repostoryName,jdbcType=VARCHAR},
+      repostory_area = #{repostoryArea,jdbcType=VARCHAR},
+      repostory_province = #{repostoryProvince,jdbcType=VARCHAR},
+      repostory_city = #{repostoryCity,jdbcType=VARCHAR},
+      repostory_address = #{repostoryAddress,jdbcType=VARCHAR},
+      repostory_acreage = #{repostoryAcreage,jdbcType=BIGINT},
+      employee_id = #{employeeId,jdbcType=BIGINT},
+      start_using_date = #{startUsingDate,jdbcType=DATE},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      remark = #{remark,jdbcType=VARCHAR}
+    where repostory_id = #{repostoryId,jdbcType=BIGINT}
+  </update>
+</mapper>

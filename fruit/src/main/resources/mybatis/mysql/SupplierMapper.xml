@@ -299,4 +299,153 @@
       remark = #{remark,jdbcType=VARCHAR}
     where supplier_id = #{supplierId,jdbcType=BIGINT}
   </update>
+  <resultMap id="BaseResultMap" type="com.fruit.model.Supplier">
+    <id column="supplier_id" jdbcType="BIGINT" property="supplierId" />
+    <result column="supplier_name" jdbcType="BIGINT" property="supplierName" />
+    <result column="address" jdbcType="VARCHAR" property="address" />
+    <result column="contacts_name" jdbcType="VARCHAR" property="contactsName" />
+    <result column="contacts_phone" jdbcType="VARCHAR" property="contactsPhone" />
+    <result column="contacts_mobile" jdbcType="VARCHAR" property="contactsMobile" />
+    <result column="supplier_category" jdbcType="TINYINT" property="supplierCategory" />
+    <result column="employee_id" jdbcType="BIGINT" property="employeeId" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="remark" jdbcType="VARCHAR" property="remark" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    supplier_id, supplier_name, address, contacts_name, contacts_phone, contacts_mobile, 
+    supplier_category, employee_id, create_time, remark
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from supplier
+    where supplier_id = #{supplierId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from supplier
+    where supplier_id = #{supplierId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.fruit.model.Supplier">
+    insert into supplier (supplier_id, supplier_name, address, 
+      contacts_name, contacts_phone, contacts_mobile, 
+      supplier_category, employee_id, create_time, 
+      remark)
+    values (#{supplierId,jdbcType=BIGINT}, #{supplierName,jdbcType=BIGINT}, #{address,jdbcType=VARCHAR}, 
+      #{contactsName,jdbcType=VARCHAR}, #{contactsPhone,jdbcType=VARCHAR}, #{contactsMobile,jdbcType=VARCHAR}, 
+      #{supplierCategory,jdbcType=TINYINT}, #{employeeId,jdbcType=BIGINT}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{remark,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.fruit.model.Supplier">
+    insert into supplier
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="supplierId != null">
+        supplier_id,
+      </if>
+      <if test="supplierName != null">
+        supplier_name,
+      </if>
+      <if test="address != null">
+        address,
+      </if>
+      <if test="contactsName != null">
+        contacts_name,
+      </if>
+      <if test="contactsPhone != null">
+        contacts_phone,
+      </if>
+      <if test="contactsMobile != null">
+        contacts_mobile,
+      </if>
+      <if test="supplierCategory != null">
+        supplier_category,
+      </if>
+      <if test="employeeId != null">
+        employee_id,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="remark != null">
+        remark,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="supplierId != null">
+        #{supplierId,jdbcType=BIGINT},
+      </if>
+      <if test="supplierName != null">
+        #{supplierName,jdbcType=BIGINT},
+      </if>
+      <if test="address != null">
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="contactsName != null">
+        #{contactsName,jdbcType=VARCHAR},
+      </if>
+      <if test="contactsPhone != null">
+        #{contactsPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="contactsMobile != null">
+        #{contactsMobile,jdbcType=VARCHAR},
+      </if>
+      <if test="supplierCategory != null">
+        #{supplierCategory,jdbcType=TINYINT},
+      </if>
+      <if test="employeeId != null">
+        #{employeeId,jdbcType=BIGINT},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.fruit.model.Supplier">
+    update supplier
+    <set>
+      <if test="supplierName != null">
+        supplier_name = #{supplierName,jdbcType=BIGINT},
+      </if>
+      <if test="address != null">
+        address = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="contactsName != null">
+        contacts_name = #{contactsName,jdbcType=VARCHAR},
+      </if>
+      <if test="contactsPhone != null">
+        contacts_phone = #{contactsPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="contactsMobile != null">
+        contacts_mobile = #{contactsMobile,jdbcType=VARCHAR},
+      </if>
+      <if test="supplierCategory != null">
+        supplier_category = #{supplierCategory,jdbcType=TINYINT},
+      </if>
+      <if test="employeeId != null">
+        employee_id = #{employeeId,jdbcType=BIGINT},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remark != null">
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where supplier_id = #{supplierId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.fruit.model.Supplier">
+    update supplier
+    set supplier_name = #{supplierName,jdbcType=BIGINT},
+      address = #{address,jdbcType=VARCHAR},
+      contacts_name = #{contactsName,jdbcType=VARCHAR},
+      contacts_phone = #{contactsPhone,jdbcType=VARCHAR},
+      contacts_mobile = #{contactsMobile,jdbcType=VARCHAR},
+      supplier_category = #{supplierCategory,jdbcType=TINYINT},
+      employee_id = #{employeeId,jdbcType=BIGINT},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      remark = #{remark,jdbcType=VARCHAR}
+    where supplier_id = #{supplierId,jdbcType=BIGINT}
+  </update>
 </mapper>

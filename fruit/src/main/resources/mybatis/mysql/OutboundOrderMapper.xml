@@ -1,177 +1,88 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.fruit.dao.mysql.OutboundOrderMapper">
-  <resultMap id="BaseResultMap" type="com.fruit.model.OutboundOrder">
-    <id column="outbound_order_id" jdbcType="BIGINT" property="outboundOrderId" />
-    <result column="order_id" jdbcType="BIGINT" property="orderId" />
-    <result column="employee_id" jdbcType="BIGINT" property="employeeId" />
-    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
-    <result column="remark" jdbcType="VARCHAR" property="remark" />
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.fruit.dao.mysql.OutboundOrderMapper" >
+  <resultMap id="BaseResultMap" type="com.fruit.model.OutboundOrder" >
+    <id column="outbound_order_id" property="outboundOrderId" jdbcType="BIGINT" />
+    <result column="order_id" property="orderId" jdbcType="BIGINT" />
+    <result column="employee_id" property="employeeId" jdbcType="BIGINT" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
   </resultMap>
-  <sql id="Base_Column_List">
+  <sql id="Base_Column_List" >
     outbound_order_id, order_id, employee_id, create_time, remark
   </sql>
-  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
     select 
     <include refid="Base_Column_List" />
     from outbound_order
     where outbound_order_id = #{outboundOrderId,jdbcType=BIGINT}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
     delete from outbound_order
     where outbound_order_id = #{outboundOrderId,jdbcType=BIGINT}
   </delete>
-  <insert id="insert" parameterType="com.fruit.model.OutboundOrder">
+  <insert id="insert" parameterType="com.fruit.model.OutboundOrder" >
     insert into outbound_order (outbound_order_id, order_id, employee_id, 
       create_time, remark)
     values (#{outboundOrderId,jdbcType=BIGINT}, #{orderId,jdbcType=BIGINT}, #{employeeId,jdbcType=BIGINT}, 
       #{createTime,jdbcType=TIMESTAMP}, #{remark,jdbcType=VARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="com.fruit.model.OutboundOrder">
+  <insert id="insertSelective" parameterType="com.fruit.model.OutboundOrder" >
     insert into outbound_order
-    <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="outboundOrderId != null">
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="outboundOrderId != null" >
         outbound_order_id,
       </if>
-      <if test="orderId != null">
+      <if test="orderId != null" >
         order_id,
       </if>
-      <if test="employeeId != null">
+      <if test="employeeId != null" >
         employee_id,
       </if>
-      <if test="createTime != null">
+      <if test="createTime != null" >
         create_time,
       </if>
-      <if test="remark != null">
+      <if test="remark != null" >
         remark,
       </if>
     </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="outboundOrderId != null">
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="outboundOrderId != null" >
         #{outboundOrderId,jdbcType=BIGINT},
       </if>
-      <if test="orderId != null">
+      <if test="orderId != null" >
         #{orderId,jdbcType=BIGINT},
       </if>
-      <if test="employeeId != null">
+      <if test="employeeId != null" >
         #{employeeId,jdbcType=BIGINT},
       </if>
-      <if test="createTime != null">
+      <if test="createTime != null" >
         #{createTime,jdbcType=TIMESTAMP},
       </if>
-      <if test="remark != null">
+      <if test="remark != null" >
         #{remark,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.fruit.model.OutboundOrder">
+  <update id="updateByPrimaryKeySelective" parameterType="com.fruit.model.OutboundOrder" >
     update outbound_order
-    <set>
-      <if test="orderId != null">
+    <set >
+      <if test="orderId != null" >
         order_id = #{orderId,jdbcType=BIGINT},
       </if>
-      <if test="employeeId != null">
+      <if test="employeeId != null" >
         employee_id = #{employeeId,jdbcType=BIGINT},
       </if>
-      <if test="createTime != null">
+      <if test="createTime != null" >
         create_time = #{createTime,jdbcType=TIMESTAMP},
       </if>
-      <if test="remark != null">
+      <if test="remark != null" >
         remark = #{remark,jdbcType=VARCHAR},
       </if>
     </set>
     where outbound_order_id = #{outboundOrderId,jdbcType=BIGINT}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.fruit.model.OutboundOrder">
-    update outbound_order
-    set order_id = #{orderId,jdbcType=BIGINT},
-      employee_id = #{employeeId,jdbcType=BIGINT},
-      create_time = #{createTime,jdbcType=TIMESTAMP},
-      remark = #{remark,jdbcType=VARCHAR}
-    where outbound_order_id = #{outboundOrderId,jdbcType=BIGINT}
-  </update>
-  <resultMap id="BaseResultMap" type="com.fruit.model.OutboundOrder">
-    <id column="outbound_order_id" jdbcType="BIGINT" property="outboundOrderId" />
-    <result column="order_id" jdbcType="BIGINT" property="orderId" />
-    <result column="employee_id" jdbcType="BIGINT" property="employeeId" />
-    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
-    <result column="remark" jdbcType="VARCHAR" property="remark" />
-  </resultMap>
-  <sql id="Base_Column_List">
-    outbound_order_id, order_id, employee_id, create_time, remark
-  </sql>
-  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
-    select 
-    <include refid="Base_Column_List" />
-    from outbound_order
-    where outbound_order_id = #{outboundOrderId,jdbcType=BIGINT}
-  </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
-    delete from outbound_order
-    where outbound_order_id = #{outboundOrderId,jdbcType=BIGINT}
-  </delete>
-  <insert id="insert" parameterType="com.fruit.model.OutboundOrder">
-    insert into outbound_order (outbound_order_id, order_id, employee_id, 
-      create_time, remark)
-    values (#{outboundOrderId,jdbcType=BIGINT}, #{orderId,jdbcType=BIGINT}, #{employeeId,jdbcType=BIGINT}, 
-      #{createTime,jdbcType=TIMESTAMP}, #{remark,jdbcType=VARCHAR})
-  </insert>
-  <insert id="insertSelective" parameterType="com.fruit.model.OutboundOrder">
-    insert into outbound_order
-    <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="outboundOrderId != null">
-        outbound_order_id,
-      </if>
-      <if test="orderId != null">
-        order_id,
-      </if>
-      <if test="employeeId != null">
-        employee_id,
-      </if>
-      <if test="createTime != null">
-        create_time,
-      </if>
-      <if test="remark != null">
-        remark,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="outboundOrderId != null">
-        #{outboundOrderId,jdbcType=BIGINT},
-      </if>
-      <if test="orderId != null">
-        #{orderId,jdbcType=BIGINT},
-      </if>
-      <if test="employeeId != null">
-        #{employeeId,jdbcType=BIGINT},
-      </if>
-      <if test="createTime != null">
-        #{createTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="remark != null">
-        #{remark,jdbcType=VARCHAR},
-      </if>
-    </trim>
-  </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.fruit.model.OutboundOrder">
-    update outbound_order
-    <set>
-      <if test="orderId != null">
-        order_id = #{orderId,jdbcType=BIGINT},
-      </if>
-      <if test="employeeId != null">
-        employee_id = #{employeeId,jdbcType=BIGINT},
-      </if>
-      <if test="createTime != null">
-        create_time = #{createTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="remark != null">
-        remark = #{remark,jdbcType=VARCHAR},
-      </if>
-    </set>
-    where outbound_order_id = #{outboundOrderId,jdbcType=BIGINT}
-  </update>
-  <update id="updateByPrimaryKey" parameterType="com.fruit.model.OutboundOrder">
+  <update id="updateByPrimaryKey" parameterType="com.fruit.model.OutboundOrder" >
     update outbound_order
     set order_id = #{orderId,jdbcType=BIGINT},
       employee_id = #{employeeId,jdbcType=BIGINT},

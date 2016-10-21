@@ -1,29 +1,29 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.fruit.dao.mysql.ShoppingCartMapper">
-  <resultMap id="BaseResultMap" type="com.fruit.model.ShoppingCart">
-    <id column="shopping_cart_id" jdbcType="BIGINT" property="shoppingCartId" />
-    <result column="customer_id" jdbcType="BIGINT" property="customerId" />
-    <result column="goods_id" jdbcType="BIGINT" property="goodsId" />
-    <result column="quantity" jdbcType="SMALLINT" property="quantity" />
-    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
-    <result column="status" jdbcType="BIT" property="status" />
-    <result column="remark" jdbcType="VARCHAR" property="remark" />
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.fruit.dao.mysql.ShoppingCartMapper" >
+  <resultMap id="BaseResultMap" type="com.fruit.model.ShoppingCart" >
+    <id column="shopping_cart_id" property="shoppingCartId" jdbcType="BIGINT" />
+    <result column="customer_id" property="customerId" jdbcType="BIGINT" />
+    <result column="goods_id" property="goodsId" jdbcType="BIGINT" />
+    <result column="quantity" property="quantity" jdbcType="SMALLINT" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="status" property="status" jdbcType="BIT" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
   </resultMap>
-  <sql id="Base_Column_List">
+  <sql id="Base_Column_List" >
     shopping_cart_id, customer_id, goods_id, quantity, create_time, status, remark
   </sql>
-  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
     select 
     <include refid="Base_Column_List" />
     from shopping_cart
     where shopping_cart_id = #{shoppingCartId,jdbcType=BIGINT}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
     delete from shopping_cart
     where shopping_cart_id = #{shoppingCartId,jdbcType=BIGINT}
   </delete>
-  <insert id="insert" parameterType="com.fruit.model.ShoppingCart">
+  <insert id="insert" parameterType="com.fruit.model.ShoppingCart" >
     insert into shopping_cart (shopping_cart_id, customer_id, goods_id, 
       quantity, create_time, status, 
       remark)
@@ -31,193 +31,80 @@
       #{quantity,jdbcType=SMALLINT}, #{createTime,jdbcType=TIMESTAMP}, #{status,jdbcType=BIT}, 
       #{remark,jdbcType=VARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="com.fruit.model.ShoppingCart">
+  <insert id="insertSelective" parameterType="com.fruit.model.ShoppingCart" >
     insert into shopping_cart
-    <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="shoppingCartId != null">
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="shoppingCartId != null" >
         shopping_cart_id,
       </if>
-      <if test="customerId != null">
+      <if test="customerId != null" >
         customer_id,
       </if>
-      <if test="goodsId != null">
+      <if test="goodsId != null" >
         goods_id,
       </if>
-      <if test="quantity != null">
+      <if test="quantity != null" >
         quantity,
       </if>
-      <if test="createTime != null">
+      <if test="createTime != null" >
         create_time,
       </if>
-      <if test="status != null">
+      <if test="status != null" >
         status,
       </if>
-      <if test="remark != null">
+      <if test="remark != null" >
         remark,
       </if>
     </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="shoppingCartId != null">
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="shoppingCartId != null" >
         #{shoppingCartId,jdbcType=BIGINT},
       </if>
-      <if test="customerId != null">
+      <if test="customerId != null" >
         #{customerId,jdbcType=BIGINT},
       </if>
-      <if test="goodsId != null">
+      <if test="goodsId != null" >
         #{goodsId,jdbcType=BIGINT},
       </if>
-      <if test="quantity != null">
+      <if test="quantity != null" >
         #{quantity,jdbcType=SMALLINT},
       </if>
-      <if test="createTime != null">
+      <if test="createTime != null" >
         #{createTime,jdbcType=TIMESTAMP},
       </if>
-      <if test="status != null">
+      <if test="status != null" >
         #{status,jdbcType=BIT},
       </if>
-      <if test="remark != null">
+      <if test="remark != null" >
         #{remark,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.fruit.model.ShoppingCart">
+  <update id="updateByPrimaryKeySelective" parameterType="com.fruit.model.ShoppingCart" >
     update shopping_cart
-    <set>
-      <if test="customerId != null">
+    <set >
+      <if test="customerId != null" >
         customer_id = #{customerId,jdbcType=BIGINT},
       </if>
-      <if test="goodsId != null">
+      <if test="goodsId != null" >
         goods_id = #{goodsId,jdbcType=BIGINT},
       </if>
-      <if test="quantity != null">
+      <if test="quantity != null" >
         quantity = #{quantity,jdbcType=SMALLINT},
       </if>
-      <if test="createTime != null">
+      <if test="createTime != null" >
         create_time = #{createTime,jdbcType=TIMESTAMP},
       </if>
-      <if test="status != null">
+      <if test="status != null" >
         status = #{status,jdbcType=BIT},
       </if>
-      <if test="remark != null">
+      <if test="remark != null" >
         remark = #{remark,jdbcType=VARCHAR},
       </if>
     </set>
     where shopping_cart_id = #{shoppingCartId,jdbcType=BIGINT}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.fruit.model.ShoppingCart">
-    update shopping_cart
-    set customer_id = #{customerId,jdbcType=BIGINT},
-      goods_id = #{goodsId,jdbcType=BIGINT},
-      quantity = #{quantity,jdbcType=SMALLINT},
-      create_time = #{createTime,jdbcType=TIMESTAMP},
-      status = #{status,jdbcType=BIT},
-      remark = #{remark,jdbcType=VARCHAR}
-    where shopping_cart_id = #{shoppingCartId,jdbcType=BIGINT}
-  </update>
-  <resultMap id="BaseResultMap" type="com.fruit.model.ShoppingCart">
-    <id column="shopping_cart_id" jdbcType="BIGINT" property="shoppingCartId" />
-    <result column="customer_id" jdbcType="BIGINT" property="customerId" />
-    <result column="goods_id" jdbcType="BIGINT" property="goodsId" />
-    <result column="quantity" jdbcType="SMALLINT" property="quantity" />
-    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
-    <result column="status" jdbcType="BIT" property="status" />
-    <result column="remark" jdbcType="VARCHAR" property="remark" />
-  </resultMap>
-  <sql id="Base_Column_List">
-    shopping_cart_id, customer_id, goods_id, quantity, create_time, status, remark
-  </sql>
-  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
-    select 
-    <include refid="Base_Column_List" />
-    from shopping_cart
-    where shopping_cart_id = #{shoppingCartId,jdbcType=BIGINT}
-  </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
-    delete from shopping_cart
-    where shopping_cart_id = #{shoppingCartId,jdbcType=BIGINT}
-  </delete>
-  <insert id="insert" parameterType="com.fruit.model.ShoppingCart">
-    insert into shopping_cart (shopping_cart_id, customer_id, goods_id, 
-      quantity, create_time, status, 
-      remark)
-    values (#{shoppingCartId,jdbcType=BIGINT}, #{customerId,jdbcType=BIGINT}, #{goodsId,jdbcType=BIGINT}, 
-      #{quantity,jdbcType=SMALLINT}, #{createTime,jdbcType=TIMESTAMP}, #{status,jdbcType=BIT}, 
-      #{remark,jdbcType=VARCHAR})
-  </insert>
-  <insert id="insertSelective" parameterType="com.fruit.model.ShoppingCart">
-    insert into shopping_cart
-    <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="shoppingCartId != null">
-        shopping_cart_id,
-      </if>
-      <if test="customerId != null">
-        customer_id,
-      </if>
-      <if test="goodsId != null">
-        goods_id,
-      </if>
-      <if test="quantity != null">
-        quantity,
-      </if>
-      <if test="createTime != null">
-        create_time,
-      </if>
-      <if test="status != null">
-        status,
-      </if>
-      <if test="remark != null">
-        remark,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="shoppingCartId != null">
-        #{shoppingCartId,jdbcType=BIGINT},
-      </if>
-      <if test="customerId != null">
-        #{customerId,jdbcType=BIGINT},
-      </if>
-      <if test="goodsId != null">
-        #{goodsId,jdbcType=BIGINT},
-      </if>
-      <if test="quantity != null">
-        #{quantity,jdbcType=SMALLINT},
-      </if>
-      <if test="createTime != null">
-        #{createTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="status != null">
-        #{status,jdbcType=BIT},
-      </if>
-      <if test="remark != null">
-        #{remark,jdbcType=VARCHAR},
-      </if>
-    </trim>
-  </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.fruit.model.ShoppingCart">
-    update shopping_cart
-    <set>
-      <if test="customerId != null">
-        customer_id = #{customerId,jdbcType=BIGINT},
-      </if>
-      <if test="goodsId != null">
-        goods_id = #{goodsId,jdbcType=BIGINT},
-      </if>
-      <if test="quantity != null">
-        quantity = #{quantity,jdbcType=SMALLINT},
-      </if>
-      <if test="createTime != null">
-        create_time = #{createTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="status != null">
-        status = #{status,jdbcType=BIT},
-      </if>
-      <if test="remark != null">
-        remark = #{remark,jdbcType=VARCHAR},
-      </if>
-    </set>
-    where shopping_cart_id = #{shoppingCartId,jdbcType=BIGINT}
-  </update>
-  <update id="updateByPrimaryKey" parameterType="com.fruit.model.ShoppingCart">
+  <update id="updateByPrimaryKey" parameterType="com.fruit.model.ShoppingCart" >
     update shopping_cart
     set customer_id = #{customerId,jdbcType=BIGINT},
       goods_id = #{goodsId,jdbcType=BIGINT},

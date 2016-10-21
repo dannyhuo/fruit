@@ -48,13 +48,13 @@
 		
 		
 		<!--消费者-->
+		<!--
 		<table tableName="customer" domainObjectName="Customer"
                enableCountByExample="false" enableUpdateByExample="false"
                enableDeleteByExample="false" enableSelectByExample="false"
                selectByExampleQueryId="false">
-            <!--<columnRenamingRule searchString="^D_"
-                                replaceString=""/>-->
         </table>
+		-->
 		
 		<!--常用收货地址-->
 		<table tableName="delivery_address" domainObjectName="DeliveryAddress"
@@ -150,6 +150,15 @@
 		
 		<!--仓库-->
 		<table tableName="repostory" domainObjectName="Repostory"
+               enableCountByExample="false" enableUpdateByExample="false"
+               enableDeleteByExample="false" enableSelectByExample="false"
+               selectByExampleQueryId="false">
+            <!--<columnRenamingRule searchString="^D_"
+                                replaceString=""/>-->
+        </table>
+		
+		<!--库存-->
+		<table tableName="goods_inventory" domainObjectName="goods_inventory"
                enableCountByExample="false" enableUpdateByExample="false"
                enableDeleteByExample="false" enableSelectByExample="false"
                selectByExampleQueryId="false">

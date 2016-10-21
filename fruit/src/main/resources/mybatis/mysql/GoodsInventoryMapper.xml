@@ -1,33 +1,33 @@
-<?xml version="1.0" encoding="UTF-8" ?>
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.fruit.dao.mysql.GoodsInventoryMapper" >
-  <resultMap id="BaseResultMap" type="com.fruit.model.GoodsInventory" >
-    <id column="goods_inventory_id" property="goodsInventoryId" jdbcType="BIGINT" />
-    <result column="goods_id" property="goodsId" jdbcType="BIGINT" />
-    <result column="goods_batch_no" property="goodsBatchNo" jdbcType="BIGINT" />
-    <result column="repostory_id" property="repostoryId" jdbcType="BIGINT" />
-    <result column="expired_time" property="expiredTime" jdbcType="TIMESTAMP" />
-    <result column="quantity" property="quantity" jdbcType="SMALLINT" />
-    <result column="selling_quantity" property="sellingQuantity" jdbcType="SMALLINT" />
-    <result column="sold_quantity" property="soldQuantity" jdbcType="SMALLINT" />
-    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
-    <result column="remark" property="remark" jdbcType="VARCHAR" />
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fruit.dao.mysql.GoodsInventoryMapper">
+  <resultMap id="BaseResultMap" type="com.fruit.model.GoodsInventory">
+    <id column="goods_inventory_id" jdbcType="BIGINT" property="goodsInventoryId" />
+    <result column="goods_id" jdbcType="BIGINT" property="goodsId" />
+    <result column="goods_batch_no" jdbcType="BIGINT" property="goodsBatchNo" />
+    <result column="repostory_id" jdbcType="BIGINT" property="repostoryId" />
+    <result column="expired_time" jdbcType="TIMESTAMP" property="expiredTime" />
+    <result column="quantity" jdbcType="SMALLINT" property="quantity" />
+    <result column="selling_quantity" jdbcType="SMALLINT" property="sellingQuantity" />
+    <result column="sold_quantity" jdbcType="SMALLINT" property="soldQuantity" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="remark" jdbcType="VARCHAR" property="remark" />
   </resultMap>
-  <sql id="Base_Column_List" >
+  <sql id="Base_Column_List">
     goods_inventory_id, goods_id, goods_batch_no, repostory_id, expired_time, quantity, 
     selling_quantity, sold_quantity, create_time, remark
   </sql>
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
     from goods_inventory
     where goods_inventory_id = #{goodsInventoryId,jdbcType=BIGINT}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
     delete from goods_inventory
     where goods_inventory_id = #{goodsInventoryId,jdbcType=BIGINT}
   </delete>
-  <insert id="insert" parameterType="com.fruit.model.GoodsInventory" >
+  <insert id="insert" parameterType="com.fruit.model.GoodsInventory">
     insert into goods_inventory (goods_inventory_id, goods_id, goods_batch_no, 
       repostory_id, expired_time, quantity, 
       selling_quantity, sold_quantity, create_time, 
@@ -37,107 +37,256 @@
       #{sellingQuantity,jdbcType=SMALLINT}, #{soldQuantity,jdbcType=SMALLINT}, #{createTime,jdbcType=TIMESTAMP}, 
       #{remark,jdbcType=VARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="com.fruit.model.GoodsInventory" >
+  <insert id="insertSelective" parameterType="com.fruit.model.GoodsInventory">
     insert into goods_inventory
-    <trim prefix="(" suffix=")" suffixOverrides="," >
-      <if test="goodsInventoryId != null" >
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="goodsInventoryId != null">
         goods_inventory_id,
       </if>
-      <if test="goodsId != null" >
+      <if test="goodsId != null">
         goods_id,
       </if>
-      <if test="goodsBatchNo != null" >
+      <if test="goodsBatchNo != null">
         goods_batch_no,
       </if>
-      <if test="repostoryId != null" >
+      <if test="repostoryId != null">
         repostory_id,
       </if>
-      <if test="expiredTime != null" >
+      <if test="expiredTime != null">
         expired_time,
       </if>
-      <if test="quantity != null" >
+      <if test="quantity != null">
         quantity,
       </if>
-      <if test="sellingQuantity != null" >
+      <if test="sellingQuantity != null">
         selling_quantity,
       </if>
-      <if test="soldQuantity != null" >
+      <if test="soldQuantity != null">
         sold_quantity,
       </if>
-      <if test="createTime != null" >
+      <if test="createTime != null">
         create_time,
       </if>
-      <if test="remark != null" >
+      <if test="remark != null">
         remark,
       </if>
     </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides="," >
-      <if test="goodsInventoryId != null" >
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="goodsInventoryId != null">
         #{goodsInventoryId,jdbcType=BIGINT},
       </if>
-      <if test="goodsId != null" >
+      <if test="goodsId != null">
         #{goodsId,jdbcType=BIGINT},
       </if>
-      <if test="goodsBatchNo != null" >
+      <if test="goodsBatchNo != null">
         #{goodsBatchNo,jdbcType=BIGINT},
       </if>
-      <if test="repostoryId != null" >
+      <if test="repostoryId != null">
         #{repostoryId,jdbcType=BIGINT},
       </if>
-      <if test="expiredTime != null" >
+      <if test="expiredTime != null">
         #{expiredTime,jdbcType=TIMESTAMP},
       </if>
-      <if test="quantity != null" >
+      <if test="quantity != null">
         #{quantity,jdbcType=SMALLINT},
       </if>
-      <if test="sellingQuantity != null" >
+      <if test="sellingQuantity != null">
         #{sellingQuantity,jdbcType=SMALLINT},
       </if>
-      <if test="soldQuantity != null" >
+      <if test="soldQuantity != null">
         #{soldQuantity,jdbcType=SMALLINT},
       </if>
-      <if test="createTime != null" >
+      <if test="createTime != null">
         #{createTime,jdbcType=TIMESTAMP},
       </if>
-      <if test="remark != null" >
+      <if test="remark != null">
         #{remark,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.fruit.model.GoodsInventory" >
+  <update id="updateByPrimaryKeySelective" parameterType="com.fruit.model.GoodsInventory">
     update goods_inventory
-    <set >
-      <if test="goodsId != null" >
+    <set>
+      <if test="goodsId != null">
         goods_id = #{goodsId,jdbcType=BIGINT},
       </if>
-      <if test="goodsBatchNo != null" >
+      <if test="goodsBatchNo != null">
         goods_batch_no = #{goodsBatchNo,jdbcType=BIGINT},
       </if>
-      <if test="repostoryId != null" >
+      <if test="repostoryId != null">
         repostory_id = #{repostoryId,jdbcType=BIGINT},
       </if>
-      <if test="expiredTime != null" >
+      <if test="expiredTime != null">
         expired_time = #{expiredTime,jdbcType=TIMESTAMP},
       </if>
-      <if test="quantity != null" >
+      <if test="quantity != null">
         quantity = #{quantity,jdbcType=SMALLINT},
       </if>
-      <if test="sellingQuantity != null" >
+      <if test="sellingQuantity != null">
         selling_quantity = #{sellingQuantity,jdbcType=SMALLINT},
       </if>
-      <if test="soldQuantity != null" >
+      <if test="soldQuantity != null">
         sold_quantity = #{soldQuantity,jdbcType=SMALLINT},
       </if>
-      <if test="createTime != null" >
+      <if test="createTime != null">
         create_time = #{createTime,jdbcType=TIMESTAMP},
       </if>
-      <if test="remark != null" >
+      <if test="remark != null">
         remark = #{remark,jdbcType=VARCHAR},
       </if>
     </set>
     where goods_inventory_id = #{goodsInventoryId,jdbcType=BIGINT}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.fruit.model.GoodsInventory" >
+  <update id="updateByPrimaryKey" parameterType="com.fruit.model.GoodsInventory">
+    update goods_inventory
+    set goods_id = #{goodsId,jdbcType=BIGINT},
+      goods_batch_no = #{goodsBatchNo,jdbcType=BIGINT},
+      repostory_id = #{repostoryId,jdbcType=BIGINT},
+      expired_time = #{expiredTime,jdbcType=TIMESTAMP},
+      quantity = #{quantity,jdbcType=SMALLINT},
+      selling_quantity = #{sellingQuantity,jdbcType=SMALLINT},
+      sold_quantity = #{soldQuantity,jdbcType=SMALLINT},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      remark = #{remark,jdbcType=VARCHAR}
+    where goods_inventory_id = #{goodsInventoryId,jdbcType=BIGINT}
+  </update>
+  <resultMap id="BaseResultMap" type="com.fruit.model.GoodsInventory">
+    <id column="goods_inventory_id" jdbcType="BIGINT" property="goodsInventoryId" />
+    <result column="goods_id" jdbcType="BIGINT" property="goodsId" />
+    <result column="goods_batch_no" jdbcType="BIGINT" property="goodsBatchNo" />
+    <result column="repostory_id" jdbcType="BIGINT" property="repostoryId" />
+    <result column="expired_time" jdbcType="TIMESTAMP" property="expiredTime" />
+    <result column="quantity" jdbcType="SMALLINT" property="quantity" />
+    <result column="selling_quantity" jdbcType="SMALLINT" property="sellingQuantity" />
+    <result column="sold_quantity" jdbcType="SMALLINT" property="soldQuantity" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="remark" jdbcType="VARCHAR" property="remark" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    goods_inventory_id, goods_id, goods_batch_no, repostory_id, expired_time, quantity, 
+    selling_quantity, sold_quantity, create_time, remark
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from goods_inventory
+    where goods_inventory_id = #{goodsInventoryId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from goods_inventory
+    where goods_inventory_id = #{goodsInventoryId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.fruit.model.GoodsInventory">
+    insert into goods_inventory (goods_inventory_id, goods_id, goods_batch_no, 
+      repostory_id, expired_time, quantity, 
+      selling_quantity, sold_quantity, create_time, 
+      remark)
+    values (#{goodsInventoryId,jdbcType=BIGINT}, #{goodsId,jdbcType=BIGINT}, #{goodsBatchNo,jdbcType=BIGINT}, 
+      #{repostoryId,jdbcType=BIGINT}, #{expiredTime,jdbcType=TIMESTAMP}, #{quantity,jdbcType=SMALLINT}, 
+      #{sellingQuantity,jdbcType=SMALLINT}, #{soldQuantity,jdbcType=SMALLINT}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{remark,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.fruit.model.GoodsInventory">
+    insert into goods_inventory
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="goodsInventoryId != null">
+        goods_inventory_id,
+      </if>
+      <if test="goodsId != null">
+        goods_id,
+      </if>
+      <if test="goodsBatchNo != null">
+        goods_batch_no,
+      </if>
+      <if test="repostoryId != null">
+        repostory_id,
+      </if>
+      <if test="expiredTime != null">
+        expired_time,
+      </if>
+      <if test="quantity != null">
+        quantity,
+      </if>
+      <if test="sellingQuantity != null">
+        selling_quantity,
+      </if>
+      <if test="soldQuantity != null">
+        sold_quantity,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="remark != null">
+        remark,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="goodsInventoryId != null">
+        #{goodsInventoryId,jdbcType=BIGINT},
+      </if>
+      <if test="goodsId != null">
+        #{goodsId,jdbcType=BIGINT},
+      </if>
+      <if test="goodsBatchNo != null">
+        #{goodsBatchNo,jdbcType=BIGINT},
+      </if>
+      <if test="repostoryId != null">
+        #{repostoryId,jdbcType=BIGINT},
+      </if>
+      <if test="expiredTime != null">
+        #{expiredTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="quantity != null">
+        #{quantity,jdbcType=SMALLINT},
+      </if>
+      <if test="sellingQuantity != null">
+        #{sellingQuantity,jdbcType=SMALLINT},
+      </if>
+      <if test="soldQuantity != null">
+        #{soldQuantity,jdbcType=SMALLINT},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.fruit.model.GoodsInventory">
+    update goods_inventory
+    <set>
+      <if test="goodsId != null">
+        goods_id = #{goodsId,jdbcType=BIGINT},
+      </if>
+      <if test="goodsBatchNo != null">
+        goods_batch_no = #{goodsBatchNo,jdbcType=BIGINT},
+      </if>
+      <if test="repostoryId != null">
+        repostory_id = #{repostoryId,jdbcType=BIGINT},
+      </if>
+      <if test="expiredTime != null">
+        expired_time = #{expiredTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="quantity != null">
+        quantity = #{quantity,jdbcType=SMALLINT},
+      </if>
+      <if test="sellingQuantity != null">
+        selling_quantity = #{sellingQuantity,jdbcType=SMALLINT},
+      </if>
+      <if test="soldQuantity != null">
+        sold_quantity = #{soldQuantity,jdbcType=SMALLINT},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remark != null">
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where goods_inventory_id = #{goodsInventoryId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.fruit.model.GoodsInventory">
     update goods_inventory
     set goods_id = #{goodsId,jdbcType=BIGINT},
       goods_batch_no = #{goodsBatchNo,jdbcType=BIGINT},

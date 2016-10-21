@@ -1,37 +1,37 @@
-<?xml version="1.0" encoding="UTF-8" ?>
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.fruit.dao.mysql.GoodsMapper" >
-  <resultMap id="BaseResultMap" type="com.fruit.model.Goods" >
-    <id column="goods_id" property="goodsId" jdbcType="BIGINT" />
-    <result column="goods_name" property="goodsName" jdbcType="VARCHAR" />
-    <result column="producing_area" property="producingArea" jdbcType="VARCHAR" />
-    <result column="price" property="price" jdbcType="BIGINT" />
-    <result column="description" property="description" jdbcType="VARCHAR" />
-    <result column="tag" property="tag" jdbcType="VARCHAR" />
-    <result column="goods_type_id" property="goodsTypeId" jdbcType="BIGINT" />
-    <result column="goods_category" property="goodsCategory" jdbcType="TINYINT" />
-    <result column="employee_id" property="employeeId" jdbcType="BIGINT" />
-    <result column="goods_status" property="goodsStatus" jdbcType="TINYINT" />
-    <result column="putaway_time" property="putawayTime" jdbcType="TIMESTAMP" />
-    <result column="sold_out_time" property="soldOutTime" jdbcType="TIMESTAMP" />
-    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
-    <result column="remark" property="remark" jdbcType="VARCHAR" />
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fruit.dao.mysql.GoodsMapper">
+  <resultMap id="BaseResultMap" type="com.fruit.model.Goods">
+    <id column="goods_id" jdbcType="BIGINT" property="goodsId" />
+    <result column="goods_name" jdbcType="VARCHAR" property="goodsName" />
+    <result column="producing_area" jdbcType="VARCHAR" property="producingArea" />
+    <result column="price" jdbcType="BIGINT" property="price" />
+    <result column="description" jdbcType="VARCHAR" property="description" />
+    <result column="tag" jdbcType="VARCHAR" property="tag" />
+    <result column="goods_type_id" jdbcType="BIGINT" property="goodsTypeId" />
+    <result column="goods_category" jdbcType="TINYINT" property="goodsCategory" />
+    <result column="employee_id" jdbcType="BIGINT" property="employeeId" />
+    <result column="goods_status" jdbcType="TINYINT" property="goodsStatus" />
+    <result column="putaway_time" jdbcType="TIMESTAMP" property="putawayTime" />
+    <result column="sold_out_time" jdbcType="TIMESTAMP" property="soldOutTime" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="remark" jdbcType="VARCHAR" property="remark" />
   </resultMap>
-  <sql id="Base_Column_List" >
+  <sql id="Base_Column_List">
     goods_id, goods_name, producing_area, price, description, tag, goods_type_id, goods_category, 
     employee_id, goods_status, putaway_time, sold_out_time, create_time, remark
   </sql>
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
     from goods
     where goods_id = #{goodsId,jdbcType=BIGINT}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
     delete from goods
     where goods_id = #{goodsId,jdbcType=BIGINT}
   </delete>
-  <insert id="insert" parameterType="com.fruit.model.Goods" >
+  <insert id="insert" parameterType="com.fruit.model.Goods">
     insert into goods (goods_id, goods_name, producing_area, 
       price, description, tag, 
       goods_type_id, goods_category, employee_id, 
@@ -43,143 +43,338 @@
       #{goodsStatus,jdbcType=TINYINT}, #{putawayTime,jdbcType=TIMESTAMP}, #{soldOutTime,jdbcType=TIMESTAMP}, 
       #{createTime,jdbcType=TIMESTAMP}, #{remark,jdbcType=VARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="com.fruit.model.Goods" >
+  <insert id="insertSelective" parameterType="com.fruit.model.Goods">
     insert into goods
-    <trim prefix="(" suffix=")" suffixOverrides="," >
-      <if test="goodsId != null" >
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="goodsId != null">
         goods_id,
       </if>
-      <if test="goodsName != null" >
+      <if test="goodsName != null">
         goods_name,
       </if>
-      <if test="producingArea != null" >
+      <if test="producingArea != null">
         producing_area,
       </if>
-      <if test="price != null" >
+      <if test="price != null">
         price,
       </if>
-      <if test="description != null" >
+      <if test="description != null">
         description,
       </if>
-      <if test="tag != null" >
+      <if test="tag != null">
         tag,
       </if>
-      <if test="goodsTypeId != null" >
+      <if test="goodsTypeId != null">
         goods_type_id,
       </if>
-      <if test="goodsCategory != null" >
+      <if test="goodsCategory != null">
         goods_category,
       </if>
-      <if test="employeeId != null" >
+      <if test="employeeId != null">
         employee_id,
       </if>
-      <if test="goodsStatus != null" >
+      <if test="goodsStatus != null">
         goods_status,
       </if>
-      <if test="putawayTime != null" >
+      <if test="putawayTime != null">
         putaway_time,
       </if>
-      <if test="soldOutTime != null" >
+      <if test="soldOutTime != null">
         sold_out_time,
       </if>
-      <if test="createTime != null" >
+      <if test="createTime != null">
         create_time,
       </if>
-      <if test="remark != null" >
+      <if test="remark != null">
         remark,
       </if>
     </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides="," >
-      <if test="goodsId != null" >
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="goodsId != null">
         #{goodsId,jdbcType=BIGINT},
       </if>
-      <if test="goodsName != null" >
+      <if test="goodsName != null">
         #{goodsName,jdbcType=VARCHAR},
       </if>
-      <if test="producingArea != null" >
+      <if test="producingArea != null">
         #{producingArea,jdbcType=VARCHAR},
       </if>
-      <if test="price != null" >
+      <if test="price != null">
         #{price,jdbcType=BIGINT},
       </if>
-      <if test="description != null" >
+      <if test="description != null">
         #{description,jdbcType=VARCHAR},
       </if>
-      <if test="tag != null" >
+      <if test="tag != null">
         #{tag,jdbcType=VARCHAR},
       </if>
-      <if test="goodsTypeId != null" >
+      <if test="goodsTypeId != null">
         #{goodsTypeId,jdbcType=BIGINT},
       </if>
-      <if test="goodsCategory != null" >
+      <if test="goodsCategory != null">
         #{goodsCategory,jdbcType=TINYINT},
       </if>
-      <if test="employeeId != null" >
+      <if test="employeeId != null">
         #{employeeId,jdbcType=BIGINT},
       </if>
-      <if test="goodsStatus != null" >
+      <if test="goodsStatus != null">
         #{goodsStatus,jdbcType=TINYINT},
       </if>
-      <if test="putawayTime != null" >
+      <if test="putawayTime != null">
         #{putawayTime,jdbcType=TIMESTAMP},
       </if>
-      <if test="soldOutTime != null" >
+      <if test="soldOutTime != null">
         #{soldOutTime,jdbcType=TIMESTAMP},
       </if>
-      <if test="createTime != null" >
+      <if test="createTime != null">
         #{createTime,jdbcType=TIMESTAMP},
       </if>
-      <if test="remark != null" >
+      <if test="remark != null">
         #{remark,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.fruit.model.Goods" >
+  <update id="updateByPrimaryKeySelective" parameterType="com.fruit.model.Goods">
     update goods
-    <set >
-      <if test="goodsName != null" >
+    <set>
+      <if test="goodsName != null">
         goods_name = #{goodsName,jdbcType=VARCHAR},
       </if>
-      <if test="producingArea != null" >
+      <if test="producingArea != null">
         producing_area = #{producingArea,jdbcType=VARCHAR},
       </if>
-      <if test="price != null" >
+      <if test="price != null">
         price = #{price,jdbcType=BIGINT},
       </if>
-      <if test="description != null" >
+      <if test="description != null">
         description = #{description,jdbcType=VARCHAR},
       </if>
-      <if test="tag != null" >
+      <if test="tag != null">
         tag = #{tag,jdbcType=VARCHAR},
       </if>
-      <if test="goodsTypeId != null" >
+      <if test="goodsTypeId != null">
         goods_type_id = #{goodsTypeId,jdbcType=BIGINT},
       </if>
-      <if test="goodsCategory != null" >
+      <if test="goodsCategory != null">
         goods_category = #{goodsCategory,jdbcType=TINYINT},
       </if>
-      <if test="employeeId != null" >
+      <if test="employeeId != null">
         employee_id = #{employeeId,jdbcType=BIGINT},
       </if>
-      <if test="goodsStatus != null" >
+      <if test="goodsStatus != null">
         goods_status = #{goodsStatus,jdbcType=TINYINT},
       </if>
-      <if test="putawayTime != null" >
+      <if test="putawayTime != null">
         putaway_time = #{putawayTime,jdbcType=TIMESTAMP},
       </if>
-      <if test="soldOutTime != null" >
+      <if test="soldOutTime != null">
         sold_out_time = #{soldOutTime,jdbcType=TIMESTAMP},
       </if>
-      <if test="createTime != null" >
+      <if test="createTime != null">
         create_time = #{createTime,jdbcType=TIMESTAMP},
       </if>
-      <if test="remark != null" >
+      <if test="remark != null">
         remark = #{remark,jdbcType=VARCHAR},
       </if>
     </set>
     where goods_id = #{goodsId,jdbcType=BIGINT}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.fruit.model.Goods" >
+  <update id="updateByPrimaryKey" parameterType="com.fruit.model.Goods">
+    update goods
+    set goods_name = #{goodsName,jdbcType=VARCHAR},
+      producing_area = #{producingArea,jdbcType=VARCHAR},
+      price = #{price,jdbcType=BIGINT},
+      description = #{description,jdbcType=VARCHAR},
+      tag = #{tag,jdbcType=VARCHAR},
+      goods_type_id = #{goodsTypeId,jdbcType=BIGINT},
+      goods_category = #{goodsCategory,jdbcType=TINYINT},
+      employee_id = #{employeeId,jdbcType=BIGINT},
+      goods_status = #{goodsStatus,jdbcType=TINYINT},
+      putaway_time = #{putawayTime,jdbcType=TIMESTAMP},
+      sold_out_time = #{soldOutTime,jdbcType=TIMESTAMP},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      remark = #{remark,jdbcType=VARCHAR}
+    where goods_id = #{goodsId,jdbcType=BIGINT}
+  </update>
+  <resultMap id="BaseResultMap" type="com.fruit.model.Goods">
+    <id column="goods_id" jdbcType="BIGINT" property="goodsId" />
+    <result column="goods_name" jdbcType="VARCHAR" property="goodsName" />
+    <result column="producing_area" jdbcType="VARCHAR" property="producingArea" />
+    <result column="price" jdbcType="BIGINT" property="price" />
+    <result column="description" jdbcType="VARCHAR" property="description" />
+    <result column="tag" jdbcType="VARCHAR" property="tag" />
+    <result column="goods_type_id" jdbcType="BIGINT" property="goodsTypeId" />
+    <result column="goods_category" jdbcType="TINYINT" property="goodsCategory" />
+    <result column="employee_id" jdbcType="BIGINT" property="employeeId" />
+    <result column="goods_status" jdbcType="TINYINT" property="goodsStatus" />
+    <result column="putaway_time" jdbcType="TIMESTAMP" property="putawayTime" />
+    <result column="sold_out_time" jdbcType="TIMESTAMP" property="soldOutTime" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="remark" jdbcType="VARCHAR" property="remark" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    goods_id, goods_name, producing_area, price, description, tag, goods_type_id, goods_category, 
+    employee_id, goods_status, putaway_time, sold_out_time, create_time, remark
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from goods
+    where goods_id = #{goodsId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from goods
+    where goods_id = #{goodsId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.fruit.model.Goods">
+    insert into goods (goods_id, goods_name, producing_area, 
+      price, description, tag, 
+      goods_type_id, goods_category, employee_id, 
+      goods_status, putaway_time, sold_out_time, 
+      create_time, remark)
+    values (#{goodsId,jdbcType=BIGINT}, #{goodsName,jdbcType=VARCHAR}, #{producingArea,jdbcType=VARCHAR}, 
+      #{price,jdbcType=BIGINT}, #{description,jdbcType=VARCHAR}, #{tag,jdbcType=VARCHAR}, 
+      #{goodsTypeId,jdbcType=BIGINT}, #{goodsCategory,jdbcType=TINYINT}, #{employeeId,jdbcType=BIGINT}, 
+      #{goodsStatus,jdbcType=TINYINT}, #{putawayTime,jdbcType=TIMESTAMP}, #{soldOutTime,jdbcType=TIMESTAMP}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{remark,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.fruit.model.Goods">
+    insert into goods
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="goodsId != null">
+        goods_id,
+      </if>
+      <if test="goodsName != null">
+        goods_name,
+      </if>
+      <if test="producingArea != null">
+        producing_area,
+      </if>
+      <if test="price != null">
+        price,
+      </if>
+      <if test="description != null">
+        description,
+      </if>
+      <if test="tag != null">
+        tag,
+      </if>
+      <if test="goodsTypeId != null">
+        goods_type_id,
+      </if>
+      <if test="goodsCategory != null">
+        goods_category,
+      </if>
+      <if test="employeeId != null">
+        employee_id,
+      </if>
+      <if test="goodsStatus != null">
+        goods_status,
+      </if>
+      <if test="putawayTime != null">
+        putaway_time,
+      </if>
+      <if test="soldOutTime != null">
+        sold_out_time,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="remark != null">
+        remark,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="goodsId != null">
+        #{goodsId,jdbcType=BIGINT},
+      </if>
+      <if test="goodsName != null">
+        #{goodsName,jdbcType=VARCHAR},
+      </if>
+      <if test="producingArea != null">
+        #{producingArea,jdbcType=VARCHAR},
+      </if>
+      <if test="price != null">
+        #{price,jdbcType=BIGINT},
+      </if>
+      <if test="description != null">
+        #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="tag != null">
+        #{tag,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsTypeId != null">
+        #{goodsTypeId,jdbcType=BIGINT},
+      </if>
+      <if test="goodsCategory != null">
+        #{goodsCategory,jdbcType=TINYINT},
+      </if>
+      <if test="employeeId != null">
+        #{employeeId,jdbcType=BIGINT},
+      </if>
+      <if test="goodsStatus != null">
+        #{goodsStatus,jdbcType=TINYINT},
+      </if>
+      <if test="putawayTime != null">
+        #{putawayTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="soldOutTime != null">
+        #{soldOutTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.fruit.model.Goods">
+    update goods
+    <set>
+      <if test="goodsName != null">
+        goods_name = #{goodsName,jdbcType=VARCHAR},
+      </if>
+      <if test="producingArea != null">
+        producing_area = #{producingArea,jdbcType=VARCHAR},
+      </if>
+      <if test="price != null">
+        price = #{price,jdbcType=BIGINT},
+      </if>
+      <if test="description != null">
+        description = #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="tag != null">
+        tag = #{tag,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsTypeId != null">
+        goods_type_id = #{goodsTypeId,jdbcType=BIGINT},
+      </if>
+      <if test="goodsCategory != null">
+        goods_category = #{goodsCategory,jdbcType=TINYINT},
+      </if>
+      <if test="employeeId != null">
+        employee_id = #{employeeId,jdbcType=BIGINT},
+      </if>
+      <if test="goodsStatus != null">
+        goods_status = #{goodsStatus,jdbcType=TINYINT},
+      </if>
+      <if test="putawayTime != null">
+        putaway_time = #{putawayTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="soldOutTime != null">
+        sold_out_time = #{soldOutTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remark != null">
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where goods_id = #{goodsId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.fruit.model.Goods">
     update goods
     set goods_name = #{goodsName,jdbcType=VARCHAR},
       producing_area = #{producingArea,jdbcType=VARCHAR},

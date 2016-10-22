@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.fruit.dao.mysql.GoodsMapper" >
-  <resultMap id="BaseResultMap" type="com.fruit.model.Goods" >
+  <resultMap id="BaseResultMap" type="com.fruit.model.vo.GoodsVo" >
     <id column="goods_id" property="goodsId" jdbcType="BIGINT" />
     <result column="goods_name" property="goodsName" jdbcType="VARCHAR" />
     <result column="producing_area" property="producingArea" jdbcType="VARCHAR" />
@@ -196,4 +196,54 @@
       remark = #{remark,jdbcType=VARCHAR}
     where goods_id = #{goodsId,jdbcType=BIGINT}
   </update>
+  
+  <select id="selectByParam" resultMap="BaseResultMap" parameterType="java.util.HashMap" >
+    select 
+    <include refid="Base_Column_List" />
+    from goods
+    where 1 = 1 
+    <if test="goodsName != null" >
+      and goods_name = #{goodsName,jdbcType=VARCHAR},
+    </if>
+    <if test="producingArea != null" >
+      and producing_area = #{producingArea,jdbcType=VARCHAR},
+    </if>
+    <if test="price != null" >
+      and price = #{price,jdbcType=BIGINT},
+    </if>
+    <if test="description != null" >
+      and description = #{description,jdbcType=VARCHAR},
+    </if>
+    <if test="tag != null" >
+      and tag = #{tag,jdbcType=VARCHAR},
+    </if>
+    <if test="goodsTypeId != null" >
+      and goods_type_id = #{goodsTypeId,jdbcType=BIGINT},
+    </if>
+    <if test="goodsCategory != null" >
+      and goods_category = #{goodsCategory,jdbcType=TINYINT},
+    </if>
+    <if test="employeeId != null" >
+      and employee_id = #{employeeId,jdbcType=BIGINT},
+    </if>
+    <if test="goodsStatus != null" >
+      and goods_status = #{goodsStatus,jdbcType=TINYINT},
+    </if>
+    <if test="putawayTime != null" >
+      and putaway_time = #{putawayTime,jdbcType=TIMESTAMP},
+    </if>
+    <if test="soldOutTime != null" >
+      and sold_out_time = #{soldOutTime,jdbcType=TIMESTAMP},
+    </if>
+    <if test="createTime != null" >
+      and create_time = #{createTime,jdbcType=TIMESTAMP},
+    </if>
+    <if test="remark != null" >
+      and remark = #{remark,jdbcType=VARCHAR},
+    </if>
+    
+    <if test="startRow != null" >
+      limit #{startRow,jdbcType=BIGINT}, #{pageSize,jdbcType=BIGINT}
+    </if>
+  </select>
 </mapper>

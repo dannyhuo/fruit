@@ -16,7 +16,6 @@ public class LoginInterceptor implements HandlerInterceptor{
 	public void afterCompletion(HttpServletRequest request, 
 			HttpServletResponse response, Object handler, Exception exception)
 			throws Exception {
-		System.out.println("Start to invoke the interceptor method of afterCompletion(HttpServletRequest arg0, HttpServletResponse arg1, Object arg2, ModelAndView arg3)");
 	}
 
 	/** 
@@ -29,7 +28,6 @@ public class LoginInterceptor implements HandlerInterceptor{
 	public void postHandle(HttpServletRequest response, 
 			HttpServletResponse request, Object handler, ModelAndView modelAndView)
 			throws Exception {
-		System.out.println("Start to invoke the interceptor method of postHandle(HttpServletRequest arg0, HttpServletResponse arg1, Object arg2, ModelAndView arg3)");
 	}
 
 	
@@ -41,9 +39,8 @@ public class LoginInterceptor implements HandlerInterceptor{
      */
 	public boolean preHandle(HttpServletRequest request, 
 			HttpServletResponse response, Object handler) throws Exception {
-		System.out.println("Start to invoke the interceptor method of preHandle(HttpServletRequest arg0, HttpServletResponse arg1, Object arg2)");
 		HttpSession session = request.getSession();
-		if(null != session.getAttribute("customer")){
+		if(null != session.getAttribute("customer")){//已登录，直接跳转登记结果页
 			response.sendRedirect("http://www.baidu.com");
 			return false;
 		}

@@ -1,6 +1,9 @@
 package com.fruit.dao.mysql;
 
+import java.util.List;
+
 import com.fruit.model.Goods;
+import com.fruit.model.vo.GoodsVo;
 
 public interface GoodsMapper {
     int deleteByPrimaryKey(Long goodsId);
@@ -14,4 +17,6 @@ public interface GoodsMapper {
     int updateByPrimaryKeySelective(Goods record);
 
     int updateByPrimaryKey(Goods record);
+    
+    List<GoodsVo> selectByParam(GoodsVo goodsVo);
 }

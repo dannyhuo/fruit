@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.fruit.model.Customer;
+import com.fruit.model.vo.CustomerVo;
 
 public interface CustomerMapper {
     int deleteByPrimaryKey(Long customerId);
@@ -18,5 +19,5 @@ public interface CustomerMapper {
 
     int updateByPrimaryKey(Customer record);
     
-    List<Customer> querySelective(Map<String, Object> params);
+    List<CustomerVo> querySelective(Map<String, Object> params);
 }

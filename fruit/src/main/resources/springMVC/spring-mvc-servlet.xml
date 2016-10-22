@@ -75,7 +75,7 @@
     <!-- spring mvc 拦截器 -->
   	<mvc:interceptors>
    		<mvc:interceptor>
-   			<mvc:mapping path="/customerController/*.do"/>
+   			<mvc:mapping path="/customerController/*login.do"/>
    			<bean class="com.fruit.interceptor.LoginInterceptor"/>
    		</mvc:interceptor>
 	</mvc:interceptors>

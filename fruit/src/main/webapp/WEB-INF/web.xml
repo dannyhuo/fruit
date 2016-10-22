@@ -5,7 +5,7 @@
 
 
 <web-app>
-  <display-name>XSHG</display-name>
+  <display-name>fruit</display-name>
 
   <!-- Srping context config location 指定 -->  
   <context-param>
@@ -61,11 +61,26 @@
     </init-param>
     <load-on-startup>1</load-on-startup>
   </servlet>
+  <servlet>
+  	<servlet-name>customerLogin</servlet-name>
+  	<display-name>customerLogin</display-name>
+  	<description>customer login</description>
+  	<servlet-class>com.fruit.servlet.login.CustomerLogin</servlet-class>
+  </servlet>
+  
   <servlet-mapping>
     <servlet-name>springMvc</servlet-name>
     <url-pattern>*.do</url-pattern>
   </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>customerLogin</servlet-name>
+  	<url-pattern>/login</url-pattern>
+  </servlet-mapping>
   
+  <!-- session过期时间设置 -->
+  <session-config>
+	<session-timeout>3</session-timeout>
+  </session-config>
   
   <welcome-file-list>
   	<welcome-file>index.jsp</welcome-file>

@@ -103,7 +103,7 @@ body{
 	padding-right: 3px;
 }
 
-/**类型及搜索部分*/
+/**类型及广告位部分*/
 .type_and_ad{
 	width: 1360px;
 	height: 360px;
@@ -116,6 +116,10 @@ body{
 
 .type_and_ad table td{
 	text-align:center;
+}
+
+.my_category_menu_img{
+	cursor: pointer;
 }
 
 
@@ -142,4 +146,3 @@ body{
 	width: 1360px;
 	height: 400px;
 }
-

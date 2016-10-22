@@ -81,33 +81,33 @@
 			<table class="my_category_tab" cellspacing="0" cellpadding="0">
 				<tr>
 					<td width="200px">
-						<table>
+						<table cellspacing="0" cellpadding="0">
 							<tr>
 								<td style="background-color:#2ca345;"><a><img src="/fruit/webpage/imgs/category_menu_top.png"/></a></td>
 							</tr>
 							<tr>
-								<td><a><img src="/fruit/webpage/imgs/jin_kou_menu_icon.png"/></a></td>
+								<td><a><img class="my_category_menu_img" src="/fruit/webpage/imgs/jin_kou_menu_icon.png"/></a></td>
 							</tr>
 							<tr>
-								<td><a><img src="/fruit/webpage/imgs/guo_chan_menu_icon.png"/></a></td>
+								<td><a><img class="my_category_menu_img" src="/fruit/webpage/imgs/guo_chan_menu_icon.png"/></a></td>
 							</tr>
 							<tr>
-								<td><a><img src="/fruit/webpage/imgs/jiang_guo_menu_icon.png"/></a></td>
+								<td><a><img class="my_category_menu_img" src="/fruit/webpage/imgs/jiang_guo_menu_icon.png"/></a></td>
 							</tr>
 							<tr>
-								<td><a><img src="/fruit/webpage/imgs/gua_guo_menu_icon.png"/></a></td>
+								<td><a><img class="my_category_menu_img" src="/fruit/webpage/imgs/gua_guo_menu_icon.png"/></a></td>
 							</tr>
 							<tr>
-								<td><a><img src="/fruit/webpage/imgs/ju_guo_menu_icon.png"/></a></td>
+								<td><a><img class="my_category_menu_img" src="/fruit/webpage/imgs/ju_guo_menu_icon.png"/></a></td>
 							</tr>
 							<tr>
-								<td><a><img src="/fruit/webpage/imgs/he_guo_menu_icon.png"/></a></td>
+								<td><a><img class="my_category_menu_img" src="/fruit/webpage/imgs/he_guo_menu_icon.png"/></a></td>
 							</tr>
 							<tr>
-								<td><a><img src="/fruit/webpage/imgs/ren_guo_menu_icon.png"/></a></td>
+								<td><a><img class="my_category_menu_img" src="/fruit/webpage/imgs/ren_guo_menu_icon.png"/></a></td>
 							</tr>
 							<tr>
-								<td><a><img src="/fruit/webpage/imgs/qi_ta_menu_icon.png"/></a></td>
+								<td><a><img class="my_category_menu_img" src="/fruit/webpage/imgs/qi_ta_menu_icon.png"/></a></td>
 							</tr>
 						</table>
 					</td>
@@ -130,7 +130,7 @@
 		
 		<#--楼层对应商品展倍栏， height 400px-->
 		<div class="floor_goods_list">
-		
+			
 		</div>
 	</body>
 </html>

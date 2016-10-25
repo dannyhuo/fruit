@@ -340,6 +340,7 @@ CREATE TABLE `goods` (
 `market_price` bigint(11) NOT NULL COMMENT '市场价,单位分' ,
 `sell_price` bigint(11) NOT NULL COMMENT '售价，单位分' ,
 `description`  varchar(500) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '商品描述' ,
+`goods_image_url`  varchar(200) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '商品图片url' ,
 `tag`  varchar(60) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '标签' ,
 `goods_type_id` bigint(11) NULL DEFAULT NULL COMMENT 'FK，商品类型ID(苹果、橘子、柚子、。。。)' ,
 `goods_category` tinyint(2) NULL DEFAULT NULL COMMENT '商品分类，水果分的大类别' ,

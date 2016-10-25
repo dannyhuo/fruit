@@ -12,6 +12,8 @@ public class Goods {
     private Long price;
 
     private String description;
+    
+    private String goodsImageUrl;
 
     private String tag;
 
@@ -71,7 +73,15 @@ public class Goods {
         this.description = description == null ? null : description.trim();
     }
 
-    public String getTag() {
+    public String getGoodsImageUrl() {
+		return goodsImageUrl;
+	}
+
+	public void setGoodsImageUrl(String goodsImageUrl) {
+		this.goodsImageUrl = goodsImageUrl;
+	}
+
+	public String getTag() {
         return tag;
     }
 

@@ -19,4 +19,12 @@ public interface GoodsMapper {
     int updateByPrimaryKey(Goods record);
     
     List<GoodsVo> selectByParam(GoodsVo goodsVo);
+    
+    /**
+     * 通过关键字搜索
+     * @param keyWords
+     * @return
+     */
+    List<GoodsVo> search(GoodsVo goodsVo);
+    
 }

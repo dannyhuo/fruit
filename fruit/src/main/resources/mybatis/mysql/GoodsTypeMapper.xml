@@ -90,4 +90,26 @@
       remark = #{remark,jdbcType=VARCHAR}
     where goods_type_id = #{goodsTypeId,jdbcType=BIGINT}
   </update>
+  
+  <select id="selectByParam" resultMap="BaseResultMap" parameterType="com.fruit.model.vo.GoodsTypeVo" >
+    select 
+    <include refid="Base_Column_List" />
+    from goods_type
+    where 1 = 1 
+    <if test="goodsTypeName != null" >
+      and goods_type_name = #{goodsTypeName,jdbcType=VARCHAR}
+    </if>
+    <if test="goodsCategory != null" >
+      and goods_category = #{goodsCategory,jdbcType=TINYINT}
+    </if>
+    <if test="createTime != null" >
+      and create_time = #{createTime,jdbcType=TIMESTAMP}
+    </if>
+    <if test="remark != null" >
+      and remark = #{remark,jdbcType=VARCHAR}
+    </if>
+    <if test="startRow != null" >
+      limit #{startRow,jdbcType=BIGINT}, #{pageSize,jdbcType=BIGINT}
+    </if>
+  </select>
 </mapper>

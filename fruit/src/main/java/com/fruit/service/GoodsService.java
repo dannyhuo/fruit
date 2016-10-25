@@ -42,5 +42,20 @@ public class GoodsService {
 	public List<GoodsVo> selectByParam(GoodsVo goodsVo){
 		return goodsMapper.selectByParam(goodsVo);
 	}
+	
+	/**
+	 * 按关键字搜索，如果关键字为空，则将查询最前100条商品
+	 * @param goodsVo
+	 * @return
+	 */
+	public List<GoodsVo> searchByKeyWords(GoodsVo goodsVo){
+		if(null == goodsVo || null == goodsVo.getKeyWords() 
+				|| goodsVo.getKeyWords().trim().equals("")){
+			goodsVo = new GoodsVo();
+			goodsVo.setPageNo(1);
+			goodsVo.setPageSize(100);
+		}
+		return goodsMapper.search(goodsVo);
+	}
 
 }

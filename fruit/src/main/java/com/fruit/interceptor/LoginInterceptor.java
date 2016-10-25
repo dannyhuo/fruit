@@ -41,6 +41,7 @@ public class LoginInterceptor implements HandlerInterceptor{
 			HttpServletResponse response, Object handler) throws Exception {
 		HttpSession session = request.getSession();
 		if(null != session.getAttribute("customer")){//已登录，直接跳转登记结果页
+			request.setAttribute("user", session.getAttribute("customer"));
 			response.sendRedirect("http://www.baidu.com");
 			return false;
 		}

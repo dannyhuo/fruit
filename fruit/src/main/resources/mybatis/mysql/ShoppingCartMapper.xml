@@ -22,7 +22,8 @@
     
     <result column="goods_name" property="goodsName" jdbcType="VARCHAR" />
     <result column="producing_area" property="producingArea" jdbcType="VARCHAR" />
-    <result column="price" property="price" jdbcType="BIGINT" />
+    <result column="market_price" property="marketPrice" jdbcType="BIGINT" />
+    <result column="sell_price" property="sellPrice" jdbcType="BIGINT" />
     <result column="description" property="description" jdbcType="VARCHAR" />
     <result column="goods_image_url" property="goodsImageUrl" jdbcType="VARCHAR" />
     <result column="tag" property="tag" jdbcType="VARCHAR" />

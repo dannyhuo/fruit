@@ -5,7 +5,8 @@
     <id column="goods_id" property="goodsId" jdbcType="BIGINT" />
     <result column="goods_name" property="goodsName" jdbcType="VARCHAR" />
     <result column="producing_area" property="producingArea" jdbcType="VARCHAR" />
-    <result column="price" property="price" jdbcType="BIGINT" />
+    <result column="market_price" property="marketPrice" jdbcType="BIGINT" />
+    <result column="sell_price" property="sellPrice" jdbcType="BIGINT" />
     <result column="description" property="description" jdbcType="VARCHAR" />
     <result column="goods_image_url" property="goodsImageUrl" jdbcType="VARCHAR" />
     <result column="tag" property="tag" jdbcType="VARCHAR" />
@@ -19,7 +20,7 @@
     <result column="remark" property="remark" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Base_Column_List" >
-    goods_id, goods_name, producing_area, price, description, goods_image_url, tag, goods_type_id, goods_category, 
+    goods_id, goods_name, producing_area, market_price, sell_price, description, goods_image_url, tag, goods_type_id, goods_category, 
     employee_id, goods_status, putaway_time, sold_out_time, create_time, remark
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
@@ -34,12 +35,12 @@
   </delete>
   <insert id="insert" parameterType="com.fruit.model.vo.GoodsVo" >
     insert into goods (goods_id, goods_name, producing_area, 
-      price, description, goods_image_url, tag, 
+      market_price, sell_price, description, goods_image_url, tag, 
       goods_type_id, goods_category, employee_id, 
       goods_status, putaway_time, sold_out_time, 
       create_time, remark)
     values (#{goodsId,jdbcType=BIGINT}, #{goodsName,jdbcType=VARCHAR}, #{producingArea,jdbcType=VARCHAR}, 
-      #{price,jdbcType=BIGINT}, #{description,jdbcType=VARCHAR}, #{goodsImageUrl,jdbcType=VARCHAR}, #{tag,jdbcType=VARCHAR}, 
+      #{marketPrice,jdbcType=BIGINT}, #{sellPrice,jdbcType=BIGINT}, #{description,jdbcType=VARCHAR}, #{goodsImageUrl,jdbcType=VARCHAR}, #{tag,jdbcType=VARCHAR}, 
       #{goodsTypeId,jdbcType=BIGINT}, #{goodsCategory,jdbcType=TINYINT}, #{employeeId,jdbcType=BIGINT}, 
       #{goodsStatus,jdbcType=TINYINT}, #{putawayTime,jdbcType=TIMESTAMP}, #{soldOutTime,jdbcType=TIMESTAMP}, 
       #{createTime,jdbcType=TIMESTAMP}, #{remark,jdbcType=VARCHAR})
@@ -56,8 +57,11 @@
       <if test="producingArea != null" >
         producing_area,
       </if>
-      <if test="price != null" >
-        price,
+      <if test="marketPrice != null" >
+        market_price,
+      </if>
+      <if test="sellPrice != null" >
+        sell_price,
       </if>
       <if test="description != null" >
         description,
@@ -103,8 +107,11 @@
       <if test="producingArea != null" >
         #{producingArea,jdbcType=VARCHAR},
       </if>
-      <if test="price != null" >
-        #{price,jdbcType=BIGINT},
+      <if test="marketPrice != null" >
+        #{marketPrice,jdbcType=BIGINT},
+      </if>
+      <if test="sellPrice != null" >
+        #{sellPrice,jdbcType=BIGINT},
       </if>
       <if test="description != null" >
         #{description,jdbcType=VARCHAR},
@@ -150,8 +157,11 @@
       <if test="producingArea != null" >
         producing_area = #{producingArea,jdbcType=VARCHAR},
       </if>
-      <if test="price != null" >
-        price = #{price,jdbcType=BIGINT},
+      <if test="marketPrice != null" >
+        market_price = #{marketPrice,jdbcType=BIGINT},
+      </if>
+      <if test="sellPrice != null" >
+        sell_price = #{sellPrice,jdbcType=BIGINT},
       </if>
       <if test="description != null" >
         description = #{description,jdbcType=VARCHAR},
@@ -193,7 +203,8 @@
     update goods
     set goods_name = #{goodsName,jdbcType=VARCHAR},
       producing_area = #{producingArea,jdbcType=VARCHAR},
-      price = #{price,jdbcType=BIGINT},
+      market_price = #{marketPrice,jdbcType=BIGINT},
+      sell_price = #{sellPrice,jdbcType=BIGINT},
       description = #{description,jdbcType=VARCHAR},
       goods_image_url = #{goodsImageUrl,jdbcType=VARCHAR},
       tag = #{tag,jdbcType=VARCHAR},
@@ -219,8 +230,11 @@
     <if test="producingArea != null" >
       and producing_area = #{producingArea,jdbcType=VARCHAR}
     </if>
-    <if test="price != null" >
-      and price = #{price,jdbcType=BIGINT}
+    <if test="marketPrice != null" >
+      and market_price = #{marketPrice,jdbcType=BIGINT}
+    </if>
+    <if test="sellPrice != null" >
+      and sell_price = #{sellPrice,jdbcType=BIGINT}
     </if>
     <if test="description != null" >
       and description = #{description,jdbcType=VARCHAR}

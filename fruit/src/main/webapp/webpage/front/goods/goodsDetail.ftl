@@ -23,7 +23,7 @@
 							<table cellspacing="0" cellpadding="0" border="0" width="100%" height="100%">
 								<tr>
 									<td>
-										<p class="fav-price">价格：<em>¥</em>${goods.price}<span></span></p>
+										<p class="fav-price">价格：<em>¥</em>${goods.sellPrice}<span></span></p>
 									</td>
 								</tr>
 							</table>

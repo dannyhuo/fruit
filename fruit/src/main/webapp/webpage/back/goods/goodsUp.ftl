@@ -15,8 +15,12 @@
 				<td><input type="text" name="producingArea"/></td>
 			<tr/>
 			<tr>
-				<td>商品价格：</td>
-				<td><input type="text" name="price"/></td>
+				<td>市场价格：</td>
+				<td><input type="text" name="marketPrice"/></td>
+			<tr/>
+			<tr>
+				<td>销售价格：</td>
+				<td><input type="text" name="sellPrice"/></td>
 			<tr/>
 			<tr>
 				<td>商品描述：</td>

@@ -29,9 +29,9 @@
 								<img width="60px" height="40px" src="/fruit/webpage/goods_imgs/${shpCardGoods.goodsImageUrl}" />
 							</td>
 							<td align="left">${shpCardGoods.goodsName}</td>
-							<td align="center">${shpCardGoods.price}</td>
+							<td align="center">${shpCardGoods.sellPrice}</td>
 							<td align="center">${shpCardGoods.quantity}</td>
-							<td align="center">${shpCardGoods.price*shpCardGoods.quantity}</td>
+							<td align="center">${shpCardGoods.sellPrice*shpCardGoods.quantity}</td>
 							<td align="center">
 								<a href="">从购物车中移出</a>
 							</td>

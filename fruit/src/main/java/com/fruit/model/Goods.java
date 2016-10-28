@@ -9,7 +9,9 @@ public class Goods {
 
     private String producingArea;
 
-    private Long price;
+    private Long marketPrice;
+    
+    private Long sellPrice;
 
     private String description;
     
@@ -57,15 +59,23 @@ public class Goods {
         this.producingArea = producingArea == null ? null : producingArea.trim();
     }
 
-    public Long getPrice() {
-        return price;
-    }
+    public Long getMarketPrice() {
+		return marketPrice;
+	}
 
-    public void setPrice(Long price) {
-        this.price = price;
-    }
+	public void setMarketPrice(Long marketPrice) {
+		this.marketPrice = marketPrice;
+	}
 
-    public String getDescription() {
+	public Long getSellPrice() {
+		return sellPrice;
+	}
+
+	public void setSellPrice(Long sellPrice) {
+		this.sellPrice = sellPrice;
+	}
+
+	public String getDescription() {
         return description;
     }
 

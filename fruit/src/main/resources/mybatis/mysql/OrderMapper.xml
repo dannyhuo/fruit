@@ -7,7 +7,7 @@
     <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
     <result column="order_pay" property="orderPay" jdbcType="BIGINT" />
     <result column="order_ought_pay" property="orderOughtPay" jdbcType="BIGINT" />
-    <result column="status" property="status" jdbcType="BIT" />
+    <result column="status" property="status" jdbcType="TINYINT" />
     <result column="remark" property="remark" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Base_Column_List" >
@@ -28,7 +28,7 @@
       order_pay, order_ought_pay, status, 
       remark)
     values (#{orderId,jdbcType=BIGINT}, #{customerId,jdbcType=BIGINT}, #{createTime,jdbcType=TIMESTAMP}, 
-      #{orderPay,jdbcType=BIGINT}, #{orderOughtPay,jdbcType=BIGINT}, #{status,jdbcType=BIT}, 
+      #{orderPay,jdbcType=BIGINT}, #{orderOughtPay,jdbcType=BIGINT}, #{status,jdbcType=TINYINT}, 
       #{remark,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.fruit.model.Order" >
@@ -73,7 +73,7 @@
         #{orderOughtPay,jdbcType=BIGINT},
       </if>
       <if test="status != null" >
-        #{status,jdbcType=BIT},
+        #{status,jdbcType=TINYINT},
       </if>
       <if test="remark != null" >
         #{remark,jdbcType=VARCHAR},
@@ -96,7 +96,7 @@
         order_ought_pay = #{orderOughtPay,jdbcType=BIGINT},
       </if>
       <if test="status != null" >
-        status = #{status,jdbcType=BIT},
+        status = #{status,jdbcType=TINYINT},
       </if>
       <if test="remark != null" >
         remark = #{remark,jdbcType=VARCHAR},
@@ -110,7 +110,7 @@
       create_time = #{createTime,jdbcType=TIMESTAMP},
       order_pay = #{orderPay,jdbcType=BIGINT},
       order_ought_pay = #{orderOughtPay,jdbcType=BIGINT},
-      status = #{status,jdbcType=BIT},
+      status = #{status,jdbcType=TINYINT},
       remark = #{remark,jdbcType=VARCHAR}
     where order_id = #{orderId,jdbcType=BIGINT}
   </update>

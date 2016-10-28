@@ -33,7 +33,7 @@ CREATE TABLE `outbound_order_detail` (
 `goods_id`  bigint(11) NOT NULL COMMENT 'FK、商品编号' ,
 `create_time` datetime not null default NOW() COMMENT '创建时间' ,
 `outbound_time` datetime null default null COMMENT '出库时间' ,
-`status` tinyint(1) NOT NULL default 0 COMMENT '出库状态，0：待出库， 1：已出库， 2：？' ,
+`status` tinyint(2) NOT NULL default 0 COMMENT '出库状态，0：待出库， 1：已出库， 2：？' ,
 `remark` varchar(500) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '备注' ,
 PRIMARY KEY (`outbound_order_detail_id`)
 )
@@ -127,7 +127,7 @@ CREATE TABLE `purchase_order_detail` (
 `quantity`  smallint(5) NOT NULL COMMENT '采购数量' ,
 `create_time` datetime not null default NOW() COMMENT '创建时间' ,
 `repostory_id`  bigint(11) NOT NULL COMMENT 'FK、仓库编号，商品供给到此仓库' ,
-`status` tinyint(1) NOT NULL default 0 COMMENT '供货状态，0：待供货， 1：已供货， 2：？' ,
+`status` tinyint(2) NOT NULL default 0 COMMENT '供货状态，0：待供货， 1：已供货， 2：？' ,
 `supply_time` datetime null default null COMMENT '供货时间，入库时间' ,
 `remark` varchar(500) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '备注' ,
 PRIMARY KEY (`purchase_order_detail_id`)
@@ -285,7 +285,7 @@ CREATE TABLE `order` (
 `create_time` datetime not null default NOW() COMMENT '下单时间' ,
 `order_pay`  bigint(11) NOT NULL COMMENT '订单总金额' ,
 `order_ought_pay`  bigint(11) NOT NULL COMMENT '订单应付总金额' ,
-`status` tinyint(1) NOT NULL default 0 COMMENT '状态，0：待支付， 1：已支付， 2：未支付取消，3：申请退款(消费者主动意向)，4：退款处理中，5：退款完成' ,
+`status` tinyint(2) NOT NULL default 0 COMMENT '状态，0：待支付， 1：已支付， 2：未支付取消，3：申请退款(消费者主动意向)，4：退款处理中，5：退款完成' ,
 `remark` varchar(500) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '备注' ,
 PRIMARY KEY (`order_id`)
 )
@@ -311,7 +311,7 @@ CREATE TABLE `shopping_cart` (
 `goods_id`  bigint(11) NOT NULL COMMENT 'FK， 商品ID' ,
 `quantity`  smallint(5) NOT NULL COMMENT '意向购买数量' ,
 `create_time` datetime not null default NOW() COMMENT '添加时间' ,
-`status` tinyint(1) NOT NULL default 0 COMMENT '状态，0：添加， 1：已购买， 2：主动删除' ,
+`status` tinyint(2) NOT NULL default 0 COMMENT '状态，0：添加， 1：已购买， 2：主动删除' ,
 `remark` varchar(500) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '备注' ,
 PRIMARY KEY (`shopping_cart_id`)
 )
@@ -345,7 +345,7 @@ CREATE TABLE `goods` (
 `goods_type_id` bigint(11) NULL DEFAULT NULL COMMENT 'FK，商品类型ID(苹果、橘子、柚子、。。。)' ,
 `goods_category` tinyint(2) NULL DEFAULT NULL COMMENT '商品分类，水果分的大类别' ,
 `employee_id`  bigint(11) NOT NULL COMMENT '运营专员编号,哪个运营专员上架的商品' ,
-`goods_status`  tinyint(11) NOT NULL COMMENT '0：待上架，1：已上架，2：已下架' ,
+`goods_status`  tinyint(2) NOT NULL COMMENT '0：待上架，1：已上架，2：已下架' ,
 `putaway_time` datetime null COMMENT '上架时间' ,
 `sold_out_time` datetime null default null COMMENT '下架时间' ,
 `create_time` datetime not null default NOW() COMMENT '创建时间' ,

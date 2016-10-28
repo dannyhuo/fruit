@@ -1,6 +1,9 @@
 package com.fruit.dao.mysql;
 
+import java.util.List;
+
 import com.fruit.model.ShoppingCart;
+import com.fruit.model.vo.ShoppingCartVo;
 
 public interface ShoppingCartMapper {
     int deleteByPrimaryKey(Long shoppingCartId);
@@ -14,4 +17,6 @@ public interface ShoppingCartMapper {
     int updateByPrimaryKeySelective(ShoppingCart record);
 
     int updateByPrimaryKey(ShoppingCart record);
+    
+    List<ShoppingCartVo> queryShpCartByParam(ShoppingCart shoppingCart);
 }

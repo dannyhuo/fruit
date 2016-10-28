@@ -98,3 +98,45 @@ body{
 	height:60px;
 	display: block;	
 }
+
+.add_shopping_cart_btn{
+	width:80px;
+	height:23px;
+	display:block;
+	cursor:pointer;
+	background-color: #22ac38;
+	color: #ffffff;
+	border-right: 1px solid #cccccc;
+	border-bottom: 1px solid #cccccc;
+	padding-top: 3px;
+	padding-left:5px;
+	font-size: 14px;
+}
+
+
+/**购物车页面*/
+.my_shp_cart_div{
+	border: none;
+	width: 1360px;
+	padding: 0px, 0px, 0px, 0px;
+	margin: 0px, 0px, 0px, 0px;
+}
+
+.my_shp_cart_div table{
+ 	border: none;
+	width: 100%;
+	border-bottom: 1px solid #cccccc;
+ }
+ 
+ .my_shp_cart_div th{
+ 	border: 1px solid #cccccc;
+ 	background-color: #eeefee;
+ 	height: 35px;
+ }
+
+.my_shp_cart_div td{
+	border-top: 1px solid #cccccc;
+	border-bottom: 1px solid #cccccc;
+	padding-top: 10px;
+	margin-bottom: 10px;
+}

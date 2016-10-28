@@ -63,6 +63,7 @@ body{
 .logo_and_search{
 	width: 1360px;
 	height: 85px;
+	background-color: #eeefee;
 }
 
 .search_input{

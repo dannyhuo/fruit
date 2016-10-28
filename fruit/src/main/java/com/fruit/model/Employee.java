@@ -28,7 +28,7 @@ public class Employee {
 
     private Short hireYear;
 
-    private Short employeeStatus;
+    private Byte employeeStatus;
 
     private Date createTime;
 
@@ -132,11 +132,11 @@ public class Employee {
         this.hireYear = hireYear;
     }
 
-    public Short getEmployeeStatus() {
+    public Byte getEmployeeStatus() {
         return employeeStatus;
     }
 
-    public void setEmployeeStatus(Short employeeStatus) {
+    public void setEmployeeStatus(Byte employeeStatus) {
         this.employeeStatus = employeeStatus;
     }
 

@@ -8,7 +8,7 @@
     <result column="quantity" property="quantity" jdbcType="SMALLINT" />
     <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
     <result column="repostory_id" property="repostoryId" jdbcType="BIGINT" />
-    <result column="status" property="status" jdbcType="BIT" />
+    <result column="status" property="status" jdbcType="TINYINT" />
     <result column="supply_time" property="supplyTime" jdbcType="TIMESTAMP" />
     <result column="remark" property="remark" jdbcType="VARCHAR" />
   </resultMap>
@@ -33,7 +33,7 @@
       remark)
     values (#{purchaseOrderDetailId,jdbcType=BIGINT}, #{purchaseOrderId,jdbcType=BIGINT}, 
       #{goodsId,jdbcType=BIGINT}, #{quantity,jdbcType=SMALLINT}, #{createTime,jdbcType=TIMESTAMP}, 
-      #{repostoryId,jdbcType=BIGINT}, #{status,jdbcType=BIT}, #{supplyTime,jdbcType=TIMESTAMP}, 
+      #{repostoryId,jdbcType=BIGINT}, #{status,jdbcType=TINYINT}, #{supplyTime,jdbcType=TIMESTAMP}, 
       #{remark,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.fruit.model.PurchaseOrderDetail" >
@@ -87,7 +87,7 @@
         #{repostoryId,jdbcType=BIGINT},
       </if>
       <if test="status != null" >
-        #{status,jdbcType=BIT},
+        #{status,jdbcType=TINYINT},
       </if>
       <if test="supplyTime != null" >
         #{supplyTime,jdbcType=TIMESTAMP},
@@ -116,7 +116,7 @@
         repostory_id = #{repostoryId,jdbcType=BIGINT},
       </if>
       <if test="status != null" >
-        status = #{status,jdbcType=BIT},
+        status = #{status,jdbcType=TINYINT},
       </if>
       <if test="supplyTime != null" >
         supply_time = #{supplyTime,jdbcType=TIMESTAMP},
@@ -134,7 +134,7 @@
       quantity = #{quantity,jdbcType=SMALLINT},
       create_time = #{createTime,jdbcType=TIMESTAMP},
       repostory_id = #{repostoryId,jdbcType=BIGINT},
-      status = #{status,jdbcType=BIT},
+      status = #{status,jdbcType=TINYINT},
       supply_time = #{supplyTime,jdbcType=TIMESTAMP},
       remark = #{remark,jdbcType=VARCHAR}
     where purchase_order_detail_id = #{purchaseOrderDetailId,jdbcType=BIGINT}

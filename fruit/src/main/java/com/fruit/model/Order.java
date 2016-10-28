@@ -13,7 +13,7 @@ public class Order {
 
     private Long orderOughtPay;
 
-    private Boolean status;
+    private Byte status;
 
     private String remark;
 
@@ -57,11 +57,11 @@ public class Order {
         this.orderOughtPay = orderOughtPay;
     }
 
-    public Boolean getStatus() {
+    public Byte getStatus() {
         return status;
     }
 
-    public void setStatus(Boolean status) {
+    public void setStatus(Byte status) {
         this.status = status;
     }
 

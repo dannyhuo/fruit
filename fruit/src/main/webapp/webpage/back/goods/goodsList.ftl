@@ -10,7 +10,9 @@
 			<table width="100%" cellspacing="0" cellpadding="0">
 				<tr>
 					<td width="200px" align="center" valign="middle">
-						<img style="background-color:#ffffff;" src="/fruit/webpage/imgs/fruit_logo.png"/>
+						<a href="/fruit/goodsManagement/goodsList.do">
+							<img style="background-color:#ffffff;" src="/fruit/webpage/imgs/fruit_logo.png"/>
+						</a>
 					</td>
 					<td width="60px"></td>
 					<td>

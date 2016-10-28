@@ -2,7 +2,7 @@ package com.fruit.model;
 
 import java.util.Date;
 
-public class ShoppingCart {
+public class ShoppingCart extends Goods{
     private Long shoppingCartId;
 
     private Long customerId;
@@ -13,7 +13,7 @@ public class ShoppingCart {
 
     private Date createTime;
 
-    private Boolean status;
+    private Byte status;
 
     private String remark;
 
@@ -57,11 +57,11 @@ public class ShoppingCart {
         this.createTime = createTime;
     }
 
-    public Boolean getStatus() {
+    public Byte getStatus() {
         return status;
     }
 
-    public void setStatus(Boolean status) {
+    public void setStatus(Byte status) {
         this.status = status;
     }
 

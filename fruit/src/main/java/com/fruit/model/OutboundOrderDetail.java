@@ -15,7 +15,7 @@ public class OutboundOrderDetail {
 
     private Date outboundTime;
 
-    private Boolean status;
+    private Byte status;
 
     private String remark;
 
@@ -67,11 +67,11 @@ public class OutboundOrderDetail {
         this.outboundTime = outboundTime;
     }
 
-    public Boolean getStatus() {
+    public Byte getStatus() {
         return status;
     }
 
-    public void setStatus(Boolean status) {
+    public void setStatus(Byte status) {
         this.status = status;
     }
 

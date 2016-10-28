@@ -14,7 +14,7 @@
     <result column="monthly_pay" property="monthlyPay" jdbcType="DECIMAL" />
     <result column="hired_date" property="hiredDate" jdbcType="DATE" />
     <result column="hire_year" property="hireYear" jdbcType="SMALLINT" />
-    <result column="employee_status" property="employeeStatus" jdbcType="SMALLINT" />
+    <result column="employee_status" property="employeeStatus" jdbcType="TINYINT" />
     <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
     <result column="is_valid" property="isValid" jdbcType="CHAR" />
     <result column="remark" property="remark" jdbcType="VARCHAR" />
@@ -44,7 +44,7 @@
       #{realName,jdbcType=VARCHAR}, #{gender,jdbcType=CHAR}, #{birthday,jdbcType=DATE}, 
       #{dept,jdbcType=SMALLINT}, #{position,jdbcType=VARCHAR}, #{rank,jdbcType=CHAR}, 
       #{monthlyPay,jdbcType=DECIMAL}, #{hiredDate,jdbcType=DATE}, #{hireYear,jdbcType=SMALLINT}, 
-      #{employeeStatus,jdbcType=SMALLINT}, #{createTime,jdbcType=TIMESTAMP}, #{isValid,jdbcType=CHAR}, 
+      #{employeeStatus,jdbcType=TINYINT}, #{createTime,jdbcType=TIMESTAMP}, #{isValid,jdbcType=CHAR}, 
       #{remark,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.fruit.model.Employee" >
@@ -137,7 +137,7 @@
         #{hireYear,jdbcType=SMALLINT},
       </if>
       <if test="employeeStatus != null" >
-        #{employeeStatus,jdbcType=SMALLINT},
+        #{employeeStatus,jdbcType=TINYINT},
       </if>
       <if test="createTime != null" >
         #{createTime,jdbcType=TIMESTAMP},
@@ -187,7 +187,7 @@
         hire_year = #{hireYear,jdbcType=SMALLINT},
       </if>
       <if test="employeeStatus != null" >
-        employee_status = #{employeeStatus,jdbcType=SMALLINT},
+        employee_status = #{employeeStatus,jdbcType=TINYINT},
       </if>
       <if test="createTime != null" >
         create_time = #{createTime,jdbcType=TIMESTAMP},
@@ -214,7 +214,7 @@
       monthly_pay = #{monthlyPay,jdbcType=DECIMAL},
       hired_date = #{hiredDate,jdbcType=DATE},
       hire_year = #{hireYear,jdbcType=SMALLINT},
-      employee_status = #{employeeStatus,jdbcType=SMALLINT},
+      employee_status = #{employeeStatus,jdbcType=TINYINT},
       create_time = #{createTime,jdbcType=TIMESTAMP},
       is_valid = #{isValid,jdbcType=CHAR},
       remark = #{remark,jdbcType=VARCHAR}

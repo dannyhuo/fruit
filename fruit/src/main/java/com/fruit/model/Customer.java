@@ -31,7 +31,7 @@ public class Customer {
 
     private String imageUrl;
 
-    private Short vipLevel;
+    private Byte vipLevel;
 
     private Date createTime;
 
@@ -41,7 +41,7 @@ public class Customer {
 
     private String isValid;
 
-    private Short costomerStatus;
+    private Byte costomerStatus;
 
     private String remark;
 
@@ -157,11 +157,11 @@ public class Customer {
         this.imageUrl = imageUrl == null ? null : imageUrl.trim();
     }
 
-    public Short getVipLevel() {
+    public Byte getVipLevel() {
         return vipLevel;
     }
 
-    public void setVipLevel(Short vipLevel) {
+    public void setVipLevel(Byte vipLevel) {
         this.vipLevel = vipLevel;
     }
 
@@ -197,11 +197,11 @@ public class Customer {
         this.isValid = isValid == null ? null : isValid.trim();
     }
 
-    public Short getCostomerStatus() {
+    public Byte getCostomerStatus() {
         return costomerStatus;
     }
 
-    public void setCostomerStatus(Short costomerStatus) {
+    public void setCostomerStatus(Byte costomerStatus) {
         this.costomerStatus = costomerStatus;
     }
 

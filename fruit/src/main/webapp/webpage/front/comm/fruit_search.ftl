@@ -3,7 +3,9 @@
 	<table width="100%" cellspacing="0" cellpadding="0">
 		<tr>
 			<td width="200px" align="center" valign="middle">
-				<img src="/fruit/webpage/imgs/fruit_logo.png"/>
+				<a href="/fruit/index.do">
+					<img src="/fruit/webpage/imgs/fruit_logo.png"/>
+				</a>
 			</td>
 			<td width="60px"></td>
 			<td>

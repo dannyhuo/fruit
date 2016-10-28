@@ -56,4 +56,43 @@ public class Enums {
 		}
 		
 	}
+	
+	
+	public static enum SHOPPING_CART_STATUS {
+		ADDED((byte)0,"添加"),
+		BOUGHT((byte)1,"已购买"),
+		DELETED((byte)2,"主动删除");
+		
+		private byte code;
+		private String cnName;
+
+		SHOPPING_CART_STATUS(byte code, String cnName){
+			this.code = code;
+			this.cnName = cnName;
+		}
+		public byte getCode(){
+			return this.code;
+		}
+		public String getCnName(){
+			return this.cnName;
+		}
+		
+		public static String getCnName(byte code){
+			for(SHOPPING_CART_STATUS item: SHOPPING_CART_STATUS.values()){
+				if(item.getCode() == code){
+					return item.getCnName();
+				}
+			}
+			return null;
+		}
+		
+		public static Byte getCodeByName(String key){
+			for(SHOPPING_CART_STATUS item: SHOPPING_CART_STATUS.values()){
+				if(item.getCnName().equals(key)){
+					return item.getCode();
+				}
+			}
+			return null;
+		}
+	}
 }

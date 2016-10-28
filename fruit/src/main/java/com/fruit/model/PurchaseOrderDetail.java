@@ -15,7 +15,7 @@ public class PurchaseOrderDetail {
 
     private Long repostoryId;
 
-    private Boolean status;
+    private Byte status;
 
     private Date supplyTime;
 
@@ -69,11 +69,11 @@ public class PurchaseOrderDetail {
         this.repostoryId = repostoryId;
     }
 
-    public Boolean getStatus() {
+    public Byte getStatus() {
         return status;
     }
 
-    public void setStatus(Boolean status) {
+    public void setStatus(Byte status) {
         this.status = status;
     }
 

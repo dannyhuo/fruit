@@ -18,12 +18,12 @@ CREATE TABLE `customer` (
 `wechat`  varchar(30) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '微信号码' ,
 `birthday`  datetime NULL DEFAULT NULL COMMENT '生日' ,
 `image_url`  varchar(256) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '头像URL' ,
-`vip_level` smallint(2) NOT NULL DEFAULT 0 COMMENT 'vip等级，刚注册为0级' ,
+`vip_level` tinyint(2) NOT NULL DEFAULT 0 COMMENT 'vip等级，刚注册为0级' ,
 `create_time`  datetime NULL DEFAULT NOW() COMMENT '创建时间' ,
 `update_time`  datetime NULL DEFAULT NULL COMMENT '更新时间' ,
 `last_login_time`  datetime NULL DEFAULT NULL COMMENT '最近一次登录时间' ,
 `is_valid`  char(1) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT 'Y' COMMENT '是否有效，Y/N' ,
-`costomer_status`  smallint(2) NOT NULL DEFAULT 1 COMMENT '用户当前状态  1:正常   2：己冻结  3:己注销' ,
+`costomer_status`  tinyint(2) NOT NULL DEFAULT 1 COMMENT '用户当前状态  1:正常   2：己冻结  3:己注销' ,
 `remark` varchar(500) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '备注' ,
 PRIMARY KEY (`customer_id`)
 )
@@ -130,7 +130,7 @@ CREATE TABLE `employee` (
 `monthly_pay` DECIMAL(10,2) NULL DEFAULT NULL COMMENT'月薪' ,
 `hired_date` date NULL DEFAULT NULL COMMENT '雇佣日期' ,
 `hire_year`	smallint(2) NULL DEFAULT NULL COMMENT '雇佣时限,年' ,
-`employee_status` smallint(2) NOT NULL DEFAULT 0 COMMENT '员工状态 => 0：未入职，1：实习生，2：试用期，3：已转正，4：离职，5：被解雇' ,
+`employee_status` tinyint(2) NOT NULL DEFAULT 0 COMMENT '员工状态 => 0：未入职，1：实习生，2：试用期，3：已转正，4：离职，5：被解雇' ,
 `create_time` datetime not null default NOW() COMMENT '创建时间' ,
 `is_valid`  char(1) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT 'Y'  COMMENT '是否有效,Y/N' ,
 `remark` varchar(500) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '备注' ,

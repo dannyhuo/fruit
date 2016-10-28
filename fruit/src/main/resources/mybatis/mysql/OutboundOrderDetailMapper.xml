@@ -8,7 +8,7 @@
     <result column="goods_id" property="goodsId" jdbcType="BIGINT" />
     <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
     <result column="outbound_time" property="outboundTime" jdbcType="TIMESTAMP" />
-    <result column="status" property="status" jdbcType="BIT" />
+    <result column="status" property="status" jdbcType="TINYINT" />
     <result column="remark" property="remark" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Base_Column_List" >
@@ -32,7 +32,7 @@
       )
     values (#{outboundOrderDetailId,jdbcType=BIGINT}, #{outboundOrderId,jdbcType=BIGINT}, 
       #{orderDetailId,jdbcType=BIGINT}, #{goodsId,jdbcType=BIGINT}, #{createTime,jdbcType=TIMESTAMP}, 
-      #{outboundTime,jdbcType=TIMESTAMP}, #{status,jdbcType=BIT}, #{remark,jdbcType=VARCHAR}
+      #{outboundTime,jdbcType=TIMESTAMP}, #{status,jdbcType=TINYINT}, #{remark,jdbcType=VARCHAR}
       )
   </insert>
   <insert id="insertSelective" parameterType="com.fruit.model.OutboundOrderDetail" >
@@ -83,7 +83,7 @@
         #{outboundTime,jdbcType=TIMESTAMP},
       </if>
       <if test="status != null" >
-        #{status,jdbcType=BIT},
+        #{status,jdbcType=TINYINT},
       </if>
       <if test="remark != null" >
         #{remark,jdbcType=VARCHAR},
@@ -109,7 +109,7 @@
         outbound_time = #{outboundTime,jdbcType=TIMESTAMP},
       </if>
       <if test="status != null" >
-        status = #{status,jdbcType=BIT},
+        status = #{status,jdbcType=TINYINT},
       </if>
       <if test="remark != null" >
         remark = #{remark,jdbcType=VARCHAR},
@@ -124,7 +124,7 @@
       goods_id = #{goodsId,jdbcType=BIGINT},
       create_time = #{createTime,jdbcType=TIMESTAMP},
       outbound_time = #{outboundTime,jdbcType=TIMESTAMP},
-      status = #{status,jdbcType=BIT},
+      status = #{status,jdbcType=TINYINT},
       remark = #{remark,jdbcType=VARCHAR}
     where outbound_order_detail_id = #{outboundOrderDetailId,jdbcType=BIGINT}
   </update>

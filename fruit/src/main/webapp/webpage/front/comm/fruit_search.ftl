@@ -19,12 +19,19 @@
 				</form>
 			</td>
 			<td width="200px" valign="middle">
-				<table class="my_shopping_cart_table" cellspacing="0" cellpadding="0">
-					<tr>
-						<td class="my_shopping_cart_icon">3</td>
-						<td class="my_shopping_cart_money">336.89</td>
-					</tr>
-				</table>
+				<#--购物车-->
+				<a class="my_shopping_cart_link" href="/fruit/shoppingCart/myShoppingCart.do">
+					<table class="my_shopping_cart_table" cellspacing="0" cellpadding="0">
+						<tr>
+							<td class="my_shopping_cart_icon">
+								<span id="shopping_cart_goods_num">${totalCount}</span>
+							</td>
+							<td class="my_shopping_cart_money">
+								<span id="shopping_cart_goods_money">${totalMoney}</span>
+							</td>
+						</tr>
+					</table>
+				</a>
 			</td>
 		</tr>
 	</table>

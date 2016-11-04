@@ -12,7 +12,7 @@ public class Goods {
     private Long marketPrice;
     
     private Long sellPrice;
-
+    
     private String description;
     
     private String goodsImageUrl;
@@ -73,6 +73,28 @@ public class Goods {
 
 	public void setSellPrice(Long sellPrice) {
 		this.sellPrice = sellPrice;
+	}
+
+	public void setMarketPriceYuan(float marketPriceYuan) {
+		this.marketPrice = (long) (marketPriceYuan * 100);
+	}
+	
+	public float getMarketPriceYuan() {
+		if(null == this.marketPrice){
+			return 0.00F;
+		}
+		return this.marketPrice / 100.00F;
+	}
+
+	public void setSellPriceYuan(float sellPriceYuan) {
+		this.sellPrice = (long) (sellPriceYuan * 100);
+	}
+
+	public float getSellPriceYuan() {
+		if(null == this.sellPrice){
+			return 0.00F;
+		}
+		return this.sellPrice / 100.00F;
 	}
 
 	public String getDescription() {

@@ -21,7 +21,7 @@
                         </p>
 					<p class="fav-cotent-date ellipsis"></p>
                     <div class="fav-price-box">
-                        <p class="fav-price"><em>¥</em>${goods.sellPrice}<span>起</span></p>
+                        <p class="fav-price"><em>¥</em>${goods.sellPriceYuan}<span>起</span></p>
                     </div>
                 </div>
 			</li>

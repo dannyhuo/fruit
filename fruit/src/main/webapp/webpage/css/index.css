@@ -104,6 +104,14 @@ body{
 	padding-right: 3px;
 }
 
+.my_shopping_cart_link{
+	
+}
+
+.my_shopping_cart_link{ text-decoration: none;}
+.my_shopping_cart_link:hover{ text-decoration: none;}
+.my_shopping_cart_link:active{border-bottom:3px solid #f90;}
+
 /**类型及广告位部分*/
 .type_and_ad{
 	width: 1360px;

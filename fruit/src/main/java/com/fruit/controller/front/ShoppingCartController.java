@@ -1,6 +1,6 @@
 package com.fruit.controller.front;
 
-import java.util.ArrayList;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -28,7 +28,19 @@ public class ShoppingCartController {
 		ModelAndView mav = new ModelAndView("/webpage/front/shpCart/myShpCartView");
 		ShoppingCart shoppingCart  = new ShoppingCart();
 		shoppingCart.setCustomerId(1L);
-		mav.addObject("myShpCards", shoppingCartService.queryShpCartByParam(shoppingCart));
+		List<ShoppingCartVo> shpCardGoods = shoppingCartService.queryShpCartByParam(shoppingCart);
+		if(null != shpCardGoods){
+			mav.addObject("myShpCards", shpCardGoods);
+			short quantity = 0;
+			float totalMoney = 0;
+			//计算总数量和总钱数
+			for (ShoppingCartVo shoppingCartVo : shpCardGoods) {
+				quantity += shoppingCartVo.getQuantity();
+				totalMoney += shoppingCartVo.getSellPriceYuan() * shoppingCartVo.getQuantity();
+			}
+			mav.addObject("totalMoney", totalMoney);
+			mav.addObject("totalCount", quantity);
+		}
 		return mav;
 	}
 	

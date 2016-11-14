@@ -9,7 +9,7 @@
 			<td width="10%"></td>
 			<td width="100px">
 				<table cellspacing="0" cellpadding="0">
-					<td><span>【<a href="">登录</a>】</span></td>
+					<td><span>【<a href="/fruit/customerController/tologin.do">登录</a>】</span></td>
 					<td width="30px"></td>
 					<td><span>【<a href="">快速注册</a>】</span></td>
 				</table>

@@ -65,7 +65,7 @@
   	<servlet-name>customerLogin</servlet-name>
   	<display-name>customerLogin</display-name>
   	<description>customer login</description>
-  	<servlet-class>com.fruit.servlet.login.CustomerLogin</servlet-class>
+  	<servlet-class>com.fruit.servlet.login.LoginServlet</servlet-class>
   </servlet>
   
   <servlet-mapping>

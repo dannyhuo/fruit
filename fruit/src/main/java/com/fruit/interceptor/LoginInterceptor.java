@@ -40,9 +40,8 @@ public class LoginInterceptor implements HandlerInterceptor{
 	public boolean preHandle(HttpServletRequest request, 
 			HttpServletResponse response, Object handler) throws Exception {
 		HttpSession session = request.getSession();
-		if(null != session.getAttribute("customer")){//已登录，直接跳转登记结果页
-			request.setAttribute("user", session.getAttribute("customer"));
-			response.sendRedirect("http://www.baidu.com");
+		if(null == session.getAttribute("customer")){//未登录，跳转到登录页面
+			response.sendRedirect("/fruit/customerController/tologin.do");
 			return false;
 		}
 		return true;

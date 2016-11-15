@@ -444,8 +444,8 @@ CREATE TABLE `order` (
 `order_id`  bigint(11) NOT NULL AUTO_INCREMENT COMMENT '订单号' ,
 `customer_id`  bigint(11) NOT NULL COMMENT 'FK， 所属消费者ID' ,
 `create_time` datetime not null default NOW() COMMENT '下单时间' ,
-`order_pay`  bigint(11) NOT NULL COMMENT '订单总金额' ,
-`order_ought_pay`  bigint(11) NOT NULL COMMENT '订单应付总金额' ,
+`order_pay`  bigint(11) NULL COMMENT '订单总金额' ,
+`order_ought_pay`  bigint(11) NULL COMMENT '订单应付总金额' ,
 `status` tinyint(2) NOT NULL default 0 COMMENT '状态，0：待支付， 1：已支付， 2：未支付取消，3：申请退款(消费者主动意向)，4：退款处理中，5：退款完成' ,
 `remark` varchar(500) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '备注' ,
 PRIMARY KEY (`order_id`)

@@ -1,10 +1,17 @@
 package com.fruit.controller.front;
 
+import java.awt.image.BufferedImage;
+import java.io.IOException;
 import java.io.Serializable;
 import java.io.UnsupportedEncodingException;
 import java.security.NoSuchAlgorithmException;
+import java.util.ArrayList;
+import java.util.List;
 
+import javax.imageio.ImageIO;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,10 +20,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.fruit.dao.mysql.CustomerMapper;
+import com.fruit.enu.Enums.GOODS_CATEGORY;
 import com.fruit.model.Customer;
 import com.fruit.model.vo.CustomerVo;
+import com.fruit.model.vo.GoodsVo;
 import com.fruit.util.IDManager;
 import com.fruit.util.PwdUtil;
+import com.fruit.valicode.ValiCode;
 
 /**
  * 用户controller
@@ -79,7 +89,7 @@ public class CustomerController implements Serializable{
 	
 	
 	@RequestMapping(value = "/tologin")
-	public ModelAndView tologin(HttpServletRequest request){
+	public ModelAndView tologin(HttpServletRequest request, HttpServletResponse response){
 		ModelAndView mav = new ModelAndView("/webpage/login");
 		
 		//1、判断session中是否做过登录
@@ -92,41 +102,18 @@ public class CustomerController implements Serializable{
 		return mav;
 	}
 	
-	/*@RequestMapping(value = "/login")
-	public ModelAndView login(CustomerVo customerVo, HttpServletRequest request) 
-			throws UnsupportedEncodingException, NoSuchAlgorithmException{
-		ModelAndView mav = new ModelAndView("/webpage/front/loginResult");
+	
+
+	@RequestMapping(value = "/exit")
+	public void exit(HttpServletRequest request, HttpServletResponse response){
+		request.getSession().removeAttribute("customer");
 		
-		//1、判断session中是否做过登录
-		Customer sessionCustomer = (Customer) request.getSession().getAttribute("customer");
-		if(null != sessionCustomer){
-			mav.addObject("message", "登录成功");
-			mav.addObject("success", true);
-			return mav;
+		try {
+			response.sendRedirect("/fruit/index.do");
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
-		
-		//2、登录逻辑
-		Map<String, Object> param = new HashMap<String, Object>();
-		param.put("login_name", customerVo.getLoginName());
-		List<CustomerVo> customers = customerMapper.querySelective(param);
-		if(null != customers && customers.size() > 0){
-			Customer customer = customers.get(0);
-			String password = PwdUtil.password(customerVo.getPassword(), customer.getSafetyFactor());
-			if(customer.getPassword().equals(password)){
-				mav.addObject("message", "登录成功");
-				mav.addObject("success", true);
-				
-				request.getSession().setAttribute("customer", customer);
-			}else{
-				mav.addObject("message", "用户名或密码错误");
-				mav.addObject("success", false);
-			}
-		}else{
-			mav.addObject("message", "用户名或密码错误");
-			mav.addObject("success", false);
-		}
-		
-		return mav;
-	}*/
+	}
 	
 }

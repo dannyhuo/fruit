@@ -95,4 +95,46 @@ public class Enums {
 			return null;
 		}
 	}
+	
+	
+	public static enum ORDER_STATUS {
+		WAIT_PAY((byte)0,"待支付"),
+		PAIED((byte)1,"已支付"),
+		UNPAY_CANCEL((byte)2,"未支付取消"),
+		REFUND((byte)3,"申请退款"),
+		REFUNDING((byte)4,"退款处理中"),
+		REFUNDED((byte)5,"退款完成");
+		
+		private byte code;
+		private String cnName;
+
+		ORDER_STATUS(byte code, String cnName){
+			this.code = code;
+			this.cnName = cnName;
+		}
+		public byte getCode(){
+			return this.code;
+		}
+		public String getCnName(){
+			return this.cnName;
+		}
+		
+		public static String getCnName(byte code){
+			for(ORDER_STATUS item: ORDER_STATUS.values()){
+				if(item.getCode() == code){
+					return item.getCnName();
+				}
+			}
+			return null;
+		}
+		
+		public static Byte getCodeByName(String key){
+			for(ORDER_STATUS item: ORDER_STATUS.values()){
+				if(item.getCnName().equals(key)){
+					return item.getCode();
+				}
+			}
+			return null;
+		}
+	}
 }

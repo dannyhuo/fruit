@@ -24,7 +24,11 @@
 					<#list myShpCards as shpCardGoods>
 						<#assign index = index + 1/>
 						<tr>
-							<td align="center"><input type="checkbox" />${index}</td>
+							<td align="center">
+								<input name="shpCartGoodsCheck" 
+									value="${shpCardGoods.shoppingCartId}:${shpCardGoods.goodsId}:${shpCardGoods.quantity}" 
+										   type="checkbox" />${index}
+							</td>
 							<td align="right">
 								<a target="_blank" href="/fruit/goodsDetail.do?goodsId=${shpCardGoods.goodsId}">
 									<img width="60px" height="40px" src="/fruit/webpage/goods_imgs/${shpCardGoods.goodsImageUrl}" />
@@ -35,12 +39,47 @@
 							<td align="center">${shpCardGoods.quantity}</td>
 							<td align="center">${shpCardGoods.sellPriceYuan*shpCardGoods.quantity}</td>
 							<td align="center">
-								<a href="">从购物车中移出</a>
+								<a href="/fruit/shoppingCart/removeCartGoodsById.do?shoppingCartId=${shpCardGoods.shoppingCartId}">从购物车中移出</a>
 							</td>
 						</tr>
 					</#list>
 				</table>
+				<div class="my_buy_div">
+					<div class="my_buy_btn" onclick="toBuy()">
+						<table cellspacing="0" cellpadding="0" border="0">
+							<tr>
+								<td align="center" valign="middle">
+									<span>去结算</span>
+								</td>
+							</tr>
+						</table>
+					</div>
+				</div>
 			</#if>
 		</div>
+		
+		<script>
+			function toBuy(){
+				var boxs = document.getElementsByName("shpCartGoodsCheck");
+				var buyGoodses = [];
+				for(var i = 0; i < boxs.length; i++){
+					var box = boxs[i];
+					if(box.checked){
+						buyGoodses.push(box.value);
+					}
+				}
+				var buyForm = document.createElement("FORM");
+				var input = document.createElement("INPUT");
+				buyForm.method = "POST";
+				buyForm.style.dispaly = "none"
+				buyForm.action = "/fruit/order/saveOrder.do";
+				input.type = "hidden";
+				input.name = "shpGoods";
+				input.value = buyGoodses.join(",");
+				buyForm.appendChild(input);
+				document.body.appendChild(buyForm);
+				buyForm.submit();
+			}
+		</script>
 	</body>
 </html>

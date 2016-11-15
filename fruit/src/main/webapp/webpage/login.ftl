@@ -44,7 +44,7 @@
 								<span class="account_alert">还没有账号？</span>
 								<a class="register_link" href="/fruit/customerController/register.do">立即注册</a>
 							</p>
-						
+							
 							<form action="/fruit/login" method="post">
 								<p>
 								登录名：<input class="login_input" type="text" name="loginName"/><br/>
@@ -56,6 +56,7 @@
 								<input class="login_btn" type="submit" value="login"/>
 								</p>
 							</form>
+							
 						</td>
 					</tr>
 				</table>

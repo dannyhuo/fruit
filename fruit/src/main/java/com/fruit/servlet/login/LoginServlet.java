@@ -24,7 +24,7 @@ import com.fruit.service.LoginService;
 public final class LoginServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
-	private final String INDEX_PAGE = "http://localhost:8080/fruit/index.do";
+	private final String INDEX_PAGE = "/fruit/index.do";
 	
 	private Logger log = LoggerFactory.getLogger(this.getClass());
 	

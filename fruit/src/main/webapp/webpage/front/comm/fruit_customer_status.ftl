@@ -9,9 +9,21 @@
 			<td width="10%"></td>
 			<td width="100px">
 				<table cellspacing="0" cellpadding="0">
-					<td><span>【<a href="/fruit/customerController/tologin.do">登录</a>】</span></td>
-					<td width="30px"></td>
-					<td><span>【<a href="">快速注册</a>】</span></td>
+					
+						<#if Session['customer']?has_content>
+							<td>
+								<span>${Session['customer'].loginName}</span>
+							</td>
+							<td width="30px"></td>
+							<td><span><a href="/fruit/customerController/exit.do">安全退出</a></span></td>
+						<#else>
+							<td>
+								<span>【<a href="/fruit/customerController/tologin.do">登录</a>】</span>
+							</td>
+							<td width="30px"></td>
+							<td><span>【<a href="/fruit/customerController/register.do">快速注册</a>】</span></td>						
+						</#if>
+					
 				</table>
 			</td>
 			<td width="10%"></td>
@@ -21,7 +33,7 @@
 					<td width="10px"></td>
 					<td><a href="">我的小水果</a></td>
 					<td width="10px"></td>
-					<td><img src="/fruit/webpage/imgs/"/></td>
+					<td><!--img src="/fruit/webpage/imgs/"/--></td>
 				</table>
 			</td>
 			<td width="40px"></td>
@@ -31,7 +43,7 @@
 					<td width="10px"></td>
 					<td><a href="">手机小水果</a></td>
 					<td width="10px"></td>
-					<td><img src="/fruit/webpage/imgs/"/></td>
+					<td><!--img src="/fruit/webpage/imgs/"/--></td>
 				</table>
 			</td>
 			<td width="30px"></td>

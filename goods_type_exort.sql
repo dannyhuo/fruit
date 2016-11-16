@@ -1,0 +1,25 @@
+REM INSERTING into EXPORT_TABLE
+SET DEFINE OFF;
+Insert into EXPORT_TABLE ("goods_type_id","goods_type_name","goods_category","create_time","remark") values (1,'苹果',2,to_timestamp('2016-10-24 17:12:47.0','null'),null);
+Insert into EXPORT_TABLE ("goods_type_id","goods_type_name","goods_category","create_time","remark") values (2,'苹果',2,to_timestamp('2016-10-24 17:12:56.0','null'),null);
+Insert into EXPORT_TABLE ("goods_type_id","goods_type_name","goods_category","create_time","remark") values (3,'香蕉',2,to_timestamp('2016-10-24 17:14:14.0','null'),null);
+Insert into EXPORT_TABLE ("goods_type_id","goods_type_name","goods_category","create_time","remark") values (4,'橘子',2,to_timestamp('2016-10-24 17:14:14.0','null'),null);
+Insert into EXPORT_TABLE ("goods_type_id","goods_type_name","goods_category","create_time","remark") values (5,'草莓',2,to_timestamp('2016-10-24 17:14:14.0','null'),null);
+Insert into EXPORT_TABLE ("goods_type_id","goods_type_name","goods_category","create_time","remark") values (6,'西瓜',2,to_timestamp('2016-10-24 17:14:14.0','null'),null);
+Insert into EXPORT_TABLE ("goods_type_id","goods_type_name","goods_category","create_time","remark") values (7,'桃子',2,to_timestamp('2016-10-24 17:14:14.0','null'),null);
+Insert into EXPORT_TABLE ("goods_type_id","goods_type_name","goods_category","create_time","remark") values (8,'李子',2,to_timestamp('2016-10-24 17:14:14.0','null'),null);
+Insert into EXPORT_TABLE ("goods_type_id","goods_type_name","goods_category","create_time","remark") values (9,'杏子',2,to_timestamp('2016-10-24 17:14:14.0','null'),null);
+Insert into EXPORT_TABLE ("goods_type_id","goods_type_name","goods_category","create_time","remark") values (10,'柚子',2,to_timestamp('2016-10-24 17:14:14.0','null'),null);
+Insert into EXPORT_TABLE ("goods_type_id","goods_type_name","goods_category","create_time","remark") values (11,'奇异果',1,to_timestamp('2016-11-16 20:16:40.0','null'),null);
+Insert into EXPORT_TABLE ("goods_type_id","goods_type_name","goods_category","create_time","remark") values (12,'莲雾',1,to_timestamp('2016-11-16 20:24:04.0','null'),null);
+Insert into EXPORT_TABLE ("goods_type_id","goods_type_name","goods_category","create_time","remark") values (13,'梨',2,to_timestamp('2016-11-16 20:24:04.0','null'),null);
+Insert into EXPORT_TABLE ("goods_type_id","goods_type_name","goods_category","create_time","remark") values (14,'枣',2,to_timestamp('2016-11-16 20:24:04.0','null'),null);
+Insert into EXPORT_TABLE ("goods_type_id","goods_type_name","goods_category","create_time","remark") values (15,'芒果',1,to_timestamp('2016-11-16 20:24:05.0','null'),null);
+Insert into EXPORT_TABLE ("goods_type_id","goods_type_name","goods_category","create_time","remark") values (16,'柿子',2,to_timestamp('2016-11-16 20:24:05.0','null'),null);
+Insert into EXPORT_TABLE ("goods_type_id","goods_type_name","goods_category","create_time","remark") values (17,'百香果',2,to_timestamp('2016-11-16 20:24:05.0','null'),null);
+Insert into EXPORT_TABLE ("goods_type_id","goods_type_name","goods_category","create_time","remark") values (18,'木瓜',2,to_timestamp('2016-11-16 20:24:05.0','null'),null);
+Insert into EXPORT_TABLE ("goods_type_id","goods_type_name","goods_category","create_time","remark") values (19,'石榴',1,to_timestamp('2016-11-16 20:24:05.0','null'),null);
+Insert into EXPORT_TABLE ("goods_type_id","goods_type_name","goods_category","create_time","remark") values (20,'哈密瓜',1,to_timestamp('2016-11-16 20:24:05.0','null'),null);
+Insert into EXPORT_TABLE ("goods_type_id","goods_type_name","goods_category","create_time","remark") values (21,'黑提',1,to_timestamp('2016-11-16 20:24:05.0','null'),null);
+Insert into EXPORT_TABLE ("goods_type_id","goods_type_name","goods_category","create_time","remark") values (22,'火龙果',1,to_timestamp('2016-11-16 20:24:05.0','null'),null);
+Insert into EXPORT_TABLE ("goods_type_id","goods_type_name","goods_category","create_time","remark") values (23,'椰子',1,to_timestamp('2016-11-16 20:24:05.0','null'),null);

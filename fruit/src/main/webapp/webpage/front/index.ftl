@@ -10,10 +10,10 @@
 		
 		<#--类别信息广告位， height 360px-->
 		<div class="type_and_ad">
-			<table class="my_category_tab" cellspacing="0" cellpadding="0">
+			<table class="my_category_tab" cellspacing="0" cellpadding="0" border="0">
 				<tr>
 					<td width="200px">
-						<table cellspacing="0" cellpadding="0">
+						<table cellspacing="0" cellpadding="0" border="0">
 							<tr>
 								<td style="background-color:#2ca345;"><a><img src="/fruit/webpage/imgs/category_menu_top.png"/></a></td>
 							</tr>
@@ -66,7 +66,7 @@
 						</table>
 					</div>
 					
-					<#--楼层对应商品展示栏， height 400px-->
+					<#--楼层对应商品展示栏， height 300px-->
 					<div class="floor_goods_list">
 						<#include "/webpage/back/goods/inner_goods_list.ftl"/>
 					</div>

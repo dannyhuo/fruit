@@ -17,7 +17,7 @@
                     </p>
                         <p class="fav-tag-box">
                         	<i class="fav-icon-bg tag" tip-content=" ">又11特价</i>
-                        	<i class="fav-icon-bg tag" tip-content=" ">免检</i>
+                        	<i class="fav-icon-bg tag" tip-content=" ">免邮费</i>
                         </p>
 					<p class="fav-cotent-date ellipsis"></p>
                     <div class="fav-price-box">

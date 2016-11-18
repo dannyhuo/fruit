@@ -62,8 +62,8 @@ public final class LoginServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) 
 			throws ServletException, IOException {
-		//1、验证
-		String validateCode = request.getParameter("validateCode");
+		//1、验证,验证码及token的验证，防止机器恶意攻击登录
+		/*String validateCode = request.getParameter("validateCode");
 		String token = request.getParameter("token");
 		if(null == validateCode || validateCode.trim().equals("")){
 			response.sendRedirect(INDEX_PAGE);
@@ -77,9 +77,9 @@ public final class LoginServlet extends HttpServlet {
 		if(!validateCode.equals(request.getSession().getAttribute(token))){
 			response.sendRedirect(INDEX_PAGE);
 			return;
-		}
+		}*/
 		
-		//2、登录
+		//2、登录信息验证
 		String loginName = request.getParameter("loginName");
 		String password = request.getParameter("password");
 		try {

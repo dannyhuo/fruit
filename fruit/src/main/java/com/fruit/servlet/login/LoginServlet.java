@@ -26,6 +26,8 @@ public final class LoginServlet extends HttpServlet {
 	
 	private final String INDEX_PAGE = "/fruit/index.do";
 	
+	private final String ERROR_PAGE = "";
+	
 	private Logger log = LoggerFactory.getLogger(this.getClass());
 	
 	@Autowired
@@ -61,9 +63,21 @@ public final class LoginServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) 
 			throws ServletException, IOException {
 		//1、验证
-		//String validateCode = request.getParameter("validateCode");
-		//String token = request.getParameter("token");
+		String validateCode = request.getParameter("validateCode");
+		String token = request.getParameter("token");
+		if(null == validateCode || validateCode.trim().equals("")){
+			response.sendRedirect(INDEX_PAGE);
+			return;
+		}
+		if(null == token || token.trim().equals("")){
+			response.sendRedirect(INDEX_PAGE);
+			return;
+		}
 		
+		if(!validateCode.equals(request.getSession().getAttribute(token))){
+			response.sendRedirect(INDEX_PAGE);
+			return;
+		}
 		
 		//2、登录
 		String loginName = request.getParameter("loginName");

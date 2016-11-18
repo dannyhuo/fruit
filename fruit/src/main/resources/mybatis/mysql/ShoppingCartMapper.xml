@@ -140,7 +140,8 @@
     where shopping_cart_id = #{shoppingCartId,jdbcType=BIGINT}
   </update>
   
-  <select id="queryShpCartByParam" resultMap="ShpCartGoodsResult" parameterType="com.fruit.model.ShoppingCart">
+  <select id="queryShpCartByParam" resultMap="ShpCartGoodsResult" 
+  		parameterType="com.fruit.model.ShoppingCart">
   	select s.*, g.* 
     from shopping_cart s left join goods g
     on s.goods_id = g.goods_id 

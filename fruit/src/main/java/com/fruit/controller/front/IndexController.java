@@ -30,28 +30,20 @@ public class IndexController {
 		List<List<GoodsVo>> gooddes = new ArrayList<List<GoodsVo>>();
 		goodsVo.setGoodsCategory(GOODS_CATEGORY.JIN_KOU.getCode());
 		gooddes.add(goodsService.selectByParam(goodsVo));
-		
 		goodsVo.setGoodsCategory(GOODS_CATEGORY.GUO_CHAN.getCode());
 		gooddes.add(goodsService.selectByParam(goodsVo));
-		
 		goodsVo.setGoodsCategory(GOODS_CATEGORY.JIANG_GUO.getCode());
 		gooddes.add(goodsService.selectByParam(goodsVo));
-		
 		goodsVo.setGoodsCategory(GOODS_CATEGORY.GUA_GUO.getCode());
 		gooddes.add(goodsService.selectByParam(goodsVo));
-		
 		goodsVo.setGoodsCategory(GOODS_CATEGORY.JU_GUO.getCode());
 		gooddes.add(goodsService.selectByParam(goodsVo));
-		
 		goodsVo.setGoodsCategory(GOODS_CATEGORY.HE_GUO.getCode());
 		gooddes.add(goodsService.selectByParam(goodsVo));
-		
 		goodsVo.setGoodsCategory(GOODS_CATEGORY.REN_GUO.getCode());
 		gooddes.add(goodsService.selectByParam(goodsVo));
-		
 		goodsVo.setGoodsCategory(GOODS_CATEGORY.QI_TA.getCode());
 		gooddes.add(goodsService.selectByParam(goodsVo));
-		
 		mav.addObject("goodses", gooddes);
 		return mav;
 	}
@@ -59,6 +51,10 @@ public class IndexController {
 	@RequestMapping(value="/goodsSearch")
 	public ModelAndView goodsSearch(GoodsVo goodsVo){
 		ModelAndView mav = new ModelAndView("/webpage/front/index");
+		
+		if(null == goodsVo.getKeyWords() || "".equals(goodsVo.getKeyWords().trim())){
+			goodsVo = new GoodsVo();
+		}
 		
 		mav.addObject("listGoodses", goodsService.searchByKeyWords(goodsVo));
 		

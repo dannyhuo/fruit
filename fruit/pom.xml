@@ -353,7 +353,7 @@
     <finalName>${project.artifactId}</finalName>
 	<plugins>
 	     <!-- 指定maven编译的JDK版本和编码 -->
-	     <!-- <plugin>
+	     <plugin>
 		   <artifactId>maven-compiler-plugin</artifactId>
 		   <version>2.5.1</version>
 		   <configuration>
@@ -369,7 +369,7 @@
 		   <configuration>
 				<archiveClasses>true</archiveClasses>
 			</configuration>   
-		 </plugin> -->
+		 </plugin>
 		 
 	    <!-- 跳过单元测试 -->
 		<plugin>

@@ -18,6 +18,8 @@ public interface ShoppingCartMapper {
 
     int updateByPrimaryKey(ShoppingCart record);
     
+    int updateByCustomerAndGoodsIdSelective(ShoppingCart record);
+    
     List<ShoppingCartVo> queryShpCartByParam(ShoppingCart shoppingCart);
     
 }

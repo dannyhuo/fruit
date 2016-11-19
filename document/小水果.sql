@@ -408,10 +408,10 @@ CREATE INDEX `IDX_SUPPLIER_CONTACTS_PHONE` ON `supplier`(`contacts_phone`) USING
 
 
 -- ----------------------------
---tab Table structure for `order_detail` 是否添加发货状态
+--tab Table structure for `fruit_order_detail` 是否添加发货状态
 -- ----------------------------
-DROP TABLE IF EXISTS `order_detail`;
-CREATE TABLE `order_detail` (
+DROP TABLE IF EXISTS `fruit_order_detail`;
+CREATE TABLE `fruit_order_detail` (
 `order_detail_id`  bigint(11) NOT NULL AUTO_INCREMENT COMMENT '订单明细ID' ,
 `order_id`  bigint(11) NOT NULL COMMENT 'FK，订单号' ,
 `goods_id`  bigint(11) NOT NULL COMMENT 'FK，商品编号' ,
@@ -428,19 +428,19 @@ COMMENT='订单明细'
 ;
 
 --创建索引
-CREATE INDEX `IDX_ORDER_DETAIL_ORDER_ID` ON `order_detail`(`order_id`) USING BTREE ;
-CREATE INDEX `IDX_ORDER_DETAIL_GOODS_ID` ON `order_detail`(`goods_id`) USING BTREE ;
-CREATE INDEX `IDX_ORDER_DETAIL_CREATE_TIME` ON `order_detail`(`create_time`) USING BTREE ;
+CREATE INDEX `IDX_ORDER_DETAIL_ORDER_ID` ON `fruit_order_detail`(`order_id`) USING BTREE ;
+CREATE INDEX `IDX_ORDER_DETAIL_GOODS_ID` ON `fruit_order_detail`(`goods_id`) USING BTREE ;
+CREATE INDEX `IDX_ORDER_DETAIL_CREATE_TIME` ON `fruit_order_detail`(`create_time`) USING BTREE ;
 
 
 
 
 
 -- ----------------------------
---tab Table structure for `order`  是否添加收货状态
+--tab Table structure for `fruit_order`  是否添加收货状态
 -- ----------------------------
-DROP TABLE IF EXISTS `order`;
-CREATE TABLE `order` (
+DROP TABLE IF EXISTS `fruit_order`;
+CREATE TABLE `fruit_order` (
 `order_id`  bigint(11) NOT NULL AUTO_INCREMENT COMMENT '订单号' ,
 `customer_id`  bigint(11) NOT NULL COMMENT 'FK， 所属消费者ID' ,
 `create_time` datetime not null default NOW() COMMENT '下单时间' ,
@@ -456,8 +456,8 @@ COMMENT='订单'
 ;
 
 --创建索引
-CREATE INDEX `IDX_ORDER_CUSTOMER_ID` ON `order`(`customer_id`) USING BTREE ;
-CREATE INDEX `IDX_ORDER_CREATE_TIME` ON `order`(`create_time`) USING BTREE ;
+CREATE INDEX `IDX_ORDER_CUSTOMER_ID` ON `fruit_order`(`customer_id`) USING BTREE ;
+CREATE INDEX `IDX_ORDER_CREATE_TIME` ON `fruit_order`(`create_time`) USING BTREE ;
 
 
 

@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.fruit.dao.mysql.FruitOrderDetailMapper" >
+  <resultMap id="BaseResultMap" type="com.fruit.model.FruitOrderDetail" >
+    <id column="order_detail_id" property="orderDetailId" jdbcType="BIGINT" />
+    <result column="order_id" property="orderId" jdbcType="BIGINT" />
+    <result column="goods_id" property="goodsId" jdbcType="BIGINT" />
+    <result column="quantity" property="quantity" jdbcType="SMALLINT" />
+    <result column="total_pay" property="totalPay" jdbcType="BIGINT" />
+    <result column="total_ought_pay" property="totalOughtPay" jdbcType="BIGINT" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    order_detail_id, order_id, goods_id, quantity, total_pay, total_ought_pay, create_time, 
+    remark
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from fruit_order_detail
+    where order_detail_id = #{orderDetailId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from fruit_order_detail
+    where order_detail_id = #{orderDetailId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.fruit.model.FruitOrderDetail" >
+    insert into fruit_order_detail (order_detail_id, order_id, goods_id, 
+      quantity, total_pay, total_ought_pay, 
+      create_time, remark)
+    values (#{orderDetailId,jdbcType=BIGINT}, #{orderId,jdbcType=BIGINT}, #{goodsId,jdbcType=BIGINT}, 
+      #{quantity,jdbcType=SMALLINT}, #{totalPay,jdbcType=BIGINT}, #{totalOughtPay,jdbcType=BIGINT}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{remark,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.fruit.model.FruitOrderDetail" >
+    insert into fruit_order_detail
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="orderDetailId != null" >
+        order_detail_id,
+      </if>
+      <if test="orderId != null" >
+        order_id,
+      </if>
+      <if test="goodsId != null" >
+        goods_id,
+      </if>
+      <if test="quantity != null" >
+        quantity,
+      </if>
+      <if test="totalPay != null" >
+        total_pay,
+      </if>
+      <if test="totalOughtPay != null" >
+        total_ought_pay,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="orderDetailId != null" >
+        #{orderDetailId,jdbcType=BIGINT},
+      </if>
+      <if test="orderId != null" >
+        #{orderId,jdbcType=BIGINT},
+      </if>
+      <if test="goodsId != null" >
+        #{goodsId,jdbcType=BIGINT},
+      </if>
+      <if test="quantity != null" >
+        #{quantity,jdbcType=SMALLINT},
+      </if>
+      <if test="totalPay != null" >
+        #{totalPay,jdbcType=BIGINT},
+      </if>
+      <if test="totalOughtPay != null" >
+        #{totalOughtPay,jdbcType=BIGINT},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.fruit.model.FruitOrderDetail" >
+    update fruit_order_detail
+    <set >
+      <if test="orderId != null" >
+        order_id = #{orderId,jdbcType=BIGINT},
+      </if>
+      <if test="goodsId != null" >
+        goods_id = #{goodsId,jdbcType=BIGINT},
+      </if>
+      <if test="quantity != null" >
+        quantity = #{quantity,jdbcType=SMALLINT},
+      </if>
+      <if test="totalPay != null" >
+        total_pay = #{totalPay,jdbcType=BIGINT},
+      </if>
+      <if test="totalOughtPay != null" >
+        total_ought_pay = #{totalOughtPay,jdbcType=BIGINT},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where order_detail_id = #{orderDetailId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.fruit.model.FruitOrderDetail" >
+    update fruit_order_detail
+    set order_id = #{orderId,jdbcType=BIGINT},
+      goods_id = #{goodsId,jdbcType=BIGINT},
+      quantity = #{quantity,jdbcType=SMALLINT},
+      total_pay = #{totalPay,jdbcType=BIGINT},
+      total_ought_pay = #{totalOughtPay,jdbcType=BIGINT},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      remark = #{remark,jdbcType=VARCHAR}
+    where order_detail_id = #{orderDetailId,jdbcType=BIGINT}
+  </update>
+</mapper>

@@ -129,6 +129,34 @@
     </set>
     where shopping_cart_id = #{shoppingCartId,jdbcType=BIGINT}
   </update>
+  
+  
+  <update id="updateByCustomerAndGoodsIdSelective" parameterType="com.fruit.model.ShoppingCart" >
+    update shopping_cart
+    <set >
+      <if test="customerId != null" >
+        customer_id = #{customerId,jdbcType=BIGINT},
+      </if>
+      <if test="goodsId != null" >
+        goods_id = #{goodsId,jdbcType=BIGINT},
+      </if>
+      <if test="quantity != null" >
+        quantity = #{quantity,jdbcType=SMALLINT},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=TINYINT},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where customer_id = #{customerId,jdbcType=BIGINT}
+    and goods_id = #{goodsId,jdbcType=BIGINT}
+  </update>
+  
   <update id="updateByPrimaryKey" parameterType="com.fruit.model.ShoppingCart" >
     update shopping_cart
     set customer_id = #{customerId,jdbcType=BIGINT},

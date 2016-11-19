@@ -1,0 +1,22 @@
+.order_result_content{
+	width:1360px;
+	height:360px;
+	padding-left30px;
+	background-color: #ffffff;	
+}
+
+.order_result_orderid{
+	color:red;
+	font-size: 18px;
+	font-weight: bold;
+}
+
+.order_result_sucess{
+	color: green;
+	font-size: 16px;
+}
+
+.order_result_failed{
+	color: red;
+	font-size: 16px;
+}

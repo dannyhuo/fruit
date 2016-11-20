@@ -3,7 +3,7 @@
 <mapper namespace="com.fruit.dao.mysql.DeliveryAddressMapper" >
   <resultMap id="BaseResultMap" type="com.fruit.model.DeliveryAddress" >
     <id column="address_id" property="addressId" jdbcType="BIGINT" />
-    <result column="address_no" property="addressNo" jdbcType="CHAR" />
+    <result column="address_alias" property="addressAlias" jdbcType="CHAR" />
     <result column="customer_id" property="customerId" jdbcType="BIGINT" />
     <result column="mobile_number" property="mobileNumber" jdbcType="VARCHAR" />
     <result column="areacode" property="areacode" jdbcType="VARCHAR" />
@@ -19,7 +19,7 @@
     <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
   </resultMap>
   <sql id="Base_Column_List" >
-    address_id, address_no, customer_id, mobile_number, areacode, phone_number, consignee, 
+    address_id, address_alias, customer_id, mobile_number, areacode, phone_number, consignee, 
     province, city, county, address, postcode, is_valid, create_time, update_time
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
@@ -33,13 +33,13 @@
     where address_id = #{addressId,jdbcType=BIGINT}
   </delete>
   <insert id="insert" parameterType="com.fruit.model.DeliveryAddress" >
-    insert into delivery_address (address_id, address_no, customer_id, 
+    insert into delivery_address (address_id, address_alias, customer_id, 
       mobile_number, areacode, phone_number, 
       consignee, province, city, 
       county, address, postcode, 
       is_valid, create_time, update_time
       )
-    values (#{addressId,jdbcType=BIGINT}, #{addressNo,jdbcType=CHAR}, #{customerId,jdbcType=BIGINT}, 
+    values (#{addressId,jdbcType=BIGINT}, #{addressAlias,jdbcType=CHAR}, #{customerId,jdbcType=BIGINT}, 
       #{mobileNumber,jdbcType=VARCHAR}, #{areacode,jdbcType=VARCHAR}, #{phoneNumber,jdbcType=VARCHAR}, 
       #{consignee,jdbcType=VARCHAR}, #{province,jdbcType=VARCHAR}, #{city,jdbcType=VARCHAR}, 
       #{county,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, #{postcode,jdbcType=VARCHAR}, 
@@ -52,8 +52,8 @@
       <if test="addressId != null" >
         address_id,
       </if>
-      <if test="addressNo != null" >
-        address_no,
+      <if test="addressAlias != null" >
+        address_alias,
       </if>
       <if test="customerId != null" >
         customer_id,
@@ -99,8 +99,8 @@
       <if test="addressId != null" >
         #{addressId,jdbcType=BIGINT},
       </if>
-      <if test="addressNo != null" >
-        #{addressNo,jdbcType=CHAR},
+      <if test="addressAlias != null" >
+        #{addressAlias,jdbcType=CHAR},
       </if>
       <if test="customerId != null" >
         #{customerId,jdbcType=BIGINT},
@@ -146,8 +146,8 @@
   <update id="updateByPrimaryKeySelective" parameterType="com.fruit.model.DeliveryAddress" >
     update delivery_address
     <set >
-      <if test="addressNo != null" >
-        address_no = #{addressNo,jdbcType=CHAR},
+      <if test="addressAlias != null" >
+        address_alias = #{addressAlias,jdbcType=CHAR},
       </if>
       <if test="customerId != null" >
         customer_id = #{customerId,jdbcType=BIGINT},
@@ -193,7 +193,7 @@
   </update>
   <update id="updateByPrimaryKey" parameterType="com.fruit.model.DeliveryAddress" >
     update delivery_address
-    set address_no = #{addressNo,jdbcType=CHAR},
+    set address_alias = #{addressAlias,jdbcType=CHAR},
       customer_id = #{customerId,jdbcType=BIGINT},
       mobile_number = #{mobileNumber,jdbcType=VARCHAR},
       areacode = #{areacode,jdbcType=VARCHAR},
@@ -209,4 +209,10 @@
       update_time = #{updateTime,jdbcType=TIMESTAMP}
     where address_id = #{addressId,jdbcType=BIGINT}
   </update>
+  <select id="queryDeliveryAddress" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from delivery_address
+    where customer_id = #{customerId,jdbcType=BIGINT} and is_valid = 'Y'
+  </select>
 </mapper>

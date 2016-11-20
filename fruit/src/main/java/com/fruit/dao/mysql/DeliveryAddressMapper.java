@@ -1,5 +1,7 @@
 package com.fruit.dao.mysql;
 
+import java.util.List;
+
 import com.fruit.model.DeliveryAddress;
 
 public interface DeliveryAddressMapper {
@@ -14,4 +16,6 @@ public interface DeliveryAddressMapper {
     int updateByPrimaryKeySelective(DeliveryAddress record);
 
     int updateByPrimaryKey(DeliveryAddress record);
+    
+    List<DeliveryAddress> queryDeliveryAddress(Long customerId);
 }

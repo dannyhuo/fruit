@@ -5,7 +5,7 @@ import java.util.Date;
 public class DeliveryAddress {
     private Long addressId;
 
-    private String addressNo;
+    private String addressAlias;
 
     private Long customerId;
 
@@ -41,12 +41,12 @@ public class DeliveryAddress {
         this.addressId = addressId;
     }
 
-    public String getAddressNo() {
-        return addressNo;
+    public String getAddressAlias() {
+        return addressAlias;
     }
 
-    public void setAddressNo(String addressNo) {
-        this.addressNo = addressNo == null ? null : addressNo.trim();
+    public void setAddressAlias(String addressAlias) {
+        this.addressAlias = addressAlias == null ? null : addressAlias.trim();
     }
 
     public Long getCustomerId() {

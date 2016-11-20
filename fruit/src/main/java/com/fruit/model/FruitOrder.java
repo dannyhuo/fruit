@@ -6,6 +6,8 @@ public class FruitOrder {
     private Long orderId;
 
     private Long customerId;
+    
+    private Long addressId;
 
     private Date createTime;
 
@@ -33,7 +35,15 @@ public class FruitOrder {
         this.customerId = customerId;
     }
 
-    public Date getCreateTime() {
+    public Long getAddressId() {
+		return addressId;
+	}
+
+	public void setAddressId(Long addressId) {
+		this.addressId = addressId;
+	}
+
+	public Date getCreateTime() {
         return createTime;
     }
 

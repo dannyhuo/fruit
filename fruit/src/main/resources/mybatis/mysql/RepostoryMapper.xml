@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.fruit.dao.mysql.RepostoryMapper" >
-  <resultMap id="BaseResultMap" type="com.fruit.model.Repostory" >
+  <resultMap id="BaseResultMap" type="com.fruit.model.vo.RepostoryVo" >
     <id column="repostory_id" property="repostoryId" jdbcType="BIGINT" />
     <result column="repostory_name" property="repostoryName" jdbcType="VARCHAR" />
     <result column="repostory_area" property="repostoryArea" jdbcType="VARCHAR" />
     <result column="repostory_province" property="repostoryProvince" jdbcType="VARCHAR" />
     <result column="repostory_city" property="repostoryCity" jdbcType="VARCHAR" />
+    <result column="repostory_county" property="repostoryCounty" jdbcType="VARCHAR" />
     <result column="repostory_address" property="repostoryAddress" jdbcType="VARCHAR" />
     <result column="repostory_acreage" property="repostoryAcreage" jdbcType="BIGINT" />
     <result column="employee_id" property="employeeId" jdbcType="BIGINT" />
@@ -15,7 +16,7 @@
     <result column="remark" property="remark" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Base_Column_List" >
-    repostory_id, repostory_name, repostory_area, repostory_province, repostory_city, 
+    repostory_id, repostory_name, repostory_area, repostory_province, repostory_city, repostory_county,
     repostory_address, repostory_acreage, employee_id, start_using_date, create_time, 
     remark
   </sql>
@@ -31,11 +32,11 @@
   </delete>
   <insert id="insert" parameterType="com.fruit.model.Repostory" >
     insert into repostory (repostory_id, repostory_name, repostory_area, 
-      repostory_province, repostory_city, repostory_address, 
+      repostory_province, repostory_city, repostory_county, repostory_address, 
       repostory_acreage, employee_id, start_using_date, 
       create_time, remark)
     values (#{repostoryId,jdbcType=BIGINT}, #{repostoryName,jdbcType=VARCHAR}, #{repostoryArea,jdbcType=VARCHAR}, 
-      #{repostoryProvince,jdbcType=VARCHAR}, #{repostoryCity,jdbcType=VARCHAR}, #{repostoryAddress,jdbcType=VARCHAR}, 
+      #{repostoryProvince,jdbcType=VARCHAR}, #{repostoryCity,jdbcType=VARCHAR}, #{repostoryCounty,jdbcType=VARCHAR}, #{repostoryAddress,jdbcType=VARCHAR}, 
       #{repostoryAcreage,jdbcType=BIGINT}, #{employeeId,jdbcType=BIGINT}, #{startUsingDate,jdbcType=DATE}, 
       #{createTime,jdbcType=TIMESTAMP}, #{remark,jdbcType=VARCHAR})
   </insert>
@@ -56,6 +57,9 @@
       </if>
       <if test="repostoryCity != null" >
         repostory_city,
+      </if>
+      <if test="repostoryCounty != null" >
+        repostory_county,
       </if>
       <if test="repostoryAddress != null" >
         repostory_address,
@@ -92,6 +96,9 @@
       <if test="repostoryCity != null" >
         #{repostoryCity,jdbcType=VARCHAR},
       </if>
+      <if test="repostoryCounty != null" >
+      	#{repostoryCounty,jdbcType=VARCHAR},
+      </if>
       <if test="repostoryAddress != null" >
         #{repostoryAddress,jdbcType=VARCHAR},
       </if>
@@ -127,6 +134,9 @@
       <if test="repostoryCity != null" >
         repostory_city = #{repostoryCity,jdbcType=VARCHAR},
       </if>
+      <if test="repostoryCounty != null" >
+        repostory_county = #{repostoryCity,jdbcType=VARCHAR},
+      </if>
       <if test="repostoryAddress != null" >
         repostory_address = #{repostoryAddress,jdbcType=VARCHAR},
       </if>
@@ -154,6 +164,7 @@
       repostory_area = #{repostoryArea,jdbcType=VARCHAR},
       repostory_province = #{repostoryProvince,jdbcType=VARCHAR},
       repostory_city = #{repostoryCity,jdbcType=VARCHAR},
+      repostory_county = #{repostoryCounty,jdbcType=VARCHAR},
       repostory_address = #{repostoryAddress,jdbcType=VARCHAR},
       repostory_acreage = #{repostoryAcreage,jdbcType=BIGINT},
       employee_id = #{employeeId,jdbcType=BIGINT},
@@ -162,4 +173,44 @@
       remark = #{remark,jdbcType=VARCHAR}
     where repostory_id = #{repostoryId,jdbcType=BIGINT}
   </update>
+  
+  <select id="querySelective" resultMap="BaseResultMap" parameterType="com.fruit.model.Repostory" >
+    select 
+    <include refid="Base_Column_List" />
+    from repostory
+    where 1 =1 
+    <if test="repostoryName != null" >
+      and repostory_name = #{repostoryName,jdbcType=VARCHAR}
+    </if>
+    <if test="repostoryArea != null" >
+      and repostory_area = #{repostoryArea,jdbcType=VARCHAR}
+    </if>
+    <if test="repostoryProvince != null" >
+      and repostory_province = #{repostoryProvince,jdbcType=VARCHAR}
+    </if>
+    <if test="repostoryCity != null" >
+      and repostory_city = #{repostoryCity,jdbcType=VARCHAR}
+    </if>
+    <if test="repostoryCounty != null" >
+      and repostory_county = #{repostoryCity,jdbcType=VARCHAR}
+    </if>
+    <if test="repostoryAddress != null" >
+      and repostory_address = #{repostoryAddress,jdbcType=VARCHAR}
+    </if>
+    <if test="repostoryAcreage != null" >
+      and repostory_acreage = #{repostoryAcreage,jdbcType=BIGINT}
+    </if>
+    <if test="employeeId != null" >
+      and employee_id = #{employeeId,jdbcType=BIGINT}
+    </if>
+    <if test="startUsingDate != null" >
+      and start_using_date = #{startUsingDate,jdbcType=DATE}
+    </if>
+    <if test="createTime != null" >
+      and create_time = #{createTime,jdbcType=TIMESTAMP}
+    </if>
+    <if test="remark != null" >
+      and remark = #{remark,jdbcType=VARCHAR}
+    </if>
+  </select>
 </mapper>

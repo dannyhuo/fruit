@@ -1,6 +1,9 @@
 package com.fruit.dao.mysql;
 
+import java.util.List;
+
 import com.fruit.model.Repostory;
+import com.fruit.model.vo.RepostoryVo;
 
 public interface RepostoryMapper {
     int deleteByPrimaryKey(Long repostoryId);
@@ -14,4 +17,6 @@ public interface RepostoryMapper {
     int updateByPrimaryKeySelective(Repostory record);
 
     int updateByPrimaryKey(Repostory record);
+    
+    List<RepostoryVo> querySelective(Repostory repostory);
 }

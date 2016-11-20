@@ -12,6 +12,8 @@ public class Repostory {
     private String repostoryProvince;
 
     private String repostoryCity;
+    
+    private String repostoryCounty;
 
     private String repostoryAddress;
 
@@ -65,7 +67,15 @@ public class Repostory {
         this.repostoryCity = repostoryCity == null ? null : repostoryCity.trim();
     }
 
-    public String getRepostoryAddress() {
+    public String getRepostoryCounty() {
+		return repostoryCounty;
+	}
+
+	public void setRepostoryCounty(String repostoryCounty) {
+		this.repostoryCounty = repostoryCounty;
+	}
+
+	public String getRepostoryAddress() {
         return repostoryAddress;
     }
 

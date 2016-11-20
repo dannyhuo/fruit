@@ -81,5 +81,16 @@
 				<#include "/webpage/back/goods/inner_goods_list.ftl"/>
 			</div>
 		</#if>
+
+		<div>
+			<select id="cmbProvince" name="cmbProvince"></select>  
+            <select id="cmbCity" name="cmbCity"></select>  
+            <select id="cmbArea" name="cmbArea"></select>  
+  
+  
+            <script type="text/javascript">  
+            	addressInit('cmbProvince', 'cmbCity', 'cmbArea');  
+            </script>  
+		</div>
 	</body>
 </html>

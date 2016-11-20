@@ -150,4 +150,46 @@
       remark = #{remark,jdbcType=VARCHAR}
     where goods_inventory_id = #{goodsInventoryId,jdbcType=BIGINT}
   </update>
+  
+  <!-- 查询库存,未过期的 -->
+  <select id="queryInventory" resultMap="BaseResultMap" parameterType="com.fruit.model.Repostory" >
+    select 
+    <include refid="Base_Column_List" />
+    from goods_inventory gi left join repostory r on gi.repostory_id = r.repostory_id
+    where gi.expired_time &lt; now()
+    <if test="repostoryName != null" >
+      and r.repostory_name = #{repostoryName,jdbcType=VARCHAR}
+    </if>
+    <if test="repostoryArea != null" >
+      and r.repostory_area = #{repostoryArea,jdbcType=VARCHAR}
+    </if>
+    <if test="repostoryProvince != null" >
+      and r.repostory_province = #{repostoryProvince,jdbcType=VARCHAR}
+    </if>
+    <if test="repostoryCity != null" >
+      and r.repostory_city = #{repostoryCity,jdbcType=VARCHAR}
+    </if>
+    <if test="repostoryCounty != null" >
+      and r.repostory_county = #{repostoryCity,jdbcType=VARCHAR}
+    </if>
+    <if test="repostoryAddress != null" >
+      and r.repostory_address = #{repostoryAddress,jdbcType=VARCHAR}
+    </if>
+    <if test="repostoryAcreage != null" >
+      and r.repostory_acreage = #{repostoryAcreage,jdbcType=BIGINT}
+    </if>
+    <if test="employeeId != null" >
+      and r.employee_id = #{employeeId,jdbcType=BIGINT}
+    </if>
+    <if test="startUsingDate != null" >
+      and r.start_using_date = #{startUsingDate,jdbcType=DATE}
+    </if>
+    <if test="createTime != null" >
+      and r.create_time = #{createTime,jdbcType=TIMESTAMP}
+    </if>
+    <if test="remark != null" >
+      and r.remark = #{remark,jdbcType=VARCHAR}
+    </if>
+    order by gi.goods_batch_no asc
+  </select>
 </mapper>

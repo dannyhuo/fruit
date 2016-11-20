@@ -20,3 +20,23 @@
 	color: red;
 	font-size: 16px;
 }
+
+.deliverAddressView{
+	width:1360px;
+}
+
+.deliverAddressAddHidden{
+	width:1360px;
+	display: none;
+}
+
+.deliverAddressAddShow{
+	width:1360px;
+	display: block;
+}
+
+.addAddressBtn{
+	width:260px;
+	height:30px;
+	background-color: #009757;
+}

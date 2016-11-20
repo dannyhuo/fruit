@@ -72,7 +72,7 @@
 				var input = document.createElement("INPUT");
 				buyForm.method = "POST";
 				buyForm.style.dispaly = "none"
-				buyForm.action = "/fruit/order/saveOrder.do";
+				buyForm.action = "/fruit/order/toPayTheBill.do";
 				input.type = "hidden";
 				input.name = "shpGoods";
 				input.value = buyGoodses.join(",");

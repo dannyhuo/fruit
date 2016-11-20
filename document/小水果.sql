@@ -50,7 +50,7 @@ CREATE INDEX `IDX_CUSTOMER_WECHAT` ON `customer`(`wechat`) USING BTREE ;
 DROP TABLE IF EXISTS `delivery_address`;
 CREATE TABLE `delivery_address` (
 `address_id`  bigint(11) NOT NULL AUTO_INCREMENT COMMENT 'PK' ,
-`address_no`  char(32) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '地址唯一编号' ,
+`address_alias`  char(32) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '地址别名' ,
 `customer_id`  bigint(11) NOT NULL COMMENT '所属消费者ID' ,
 `mobile_number`  varchar(15) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '手机号码' ,
 `areacode`  varchar(10) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '区号' ,
@@ -72,7 +72,7 @@ COMMENT='收货地址'
 ;
 
 CREATE INDEX `IDX_ADDRESS_CUSTOMER_ID` ON `delivery_address`(`customer_id`) USING BTREE ;
-CREATE INDEX `IDX_ADDRESS_NO` ON `delivery_address`(`address_no`) USING BTREE ;
+CREATE INDEX `IDX_ADDRESS_NO` ON `delivery_address`(`address_alias`) USING BTREE ;
 CREATE INDEX `IDX_ADDRESS_CREATE_TIME` ON `delivery_address`(`create_time`) USING BTREE ;
 CREATE INDEX `IDX_ADDRESS_UPDATE_TIME` ON `delivery_address`(`update_time`) USING BTREE ;
 
@@ -274,9 +274,6 @@ CREATE INDEX `IDX_GOODS_INVENTORY_CREATE_TIME` ON `goods_inventory`(`create_time
 CREATE UNIQUE INDEX `UNQ_IDX_GOODS_INVENTORY` ON `goods_inventory`(`goods_id`,`goods_batch_no`,`repostory_id`) USING BTREE ;
 
 
-
-
-
 -- ----------------------------
 --tab Table structure for `purchase_order_detail`
 -- ----------------------------
@@ -346,6 +343,7 @@ CREATE TABLE `repostory` (
 `repostory_area` varchar(30) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '仓库所属区域' ,
 `repostory_province` varchar(30) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '仓库所在省' ,
 `repostory_city` varchar(30) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '仓库所在市' ,
+`repostory_county` varchar(30) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '仓库所在区县' ,
 `repostory_address` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '仓库地址' ,
 `repostory_acreage`  bigint(11) NOT NULL COMMENT '仓库面积' ,
 `employee_id`  bigint(11) NOT NULL COMMENT '仓管员编号' ,
@@ -363,6 +361,7 @@ COMMENT='仓库'
 CREATE INDEX `IDX_REPOSTORY_NAME` ON `repostory`(`repostory_name`) USING BTREE ;
 CREATE INDEX `IDX_REPOSTORY_PROVINCE` ON `repostory`(`repostory_province`) USING BTREE ;
 CREATE INDEX `IDX_REPOSTORY_CITY` ON `repostory`(`repostory_city`) USING BTREE ;
+CREATE INDEX `IDX_REPOSTORY_COUNTY` ON `repostory`(`repostory_county`) USING BTREE ;
 CREATE INDEX `IDX_REPOSTORY_ADDRESS` ON `repostory`(`repostory_address`) USING BTREE ;
 CREATE INDEX `IDX_REPOSTORY_EMPLOYEE_ID` ON `repostory`(`employee_id`) USING BTREE ;
 
@@ -443,6 +442,7 @@ DROP TABLE IF EXISTS `fruit_order`;
 CREATE TABLE `fruit_order` (
 `order_id`  bigint(11) NOT NULL AUTO_INCREMENT COMMENT '订单号' ,
 `customer_id`  bigint(11) NOT NULL COMMENT 'FK， 所属消费者ID' ,
+`address_id`  bigint(11) NOT NULL COMMENT 'FK， 收货地址编号' ,
 `create_time` datetime not null default NOW() COMMENT '下单时间' ,
 `order_pay`  bigint(11) NULL COMMENT '订单总金额' ,
 `order_ought_pay`  bigint(11) NULL COMMENT '订单应付总金额' ,

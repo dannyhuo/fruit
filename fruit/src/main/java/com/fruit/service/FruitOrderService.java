@@ -1,5 +1,8 @@
 package com.fruit.service;
 
+import java.util.List;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -54,5 +57,14 @@ public class FruitOrderService {
 	 */
 	public FruitOrder selectByPrimaryKey(Long orderId){
 		return orderMapper.selectByPrimaryKey(orderId);
+	}
+	
+	/**
+	 * 根据条件查询订单
+	 * @param params
+	 * @return
+	 */
+	public List<FruitOrderVo> querySelective(Map<String, Object> params){
+		return orderMapper.querySelective(params);
 	}
 }

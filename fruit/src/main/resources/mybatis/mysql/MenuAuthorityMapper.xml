@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.fruit.dao.mysql.MenuAuthorityMapper" >
+  <resultMap id="BaseResultMap" type="com.fruit.model.MenuAuthority" >
+    <id column="menu_authority_id" property="menuAuthorityId" jdbcType="BIGINT" />
+    <result column="back_menu_id" property="backMenuId" jdbcType="BIGINT" />
+    <result column="role" property="role" jdbcType="TINYINT" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="is_valid" property="isValid" jdbcType="CHAR" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+  </resultMap>
+  
+  <resultMap id="AuthorityMenuResultMap" type="com.fruit.model.vo.MenuAuthorityVo" >
+    <id column="menu_authority_id" property="menuAuthorityId" jdbcType="BIGINT" />
+    <result column="back_menu_id" property="backMenuId" jdbcType="BIGINT" />
+    <result column="role" property="role" jdbcType="TINYINT" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="is_valid" property="isValid" jdbcType="CHAR" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+    
+    <result column="menu_name" property="menuName" jdbcType="VARCHAR" />
+    <result column="menu_url" property="menuUrl" jdbcType="VARCHAR" />
+  </resultMap>
+  
+  <sql id="Base_Column_List" >
+    menu_authority_id, back_menu_id, role, create_time, is_valid, remark
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from menu_authority
+    where menu_authority_id = #{menuAuthorityId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from menu_authority
+    where menu_authority_id = #{menuAuthorityId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.fruit.model.MenuAuthority" >
+    insert into menu_authority (menu_authority_id, back_menu_id, role, 
+      create_time, is_valid, remark
+      )
+    values (#{menuAuthorityId,jdbcType=BIGINT}, #{backMenuId,jdbcType=BIGINT}, #{role,jdbcType=TINYINT}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{isValid,jdbcType=CHAR}, #{remark,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.fruit.model.MenuAuthority" >
+    insert into menu_authority
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="menuAuthorityId != null" >
+        menu_authority_id,
+      </if>
+      <if test="backMenuId != null" >
+        back_menu_id,
+      </if>
+      <if test="role != null" >
+        role,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="isValid != null" >
+        is_valid,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="menuAuthorityId != null" >
+        #{menuAuthorityId,jdbcType=BIGINT},
+      </if>
+      <if test="backMenuId != null" >
+        #{backMenuId,jdbcType=BIGINT},
+      </if>
+      <if test="role != null" >
+        #{role,jdbcType=TINYINT},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isValid != null" >
+        #{isValid,jdbcType=CHAR},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.fruit.model.MenuAuthority" >
+    update menu_authority
+    <set >
+      <if test="backMenuId != null" >
+        back_menu_id = #{backMenuId,jdbcType=BIGINT},
+      </if>
+      <if test="role != null" >
+        role = #{role,jdbcType=TINYINT},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isValid != null" >
+        is_valid = #{isValid,jdbcType=CHAR},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where menu_authority_id = #{menuAuthorityId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.fruit.model.MenuAuthority" >
+    update menu_authority
+    set back_menu_id = #{backMenuId,jdbcType=BIGINT},
+      role = #{role,jdbcType=TINYINT},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      is_valid = #{isValid,jdbcType=CHAR},
+      remark = #{remark,jdbcType=VARCHAR}
+    where menu_authority_id = #{menuAuthorityId,jdbcType=BIGINT}
+  </update>
+  
+  <select id="queryMenuSelective" resultMap="AuthorityMenuResultMap" parameterType="com.fruit.model.MenuAuthority" >
+    select 
+    *
+    from menu_authority ma left join back_menu bm on ma.back_menu_id = bm.back_menu_id 
+    where ma.is_valid = "Y" and bm.is_valid = "Y"
+    <if test="backMenuId != null" >
+      and back_menu_id = #{backMenuId,jdbcType=BIGINT}
+    </if>
+    <if test="role != null" >
+      and role = #{role,jdbcType=TINYINT}
+    </if>
+    <if test="createTime != null" >
+      and create_time = #{createTime,jdbcType=TIMESTAMP}
+    </if>
+    <if test="isValid != null" >
+      and is_valid = #{isValid,jdbcType=CHAR}
+    </if>
+    <if test="remark != null" >
+      and remark = #{remark,jdbcType=VARCHAR}
+    </if>
+  </select>
+</mapper>

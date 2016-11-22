@@ -80,6 +80,21 @@
    			<bean class="com.fruit.interceptor.LoginInterceptor"/>
    		</mvc:interceptor>
 	</mvc:interceptors>
+	
+	<!-- spring mvc 后台管理系统权限拦截器 -->
+  	<mvc:interceptors>
+   		<mvc:interceptor>
+   			<mvc:mapping path="/back/*.do"/>
+   			<mvc:mapping path="/back/*/*.do"/>
+   			<bean class="com.fruit.interceptor.FruitBackInterceptor">
+   				<property name="uncheckUrls">
+   					<list>
+   						<value>/back/toLogin.do</value>
+   					</list>
+   				</property>
+   			</bean>
+   		</mvc:interceptor>
+	</mvc:interceptors>
    	
 </beans>
 

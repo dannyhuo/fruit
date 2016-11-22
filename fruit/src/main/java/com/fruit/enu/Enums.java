@@ -3,7 +3,11 @@ package com.fruit.enu;
 
 public class Enums {
 	
-	
+	/**
+	 * 水果品类枚举
+	 * @author huoqiang
+	 *
+	 */
 	public static enum GOODS_CATEGORY {
 		JIN_KOU((byte)1,"进口类"),
 		GUO_CHAN((byte)2,"国产类"),
@@ -57,7 +61,11 @@ public class Enums {
 		
 	}
 	
-	
+	/**
+	 * 购物车商品状态枚举
+	 * @author huoqiang
+	 *
+	 */
 	public static enum SHOPPING_CART_STATUS {
 		ADDED((byte)0,"添加"),
 		BOUGHT((byte)1,"已购买"),
@@ -96,7 +104,11 @@ public class Enums {
 		}
 	}
 	
-	
+	/**
+	 * 订单状态枚举
+	 * @author huoqiang
+	 *
+	 */
 	public static enum ORDER_STATUS {
 		WAIT_PAY((byte)0,"待支付"),
 		PAIED((byte)1,"已支付"),
@@ -130,6 +142,51 @@ public class Enums {
 		
 		public static Byte getCodeByName(String key){
 			for(ORDER_STATUS item: ORDER_STATUS.values()){
+				if(item.getCnName().equals(key)){
+					return item.getCode();
+				}
+			}
+			return null;
+		}
+	}
+	
+	/**
+	 * 雇员角色枚举
+	 * @author huoqiang
+	 *
+	 */
+	public static enum EMPLOYEE_ROLE {
+		ADMIN((byte)0,"管理员"),
+		OPERATION_SPECIALIST((byte)1,"运营专员"),
+		ORDER_RECEIVERS((byte)2,"接单员"),
+		REPOSTORY_ADMIN((byte)3,"仓管员"),
+		BUYER((byte)4,"采购员");
+		
+		private byte code;
+		private String cnName;
+
+		EMPLOYEE_ROLE(byte code, String cnName){
+			this.code = code;
+			this.cnName = cnName;
+		}
+		public byte getCode(){
+			return this.code;
+		}
+		public String getCnName(){
+			return this.cnName;
+		}
+		
+		public static String getCnName(byte code){
+			for(EMPLOYEE_ROLE item: EMPLOYEE_ROLE.values()){
+				if(item.getCode() == code){
+					return item.getCnName();
+				}
+			}
+			return null;
+		}
+		
+		public static Byte getCodeByName(String key){
+			for(EMPLOYEE_ROLE item: EMPLOYEE_ROLE.values()){
 				if(item.getCnName().equals(key)){
 					return item.getCode();
 				}

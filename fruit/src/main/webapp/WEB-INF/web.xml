@@ -68,6 +68,13 @@
   	<servlet-class>com.fruit.servlet.login.LoginServlet</servlet-class>
   </servlet>
   
+  <servlet>
+  	<servlet-name>employeeLogin</servlet-name>
+  	<display-name>employeeLogin</display-name>
+  	<description>employee login</description>
+  	<servlet-class>com.fruit.servlet.login.BackLoginServlet</servlet-class>
+  </servlet>
+  
   <servlet-mapping>
     <servlet-name>springMvc</servlet-name>
     <url-pattern>*.do</url-pattern>
@@ -75,6 +82,10 @@
   <servlet-mapping>
   	<servlet-name>customerLogin</servlet-name>
   	<url-pattern>/login</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>employeeLogin</servlet-name>
+  	<url-pattern>/employee</url-pattern>
   </servlet-mapping>
   
   <!-- session过期时间设置 -->

@@ -1,0 +1,53 @@
+.my_back{
+	width:1360px;
+	height:900px;
+	display: block;
+}
+
+.back_menu{
+	width:300px;
+	height:100%;
+	display: block;
+	float: left;
+	padding-left: 30xp;
+	border:1px dashed #cccccc;
+}
+
+.my_back_content{
+	width:1030px;
+	height:100%;
+	display: block;
+	float: right;
+	border: 1px dashed #cccccc;
+}
+
+.common_btn{
+	width:320px;
+	height:30px;
+	background-color: #009757;
+	border: none;
+	color: #ffffff;
+	cursor: pointer;
+}
+
+.common_input{
+	width:320px;
+	height:30px;
+}
+
+
+/**后台出库页面start*****************************/
+.out_store_order_list{
+	width:100%;
+	border-left: 1px dashed #cccccc;
+	border-right: 1px dashed #cccccc;
+	border-bottom: 1px dashed #cccccc;
+}
+
+.out_Store_order td{
+	border-top: 1px dashed #cccccc;
+	border-bottom: 1px dashed #cccccc;
+	border-right: 1px dashed #cccccc;
+}
+
+/**后台出库页面end*****************************/

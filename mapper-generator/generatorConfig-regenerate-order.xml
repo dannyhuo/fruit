@@ -50,7 +50,16 @@
 		
 		
 		<!--订单-->
-		<table tableName="order" domainObjectName="Order"
+		<table tableName="menu_authority" domainObjectName="MenuAuthority"
+               enableCountByExample="false" enableUpdateByExample="false"
+               enableDeleteByExample="false" enableSelectByExample="false"
+               selectByExampleQueryId="false">
+            <!--<columnRenamingRule searchString="^D_"
+                                replaceString=""/>-->
+        </table>
+		
+		<!--订单-->
+		<table tableName="back_menu" domainObjectName="BackMenu"
                enableCountByExample="false" enableUpdateByExample="false"
                enableDeleteByExample="false" enableSelectByExample="false"
                selectByExampleQueryId="false">

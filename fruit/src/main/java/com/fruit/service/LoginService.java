@@ -10,7 +10,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.fruit.dao.mysql.CustomerMapper;
+import com.fruit.dao.mysql.EmployeeMapper;
 import com.fruit.model.vo.CustomerVo;
+import com.fruit.model.vo.EmployeeVo;
 import com.fruit.util.PwdUtil;
 
 @Service("loginService")
@@ -20,6 +22,9 @@ public class LoginService {
 	
 	@Autowired
 	private CustomerMapper customerMapper;
+	
+	@Autowired
+	private EmployeeMapper employeeMapper;
 	
 	public CustomerVo login(String loginName, String password) 
 			throws UnsupportedEncodingException, NoSuchAlgorithmException{
@@ -38,6 +43,25 @@ public class LoginService {
 		}
 		customerVo.setLoginMessage("用户名或密码有误！");
 		return customerVo;
+	}
+	
+	public EmployeeVo backLogin(String loginName, String password) 
+			throws UnsupportedEncodingException, NoSuchAlgorithmException{
+		Map<String, Object> param = new HashMap<String, Object>();
+		param.put("loginName", loginName);
+		EmployeeVo employeeVo = new EmployeeVo();
+		employeeVo.setLoginSuccess(false);
+		List<EmployeeVo> employees = employeeMapper.querySelective(param);
+		if(null != employees && employees.size() > 0){
+			employeeVo = employees.get(0);
+			String inputPwd = PwdUtil.password(password);
+			if(employeeVo.getPassword().equals(inputPwd)){
+				employeeVo.setLoginSuccess(true);
+				return employeeVo;
+			}
+		}
+		employeeVo.setLoginMessage("用户名或密码有误！");
+		return employeeVo;
 	}
 
 }

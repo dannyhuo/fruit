@@ -29,6 +29,8 @@ public class Employee {
     private Short hireYear;
 
     private Byte employeeStatus;
+    
+    private Byte role;
 
     private Date createTime;
 
@@ -140,7 +142,15 @@ public class Employee {
         this.employeeStatus = employeeStatus;
     }
 
-    public Date getCreateTime() {
+    public Byte getRole() {
+		return role;
+	}
+
+	public void setRole(Byte role) {
+		this.role = role;
+	}
+
+	public Date getCreateTime() {
         return createTime;
     }
 

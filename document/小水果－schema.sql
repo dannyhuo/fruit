@@ -363,3 +363,53 @@ CREATE INDEX `IDX_GOODS_PRICE` ON `goods`(`price`) USING BTREE ;
 CREATE INDEX `IDX_GOODS_PRODUCING_AREA` ON `goods`(`producing_area`) USING BTREE ;
 CREATE INDEX `IDX_GOODS_EMPLOYEE_ID` ON `goods`(`employee_id`) USING BTREE ;
 CREATE INDEX `IDX_GOODS_PUTAWAY_TIME` ON `goods`(`putaway_time`) USING BTREE ;
+
+
+-- ----------------------------
+--tab Table structure for `menu_authority`
+-- ----------------------------
+DROP TABLE IF EXISTS `menu_authority`;
+CREATE TABLE `menu_authority` (
+`menu_authority_id`  bigint(11) NOT NULL AUTO_INCREMENT COMMENT 'PK,菜单权限ID' ,
+`back_menu_id`  bigint(11) NOT NULL AUTO_INCREMENT COMMENT 'PK,菜单ID' ,
+`role` tinyint(2) NULL COMMENT '角色：0：管理员，1：运营专员，2：接单员，3：仓管员，4：采购员' ,
+`create_time` datetime not null default NOW() COMMENT '创建时间' ,
+`is_valid` char(1) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL default 'Y' COMMENT '是否有效，Y：是，N：否' ,
+`remark` varchar(500) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '备注' ,
+PRIMARY KEY (`menu_authority_id`)
+)
+ENGINE=InnoDB
+DEFAULT CHARACTER SET=utf8 COLLATE=utf8_general_ci
+COMMENT='菜单权限'
+;
+
+--创建索引
+CREATE INDEX `IDX_MENU_AUTHORITY_BACK_MENU_ID` ON `menu_authority`(`back_menu_id`) USING BTREE ;
+CREATE INDEX `IDX_MENU_AUTHORITY_ROLE` ON `menu_authority`(`role`) USING BTREE ;
+
+
+-- ----------------------------
+--tab Table structure for `back_menu`
+-- ----------------------------
+DROP TABLE IF EXISTS `back_menu`;
+CREATE TABLE `back_menu` (
+`back_menu_id`  bigint(11) NOT NULL AUTO_INCREMENT COMMENT 'PK,菜单ID' ,
+`menu_name`  varchar(60) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '菜单名' ,
+`menu_url`  varchar(256) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '菜单地址' ,
+`create_time` datetime not null default NOW() COMMENT '创建时间' ,
+`is_valid` char(1) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL default 'Y' COMMENT '是否有效，Y：是，N：否' ,
+`remark` varchar(500) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '备注' ,
+PRIMARY KEY (`menu_authority_id`)
+)
+ENGINE=InnoDB
+DEFAULT CHARACTER SET=utf8 COLLATE=utf8_general_ci
+COMMENT='菜单权限'
+;
+
+--创建索引
+CREATE INDEX `IDX_BACK_MENU_NAME` ON `back_menu`(`menu_name`) USING BTREE ;
+CREATE INDEX `IDX_BACK_MENU_URL` ON `back_menu`(`menu_url`) USING BTREE ;
+
+
+
+

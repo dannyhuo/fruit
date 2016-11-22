@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.fruit.dao.mysql.EmployeeMapper" >
-  <resultMap id="BaseResultMap" type="com.fruit.model.Employee" >
+  <resultMap id="BaseResultMap" type="com.fruit.model.vo.EmployeeVo" >
     <id column="employee_id" property="employeeId" jdbcType="BIGINT" />
     <result column="login_name" property="loginName" jdbcType="VARCHAR" />
     <result column="password" property="password" jdbcType="VARCHAR" />
@@ -15,13 +15,14 @@
     <result column="hired_date" property="hiredDate" jdbcType="DATE" />
     <result column="hire_year" property="hireYear" jdbcType="SMALLINT" />
     <result column="employee_status" property="employeeStatus" jdbcType="TINYINT" />
+    <result column="role" property="role" jdbcType="TINYINT" />
     <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
     <result column="is_valid" property="isValid" jdbcType="CHAR" />
     <result column="remark" property="remark" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Base_Column_List" >
     employee_id, login_name, password, real_name, gender, birthday, dept, position, rank, 
-    monthly_pay, hired_date, hire_year, employee_status, create_time, is_valid, remark
+    monthly_pay, hired_date, hire_year, employee_status, role, create_time, is_valid, remark
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
     select 
@@ -38,13 +39,13 @@
       real_name, gender, birthday, 
       dept, position, rank, 
       monthly_pay, hired_date, hire_year, 
-      employee_status, create_time, is_valid, 
+      employee_status, role, create_time, is_valid, 
       remark)
     values (#{employeeId,jdbcType=BIGINT}, #{loginName,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
       #{realName,jdbcType=VARCHAR}, #{gender,jdbcType=CHAR}, #{birthday,jdbcType=DATE}, 
       #{dept,jdbcType=SMALLINT}, #{position,jdbcType=VARCHAR}, #{rank,jdbcType=CHAR}, 
       #{monthlyPay,jdbcType=DECIMAL}, #{hiredDate,jdbcType=DATE}, #{hireYear,jdbcType=SMALLINT}, 
-      #{employeeStatus,jdbcType=TINYINT}, #{createTime,jdbcType=TIMESTAMP}, #{isValid,jdbcType=CHAR}, 
+      #{employeeStatus,jdbcType=TINYINT}, #{role,jdbcType=TINYINT}, #{createTime,jdbcType=TIMESTAMP}, #{isValid,jdbcType=CHAR}, 
       #{remark,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.fruit.model.Employee" >
@@ -88,6 +89,9 @@
       </if>
       <if test="employeeStatus != null" >
         employee_status,
+      </if>
+      <if test="role != null" >
+        role,
       </if>
       <if test="createTime != null" >
         create_time,
@@ -139,6 +143,9 @@
       <if test="employeeStatus != null" >
         #{employeeStatus,jdbcType=TINYINT},
       </if>
+      <if test="role != null" >
+        #{role,jdbcType=TINYINT},
+      </if>
       <if test="createTime != null" >
         #{createTime,jdbcType=TIMESTAMP},
       </if>
@@ -189,6 +196,9 @@
       <if test="employeeStatus != null" >
         employee_status = #{employeeStatus,jdbcType=TINYINT},
       </if>
+      <if test="role != null" >
+        role = #{role,jdbcType=TINYINT},
+      </if>
       <if test="createTime != null" >
         create_time = #{createTime,jdbcType=TIMESTAMP},
       </if>
@@ -215,9 +225,62 @@
       hired_date = #{hiredDate,jdbcType=DATE},
       hire_year = #{hireYear,jdbcType=SMALLINT},
       employee_status = #{employeeStatus,jdbcType=TINYINT},
+      role = #{role,jdbcType=TINYINT},
       create_time = #{createTime,jdbcType=TIMESTAMP},
       is_valid = #{isValid,jdbcType=CHAR},
       remark = #{remark,jdbcType=VARCHAR}
     where employee_id = #{employeeId,jdbcType=BIGINT}
   </update>
+  
+  <select id="querySelective" resultMap="BaseResultMap" parameterType="java.util.HashMap" >
+    select 
+    <include refid="Base_Column_List" />
+    from employee
+    where is_valid = 'Y'
+    <if test="loginName != null" >
+      and login_name = #{loginName,jdbcType=VARCHAR}
+    </if>
+    <if test="password != null" >
+      and password = #{password,jdbcType=VARCHAR}
+    </if>
+    <if test="realName != null" >
+      and real_name = #{realName,jdbcType=VARCHAR}
+    </if>
+    <if test="gender != null" >
+      and gender = #{gender,jdbcType=CHAR}
+    </if>
+    <if test="birthday != null" >
+      and birthday = #{birthday,jdbcType=DATE}
+    </if>
+    <if test="dept != null" >
+      and dept = #{dept,jdbcType=SMALLINT}
+    </if>
+    <if test="position != null" >
+      and position = #{position,jdbcType=VARCHAR}
+    </if>
+    <if test="rank != null" >
+      and rank = #{rank,jdbcType=CHAR}
+    </if>
+    <if test="monthlyPay != null" >
+      and monthly_pay = #{monthlyPay,jdbcType=DECIMAL}
+    </if>
+    <if test="hiredDate != null" >
+      and hired_date = #{hiredDate,jdbcType=DATE}
+    </if>
+    <if test="hireYear != null" >
+      and hire_year = #{hireYear,jdbcType=SMALLINT}
+    </if>
+    <if test="employeeStatus != null" >
+      and employee_status = #{employeeStatus,jdbcType=TINYINT}
+    </if>
+    <if test="role != null" >
+      and role = #{role,jdbcType=TINYINT}
+    </if>
+    <if test="createTime != null" >
+      and create_time = #{createTime,jdbcType=TIMESTAMP}
+    </if>
+    <if test="remark != null" >
+      and remark = #{remark,jdbcType=VARCHAR}
+    </if>
+  </select>
 </mapper>

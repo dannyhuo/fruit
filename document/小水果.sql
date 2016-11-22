@@ -125,12 +125,13 @@ CREATE TABLE `employee` (
 `gender`  char(1) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '性别' ,
 `birthday`  date NULL DEFAULT NULL COMMENT '生日' ,
 `dept` smallint(3) NOT NULL COMMENT '部门' ,
-`position` varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '职位' ,
-`rank`	char(3) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '职级 t3, t4, t5, t6, t7, t8, p2, p3, p4, p5, p6,o1, o2, o3, o4' ,
+`position` varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci NULL COMMENT '职位' ,
+`rank`	char(3) CHARACTER SET utf8 COLLATE utf8_general_ci NULL COMMENT '职级 t3, t4, t5, t6, t7, t8, p2, p3, p4, p5, p6,o1, o2, o3, o4' ,
 `monthly_pay` DECIMAL(10,2) NULL DEFAULT NULL COMMENT'月薪' ,
 `hired_date` date NULL DEFAULT NULL COMMENT '雇佣日期' ,
 `hire_year`	smallint(2) NULL DEFAULT NULL COMMENT '雇佣时限,年' ,
 `employee_status` tinyint(2) NOT NULL DEFAULT 0 COMMENT '员工状态 => 0：未入职，1：实习生，2：试用期，3：已转正，4：离职，5：被解雇' ,
+`role` tinyint(2) NULL COMMENT '角色：0：管理员，1：运营专员，2：接单员，3：仓管员，4：采购员' ,
 `create_time` datetime not null default NOW() COMMENT '创建时间' ,
 `is_valid`  char(1) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT 'Y'  COMMENT '是否有效,Y/N' ,
 `remark` varchar(500) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '备注' ,
@@ -146,6 +147,50 @@ CREATE INDEX `IDX_EMPLOYEE_LOGIN_NAME` ON `employee`(`login_name`) USING BTREE ;
 
 
 
+-- ----------------------------
+--tab Table structure for `menu_authority`
+-- ----------------------------
+DROP TABLE IF EXISTS `menu_authority`;
+CREATE TABLE `menu_authority` (
+`menu_authority_id`  bigint(11) NOT NULL AUTO_INCREMENT COMMENT 'PK,菜单权限ID' ,
+`back_menu_id`  bigint(11) NOT NULL COMMENT 'PK,菜单ID' ,
+`role` tinyint(2) NULL COMMENT '角色：0：管理员，1：运营专员，2：接单员，3：仓管员，4：采购员' ,
+`create_time` datetime not null default NOW() COMMENT '创建时间' ,
+`is_valid` char(1) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL default 'Y' COMMENT '是否有效，Y：是，N：否' ,
+`remark` varchar(500) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '备注' ,
+PRIMARY KEY (`menu_authority_id`)
+)
+ENGINE=InnoDB
+DEFAULT CHARACTER SET=utf8 COLLATE=utf8_general_ci
+COMMENT='菜单权限'
+;
+
+--创建索引
+CREATE INDEX `IDX_MENU_AUTHORITY_BACK_MENU_ID` ON `menu_authority`(`back_menu_id`) USING BTREE ;
+CREATE INDEX `IDX_MENU_AUTHORITY_ROLE` ON `menu_authority`(`role`) USING BTREE ;
+
+
+-- ----------------------------
+--tab Table structure for `back_menu`
+-- ----------------------------
+DROP TABLE IF EXISTS `back_menu`;
+CREATE TABLE `back_menu` (
+`back_menu_id`  bigint(11) NOT NULL AUTO_INCREMENT COMMENT 'PK,菜单ID' ,
+`menu_name`  varchar(60) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '菜单名' ,
+`menu_url`  varchar(256) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '菜单地址' ,
+`create_time` datetime not null default NOW() COMMENT '创建时间' ,
+`is_valid` char(1) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL default 'Y' COMMENT '是否有效，Y：是，N：否' ,
+`remark` varchar(500) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '备注' ,
+PRIMARY KEY (`back_menu_id`)
+)
+ENGINE=InnoDB
+DEFAULT CHARACTER SET=utf8 COLLATE=utf8_general_ci
+COMMENT='菜单权限'
+;
+
+--创建索引
+CREATE INDEX `IDX_BACK_MENU_NAME` ON `back_menu`(`menu_name`) USING BTREE ;
+CREATE INDEX `IDX_BACK_MENU_URL` ON `back_menu`(`menu_url`) USING BTREE ;
 
 -- ----------------------------
 --tab Table structure for `goods_type`

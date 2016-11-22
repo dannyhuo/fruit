@@ -2,13 +2,20 @@
         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 	<head>
-		<title>小水果</title>
-		<#include "/webpage/front/comm/fruit_meta.ftl"/>
+		<title>小水果后台管理系统</title>
+		<#include "/webpage/back/common/back_meta.ftl"/>
 	</head>
 	<body>
-		<#include "/webpage/front/comm/fruit_header.ftl"/>
+		<#include "/webpage/back/common/back_header.ftl"/>
 		
-		<a href="/fruit/goodsManagement/goodsup.do">商品上架管理</a>
-		<a href="/fruit/goodsManagement/goodsList.do">商品列表</a>
+		<div class="my_back">
+			<#include "/webpage/back/common/back_menu.ftl"/>
+			
+			<div class="my_back_content">
+				<span>
+					<h1>欢迎光临小水果后台管理系统首页</h1>
+				</span>
+			</div>
+		</div>
 	</body>
 </html>

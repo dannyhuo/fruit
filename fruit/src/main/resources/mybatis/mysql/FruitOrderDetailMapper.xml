@@ -11,6 +11,19 @@
     <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
     <result column="remark" property="remark" jdbcType="VARCHAR" />
   </resultMap>
+  
+  <resultMap id="OrderDetailResultMap" type="com.fruit.model.vo.FruitOrderDetailVo" >
+    <id column="order_detail_id" property="orderDetailId" jdbcType="BIGINT" />
+    <result column="order_id" property="orderId" jdbcType="BIGINT" />
+    <result column="goods_id" property="goodsId" jdbcType="BIGINT" />
+    <result column="quantity" property="quantity" jdbcType="SMALLINT" />
+    <result column="total_pay" property="totalPay" jdbcType="BIGINT" />
+    <result column="total_ought_pay" property="totalOughtPay" jdbcType="BIGINT" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+    <result column="goods_name" property="goodsName" jdbcType="VARCHAR" />
+  </resultMap>
+  
   <sql id="Base_Column_List" >
     order_detail_id, order_id, goods_id, quantity, total_pay, total_ought_pay, create_time, 
     remark
@@ -126,4 +139,31 @@
       remark = #{remark,jdbcType=VARCHAR}
     where order_detail_id = #{orderDetailId,jdbcType=BIGINT}
   </update>
+  <select id="querySelective" resultMap="BaseResultMap" parameterType="java.util.HashMap" >
+    select 
+    *
+    from fruit_order_detail fod left join goods g on fod.goods_id = g.goods_id 
+    where 1 = 1
+    <if test="orderId != null" >
+      and order_id = #{orderId,jdbcType=BIGINT}
+    </if>
+    <if test="goodsId != null" >
+      and goods_id = #{goodsId,jdbcType=BIGINT}
+    </if>
+    <if test="quantity != null" >
+      and quantity = #{quantity,jdbcType=SMALLINT}
+    </if>
+    <if test="totalPay != null" >
+      and total_pay = #{totalPay,jdbcType=BIGINT}
+    </if>
+    <if test="totalOughtPay != null" >
+      and total_ought_pay = #{totalOughtPay,jdbcType=BIGINT}
+    </if>
+    <if test="createTime != null" >
+      and create_time = #{createTime,jdbcType=TIMESTAMP}
+    </if>
+    <if test="remark != null" >
+      and remark = #{remark,jdbcType=VARCHAR}
+    </if>
+  </select>
 </mapper>

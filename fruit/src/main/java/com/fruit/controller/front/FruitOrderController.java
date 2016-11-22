@@ -55,7 +55,7 @@ public class FruitOrderController {
 				String[] goods = shpGoods.split(",");
 				FruitOrderVo orderVo = new FruitOrderVo();
 				orderVo.setCustomerId(customer.getCustomerId());
-				List<FruitOrderDetail> orderDetails = new ArrayList<FruitOrderDetail>();
+				List<FruitOrderDetailVo> orderDetails = new ArrayList<FruitOrderDetailVo>();
 				orderVo.setOrderDetails(orderDetails);
 				orderVo.setStatus(ORDER_STATUS.WAIT_PAY.getCode());
 				Long totalOughtPay = 0L;

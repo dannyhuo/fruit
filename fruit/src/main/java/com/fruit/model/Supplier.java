@@ -5,7 +5,7 @@ import java.util.Date;
 public class Supplier {
     private Long supplierId;
 
-    private Long supplierName;
+    private String supplierName;
 
     private String address;
 
@@ -31,11 +31,11 @@ public class Supplier {
         this.supplierId = supplierId;
     }
 
-    public Long getSupplierName() {
+    public String getSupplierName() {
         return supplierName;
     }
 
-    public void setSupplierName(Long supplierName) {
+    public void setSupplierName(String supplierName) {
         this.supplierName = supplierName;
     }
 

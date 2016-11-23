@@ -9,6 +9,17 @@
     <result column="supply_time" property="supplyTime" jdbcType="TIMESTAMP" />
     <result column="remark" property="remark" jdbcType="VARCHAR" />
   </resultMap>
+  
+  <resultMap id="ParchaseBaseResultMap" type="com.fruit.model.vo.PurchaseOrderVo" >
+    <id column="purchase_order_id" property="purchaseOrderId" jdbcType="BIGINT" />
+    <result column="purchase_order_name" property="purchaseOrderName" jdbcType="VARCHAR" />
+    <result column="employee_id" property="employeeId" jdbcType="BIGINT" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="supply_time" property="supplyTime" jdbcType="TIMESTAMP" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+    <result column="real_name" property="parchaseName" jdbcType="VARCHAR" />
+  </resultMap>
+  
   <sql id="Base_Column_List" >
     purchase_order_id, purchase_order_name, employee_id, create_time, supply_time, remark
   </sql>
@@ -103,4 +114,28 @@
       remark = #{remark,jdbcType=VARCHAR}
     where purchase_order_id = #{purchaseOrderId,jdbcType=BIGINT}
   </update>
+  <select id="querySelective" resultMap="ParchaseBaseResultMap" parameterType="java.util.HashMap" >
+    select 
+    *
+    from purchase_order po left join employee e on po.employee_id = e.employee_id 
+    where 1 = 1
+    <if test="purchaseOrderId != null" >
+      and purchase_order_id = #{purchaseOrderId,jdbcType=BIGINT}
+    </if>
+    <if test="purchaseOrderName != null" >
+      and purchase_order_name = #{purchaseOrderName,jdbcType=VARCHAR}
+    </if>
+    <if test="employeeId != null" >
+      and employee_id = #{employeeId,jdbcType=BIGINT}
+    </if>
+    <if test="createTime != null" >
+      and create_time = #{createTime,jdbcType=TIMESTAMP}
+    </if>
+    <if test="supplyTime != null" >
+      and supply_time = #{supplyTime,jdbcType=TIMESTAMP}
+    </if>
+    <if test="remark != null" >
+      and remark = #{remark,jdbcType=VARCHAR}
+    </if>
+  </select>
 </mapper>

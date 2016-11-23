@@ -1,5 +1,8 @@
 package com.fruit.dao.mysql;
 
+import java.util.List;
+import java.util.Map;
+
 import com.fruit.model.Supplier;
 
 public interface SupplierMapper {
@@ -14,4 +17,6 @@ public interface SupplierMapper {
     int updateByPrimaryKeySelective(Supplier record);
 
     int updateByPrimaryKey(Supplier record);
+    
+    List<Supplier> querySelective(Map<String, Object> params);
 }

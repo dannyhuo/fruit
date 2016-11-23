@@ -3,7 +3,7 @@
 <mapper namespace="com.fruit.dao.mysql.SupplierMapper" >
   <resultMap id="BaseResultMap" type="com.fruit.model.Supplier" >
     <id column="supplier_id" property="supplierId" jdbcType="BIGINT" />
-    <result column="supplier_name" property="supplierName" jdbcType="BIGINT" />
+    <result column="supplier_name" property="supplierName" jdbcType="VARCHAR" />
     <result column="address" property="address" jdbcType="VARCHAR" />
     <result column="contacts_name" property="contactsName" jdbcType="VARCHAR" />
     <result column="contacts_phone" property="contactsPhone" jdbcType="VARCHAR" />
@@ -32,7 +32,7 @@
       contacts_name, contacts_phone, contacts_mobile, 
       supplier_category, employee_id, create_time, 
       remark)
-    values (#{supplierId,jdbcType=BIGINT}, #{supplierName,jdbcType=BIGINT}, #{address,jdbcType=VARCHAR}, 
+    values (#{supplierId,jdbcType=BIGINT}, #{supplierName,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, 
       #{contactsName,jdbcType=VARCHAR}, #{contactsPhone,jdbcType=VARCHAR}, #{contactsMobile,jdbcType=VARCHAR}, 
       #{supplierCategory,jdbcType=TINYINT}, #{employeeId,jdbcType=BIGINT}, #{createTime,jdbcType=TIMESTAMP}, 
       #{remark,jdbcType=VARCHAR})
@@ -76,7 +76,7 @@
         #{supplierId,jdbcType=BIGINT},
       </if>
       <if test="supplierName != null" >
-        #{supplierName,jdbcType=BIGINT},
+        #{supplierName,jdbcType=VARCHAR},
       </if>
       <if test="address != null" >
         #{address,jdbcType=VARCHAR},
@@ -108,7 +108,7 @@
     update supplier
     <set >
       <if test="supplierName != null" >
-        supplier_name = #{supplierName,jdbcType=BIGINT},
+        supplier_name = #{supplierName,jdbcType=VARCHAR},
       </if>
       <if test="address != null" >
         address = #{address,jdbcType=VARCHAR},
@@ -139,7 +139,7 @@
   </update>
   <update id="updateByPrimaryKey" parameterType="com.fruit.model.Supplier" >
     update supplier
-    set supplier_name = #{supplierName,jdbcType=BIGINT},
+    set supplier_name = #{supplierName,jdbcType=VARCHAR},
       address = #{address,jdbcType=VARCHAR},
       contacts_name = #{contactsName,jdbcType=VARCHAR},
       contacts_phone = #{contactsPhone,jdbcType=VARCHAR},
@@ -150,4 +150,37 @@
       remark = #{remark,jdbcType=VARCHAR}
     where supplier_id = #{supplierId,jdbcType=BIGINT}
   </update>
+  <select id="querySelective" resultMap="BaseResultMap" parameterType="java.util.HashMap" >
+    select 
+    <include refid="Base_Column_List" />
+    from supplier
+    where 1 = 1
+    <if test="supplierName != null" >
+      and supplier_name = #{supplierName,jdbcType=VARCHAR}
+    </if>
+    <if test="address != null" >
+      and address = #{address,jdbcType=VARCHAR}
+    </if>
+    <if test="contactsName != null" >
+      and contacts_name = #{contactsName,jdbcType=VARCHAR}
+    </if>
+    <if test="contactsPhone != null" >
+      and contacts_phone = #{contactsPhone,jdbcType=VARCHAR}
+    </if>
+    <if test="contactsMobile != null" >
+      and contacts_mobile = #{contactsMobile,jdbcType=VARCHAR}
+    </if>
+    <if test="supplierCategory != null" >
+      and supplier_category = #{supplierCategory,jdbcType=TINYINT}
+    </if>
+    <if test="employeeId != null" >
+      and employee_id = #{employeeId,jdbcType=BIGINT}
+    </if>
+    <if test="createTime != null" >
+      and create_time = #{createTime,jdbcType=TIMESTAMP}
+    </if>
+    <if test="remark != null" >
+      and remark = #{remark,jdbcType=VARCHAR}
+    </if>
+  </select>
 </mapper>

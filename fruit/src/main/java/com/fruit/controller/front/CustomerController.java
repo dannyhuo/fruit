@@ -54,7 +54,7 @@ public class CustomerController implements Serializable{
 	}
 	
 	@RequestMapping(value = "/doRegister")
-	public ModelAndView doRegister(CustomerVo customerVo){
+	public ModelAndView doRegister(CustomerVo customerVo, HttpServletRequest request){
 		ModelAndView mav = new ModelAndView("/webpage/front/registerResult");
 		
 		if(null == customerVo.getPassword()){
@@ -81,6 +81,8 @@ public class CustomerController implements Serializable{
 		}
 		
 		int result = customerMapper.insertSelective(customerVo);
+		
+		request.getSession().setAttribute("customer", customerVo);
 		
 		mav.addObject("result",result);
 		mav.addObject("success", true);

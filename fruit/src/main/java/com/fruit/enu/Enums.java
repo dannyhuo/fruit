@@ -194,4 +194,50 @@ public class Enums {
 			return null;
 		}
 	}
+	
+	/**
+	 * 雇员角色枚举
+	 * @author huoqiang
+	 *
+	 */
+	public static enum EMPLOYEE_STATUS {
+		WAIT_ENTRY((byte)0,"待入职"),
+		INTERN((byte)1,"实习生"),
+		PROBATION((byte)2,"试用期"),
+		OFFICIAL((byte)3,"正式员工"),
+		DIMISSION((byte)4,"离职"),
+		GET_FIRED((byte)5,"被解雇");
+		
+		private byte code;
+		private String cnName;
+
+		EMPLOYEE_STATUS(byte code, String cnName){
+			this.code = code;
+			this.cnName = cnName;
+		}
+		public byte getCode(){
+			return this.code;
+		}
+		public String getCnName(){
+			return this.cnName;
+		}
+		
+		public static String getCnName(byte code){
+			for(EMPLOYEE_STATUS item: EMPLOYEE_STATUS.values()){
+				if(item.getCode() == code){
+					return item.getCnName();
+				}
+			}
+			return null;
+		}
+		
+		public static Byte getCodeByName(String key){
+			for(EMPLOYEE_STATUS item: EMPLOYEE_STATUS.values()){
+				if(item.getCnName().equals(key)){
+					return item.getCode();
+				}
+			}
+			return null;
+		}
+	}
 }

@@ -12,7 +12,7 @@
 			<#include "/webpage/back/common/back_menu.ftl"/>
 			
 			<div class="my_back_content">
-				开发中...
+				请输入供货单号<input type="text" name="" class="common_input"/><input type="button" value="查看采购单"/>
 			</div>
 		</div>
 	</body>

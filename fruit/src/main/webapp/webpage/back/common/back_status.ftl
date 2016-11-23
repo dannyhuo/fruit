@@ -14,7 +14,7 @@
 								<span>${Session['employee'].loginName}</span>[${Session['employee'].roleName}]
 							</td>
 							<td width="30px"></td>
-							<td><span><a href="/fruit/customerController/exit.do">安全退出</a></span></td>
+							<td><span><a href="/fruit/back/employee/exit.do">安全退出</a></span></td>
 						</#if>
 				</table>
 			</td>

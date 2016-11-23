@@ -174,7 +174,7 @@
     where repostory_id = #{repostoryId,jdbcType=BIGINT}
   </update>
   
-  <select id="querySelective" resultMap="BaseResultMap" parameterType="com.fruit.model.Repostory" >
+  <select id="querySelective" resultMap="BaseResultMap" parameterType="java.util.HashMap" >
     select 
     <include refid="Base_Column_List" />
     from repostory

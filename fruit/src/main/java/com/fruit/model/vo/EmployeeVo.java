@@ -1,6 +1,7 @@
 package com.fruit.model.vo;
 
 import com.fruit.enu.Enums.EMPLOYEE_ROLE;
+import com.fruit.enu.Enums.EMPLOYEE_STATUS;
 import com.fruit.model.Employee;
 
 public class EmployeeVo extends Employee {
@@ -38,5 +39,9 @@ public class EmployeeVo extends Employee {
 	
 	public String getRoleName(){
 		return EMPLOYEE_ROLE.getCnName(this.getRole());
+	}
+	
+	public String getEmployeeStatusName(){
+		return EMPLOYEE_STATUS.getCnName(this.getEmployeeStatus());
 	}
 }

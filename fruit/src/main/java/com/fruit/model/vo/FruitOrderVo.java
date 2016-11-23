@@ -5,7 +5,6 @@ import java.util.List;
 import com.fruit.enu.Enums.ORDER_STATUS;
 import com.fruit.model.DeliveryAddress;
 import com.fruit.model.FruitOrder;
-import com.fruit.model.FruitOrderDetail;
 
 public class FruitOrderVo extends FruitOrder{
 

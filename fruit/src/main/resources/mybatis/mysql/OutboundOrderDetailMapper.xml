@@ -11,6 +11,21 @@
     <result column="status" property="status" jdbcType="TINYINT" />
     <result column="remark" property="remark" jdbcType="VARCHAR" />
   </resultMap>
+  
+  <resultMap id="DetailGoodsResultMap" type="com.fruit.model.vo.OutboundOrderDetailVo" >
+    <id column="outbound_order_detail_id" property="outboundOrderDetailId" jdbcType="BIGINT" />
+    <result column="outbound_order_id" property="outboundOrderId" jdbcType="BIGINT" />
+    <result column="order_detail_id" property="orderDetailId" jdbcType="BIGINT" />
+    <result column="goods_id" property="goodsId" jdbcType="BIGINT" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="outbound_time" property="outboundTime" jdbcType="TIMESTAMP" />
+    <result column="status" property="status" jdbcType="TINYINT" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+    
+    <result column="goods_name" property="goodsName" jdbcType="VARCHAR" />
+    <result column="goods_image_url" property="goodsImageUrl" jdbcType="VARCHAR" />
+  </resultMap>
+  
   <sql id="Base_Column_List" >
     outbound_order_detail_id, outbound_order_id, order_detail_id, goods_id, create_time, 
     outbound_time, status, remark
@@ -128,4 +143,35 @@
       remark = #{remark,jdbcType=VARCHAR}
     where outbound_order_detail_id = #{outboundOrderDetailId,jdbcType=BIGINT}
   </update>
+  
+  <select id="querySelective" resultMap="DetailGoodsResultMap" parameterType="java.util.HashMap" >
+    select 
+    *
+    from outbound_order_detail ood left join goods g on ood.goods_id = g.goods_id 
+    where 1 = 1
+    <if test="outboundOrderDetailId != null" >
+      and outbound_order_detail_id = #{outboundOrderDetailId,jdbcType=BIGINT}
+    </if>
+    <if test="outboundOrderId != null" >
+      and outbound_order_id = #{outboundOrderId,jdbcType=BIGINT}
+    </if>
+    <if test="orderDetailId != null" >
+      and order_detail_id = #{orderDetailId,jdbcType=BIGINT}
+    </if>
+    <if test="goodsId != null" >
+      and goods_id = #{goodsId,jdbcType=BIGINT}
+    </if>
+    <if test="createTime != null" >
+      and create_time = #{createTime,jdbcType=TIMESTAMP}
+    </if>
+    <if test="outboundTime != null" >
+      and outbound_time = #{outboundTime,jdbcType=TIMESTAMP}
+    </if>
+    <if test="status != null" >
+      and status = #{status,jdbcType=TINYINT}
+    </if>
+    <if test="remark != null" >
+      and remark = #{remark,jdbcType=VARCHAR}
+    </if>
+  </select>
 </mapper>

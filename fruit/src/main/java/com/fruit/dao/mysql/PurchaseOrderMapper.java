@@ -1,6 +1,10 @@
 package com.fruit.dao.mysql;
 
+import java.util.List;
+import java.util.Map;
+
 import com.fruit.model.PurchaseOrder;
+import com.fruit.model.vo.PurchaseOrderVo;
 
 public interface PurchaseOrderMapper {
     int deleteByPrimaryKey(Long purchaseOrderId);
@@ -14,4 +18,6 @@ public interface PurchaseOrderMapper {
     int updateByPrimaryKeySelective(PurchaseOrder record);
 
     int updateByPrimaryKey(PurchaseOrder record);
+    
+    List<PurchaseOrderVo> querySelective(Map<String, Object> params);
 }

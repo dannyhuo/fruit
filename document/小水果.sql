@@ -422,12 +422,12 @@ CREATE INDEX `IDX_REPOSTORY_EMPLOYEE_ID` ON `repostory`(`employee_id`) USING BTR
 DROP TABLE IF EXISTS `supplier`;
 CREATE TABLE `supplier` (
 `supplier_id`  bigint(11) NOT NULL AUTO_INCREMENT COMMENT '供应商ID' ,
-`supplier_name`  bigint(11) NOT NULL COMMENT '供应商名称' ,
+`supplier_name` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '供应商名称' ,
 `address` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '供应商地址' ,
 `contacts_name` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '联络人姓名' ,
 `contacts_phone` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '联络人固定电话' ,
 `contacts_mobile` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '联络人手机' ,
-`supplier_category` tinyint(3) NOT NULL default 0 COMMENT '供应商品类别' ,
+`supplier_category` tinyint(3) NULL DEFAULT NULL COMMENT '供应商品类别' ,
 `employee_id`  bigint(11) NOT NULL COMMENT '采购员编号' ,
 `create_time` datetime not null default NOW() COMMENT '创建时间' ,
 `remark` varchar(500) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '备注' ,

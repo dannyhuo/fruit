@@ -2,7 +2,9 @@ package com.fruit.controller.back;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.Iterator;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -22,7 +24,7 @@ import com.fruit.service.GoodsTypeService;
 import com.fruit.util.IDManager;
 
 @Controller
-@RequestMapping(value = "/goodsManagement")
+@RequestMapping(value = "/back/goodsManagement")
 public class GoodsManagement {
 
 	@Autowired
@@ -89,8 +91,14 @@ public class GoodsManagement {
 	@RequestMapping(value="/goodsList")
 	public ModelAndView goodsList(GoodsVo goodsVo){
 		ModelAndView mav = new ModelAndView("/webpage/back/goods/goodsList");
+		Map<String, Object> params = new HashMap<>();
+		params.put("keyWords", goodsVo.getKeyWords());
+		params.put("pageSize", goodsVo.getPageSize());
+		params.put("startRow", goodsVo.getStartRow());
 		
-		mav.addObject("listGoodses", goodsService.selectByParam(goodsVo));
+		Long count = goodsService.selectCountByParam(params);
+		System.out.println(count);
+		mav.addObject("listGoodses", goodsService.selectByParam(params));
 		
 		return mav;
 	}
@@ -99,7 +107,9 @@ public class GoodsManagement {
 	public ModelAndView goodsSearch(GoodsVo goodsVo){
 		ModelAndView mav = new ModelAndView("/webpage/back/goods/goodsList");
 		
-		mav.addObject("listGoodses", goodsService.searchByKeyWords(goodsVo));
+		Map<String, Object> params = new HashMap<>();
+		params.put("keyWords", goodsVo.getKeyWords());
+		mav.addObject("listGoodses", goodsService.searchByKeyWords(params));
 		
 		mav.addObject("keyWords", goodsVo.getKeyWords());
 		

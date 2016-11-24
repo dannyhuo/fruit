@@ -48,11 +48,14 @@
 							<#if order.orderDetails?has_content>
 								<#list order.orderDetails as orderDetail>
 									<tr  class="out_Store_order_detail">
-										<td colspan="3" align="center">
+										<td colspan="2" align="center">
 											商品编号：${orderDetail.goodsId}
 										</td>
 										<td colspan="2" align="center">
 											数量：${orderDetail.quantity}
+										</td>
+										<td align="center">
+											状态：${orderDetail.statusCnName}
 										</td>
 										<td align="center">
 											<a href="">出库</a>

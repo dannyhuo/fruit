@@ -9,6 +9,8 @@ public class PurchaseOrderVo extends PurchaseOrder{
 	private String parchaseName;
 	
 	private List<PurchaseOrderDetailVo> purchaseOrderDetails;
+	
+	private String purchaseOrderDetailsJson;
 
 	public String getParchaseName() {
 		return parchaseName;
@@ -24,6 +26,14 @@ public class PurchaseOrderVo extends PurchaseOrder{
 
 	public void setPurchaseOrderDetails(List<PurchaseOrderDetailVo> purchaseOrderDetails) {
 		this.purchaseOrderDetails = purchaseOrderDetails;
+	}
+
+	public String getPurchaseOrderDetailsJson() {
+		return purchaseOrderDetailsJson;
+	}
+
+	public void setPurchaseOrderDetailsJson(String purchaseOrderDetailsJson) {
+		this.purchaseOrderDetailsJson = purchaseOrderDetailsJson;
 	}
 	
 }

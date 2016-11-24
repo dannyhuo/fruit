@@ -16,6 +16,8 @@ public class FruitOrderDetail {
     private Long totalOughtPay;
 
     private Date createTime;
+    
+    private Byte status;
 
     private String remark;
 
@@ -75,7 +77,15 @@ public class FruitOrderDetail {
         this.createTime = createTime;
     }
 
-    public String getRemark() {
+    public Byte getStatus() {
+		return status;
+	}
+
+	public void setStatus(Byte status) {
+		this.status = status;
+	}
+
+	public String getRemark() {
         return remark;
     }
 

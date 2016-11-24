@@ -1,9 +1,11 @@
 package com.fruit.dao.mysql;
 
 import java.util.List;
+import java.util.Map;
 
 import com.fruit.model.GoodsInventory;
 import com.fruit.model.Repostory;
+import com.fruit.model.vo.GoodsInventoryVo;
 
 public interface GoodsInventoryMapper {
     int deleteByPrimaryKey(Long goodsInventoryId);
@@ -23,5 +25,7 @@ public interface GoodsInventoryMapper {
      * @param repostory
      * @return
      */
-    List<GoodsInventory> queryInventory(Repostory repostory);
+    List<GoodsInventoryVo> queryInventory(Map<String, Object> params);
+    
+    List<GoodsInventoryVo> querySelective(Map<String, Object> params);
 }

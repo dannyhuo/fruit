@@ -1,5 +1,6 @@
 package com.fruit.model.vo;
 
+import com.fruit.enu.Enums.PURCHASE_STATUS;
 import com.fruit.model.PurchaseOrderDetail;
 
 public class PurchaseOrderDetailVo extends PurchaseOrderDetail{
@@ -22,6 +23,10 @@ public class PurchaseOrderDetailVo extends PurchaseOrderDetail{
 
 	public void setGoodsImageUrl(String goodsImageUrl) {
 		this.goodsImageUrl = goodsImageUrl;
+	}
+	
+	public String getStatusCnName(){
+		return PURCHASE_STATUS.getCnName(this.getStatus());
 	}
 
 }

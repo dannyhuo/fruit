@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.fruit.dao.mysql.GoodsInventoryMapper" >
-  <resultMap id="BaseResultMap" type="com.fruit.model.GoodsInventory" >
+  <resultMap id="BaseResultMap" type="com.fruit.model.vo.GoodsInventoryVo" >
     <id column="goods_inventory_id" property="goodsInventoryId" jdbcType="BIGINT" />
     <result column="goods_id" property="goodsId" jdbcType="BIGINT" />
     <result column="goods_batch_no" property="goodsBatchNo" jdbcType="BIGINT" />
@@ -151,12 +151,49 @@
     where goods_inventory_id = #{goodsInventoryId,jdbcType=BIGINT}
   </update>
   
-  <!-- 查询库存,未过期的 -->
-  <select id="queryInventory" resultMap="BaseResultMap" parameterType="com.fruit.model.Repostory" >
+  <select id="querySelective" resultMap="BaseResultMap" parameterType="java.util.HashMap" >
     select 
     <include refid="Base_Column_List" />
+    from goods_inventory
+    where 1 = 1
+    <if test="goodsId != null" >
+      and goods_id = #{goodsId,jdbcType=BIGINT}
+    </if>
+    <if test="goodsBatchNo != null" >
+      and goods_batch_no = #{goodsBatchNo,jdbcType=BIGINT}
+    </if>
+    <if test="repostoryId != null" >
+      and repostory_id = #{repostoryId,jdbcType=BIGINT}
+    </if>
+    <if test="expiredTime != null" >
+      and expired_time > #{expiredTime,jdbcType=TIMESTAMP}
+    </if>
+    <if test="quantity != null" >
+      and quantity = #{quantity,jdbcType=SMALLINT}
+    </if>
+    <if test="sellingQuantity != null" >
+      and selling_quantity = #{sellingQuantity,jdbcType=SMALLINT}
+    </if>
+    <if test="soldQuantity != null" >
+      and sold_quantity = #{soldQuantity,jdbcType=SMALLINT}
+    </if>
+    <if test="createTime != null" >
+      and create_time = #{createTime,jdbcType=TIMESTAMP}
+    </if>
+    <if test="remark != null" >
+      and remark = #{remark,jdbcType=VARCHAR}
+    </if>
+  </select>
+  
+  <!-- 查询库存,未过期的 -->
+  <select id="queryInventory" resultMap="BaseResultMap" parameterType="java.util.HashMap" >
+    select 
+    *
     from goods_inventory gi left join repostory r on gi.repostory_id = r.repostory_id
-    where gi.expired_time &lt; now()
+    where gi.expired_time &gt; now()
+    <if test="goodsId != null" >
+      and gi.goods_id = #{goodsId,jdbcType=VARCHAR}
+    </if>
     <if test="repostoryName != null" >
       and r.repostory_name = #{repostoryName,jdbcType=VARCHAR}
     </if>
@@ -190,6 +227,6 @@
     <if test="remark != null" >
       and r.remark = #{remark,jdbcType=VARCHAR}
     </if>
-    order by gi.goods_batch_no asc
+    order by gi.expired_time desc
   </select>
 </mapper>

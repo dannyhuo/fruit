@@ -21,6 +21,8 @@ import com.fruit.service.PurchaseOrderDetailService;
 import com.fruit.service.PurchaseOrderService;
 import com.fruit.service.SupplierService;
 
+import net.sf.json.JSONArray;
+
 @Controller
 @RequestMapping("/back/purchaseController")
 public class PurchaseController {
@@ -37,8 +39,25 @@ public class PurchaseController {
 	@Autowired
 	private SupplierService supplierService;
 	
+	/**
+	 * 采购管理
+	 * @param request
+	 * @return
+	 */
+	@RequestMapping("/purchase")
+	public ModelAndView purchaseManage(HttpServletRequest request){
+		ModelAndView mav = new ModelAndView("/webpage/back/purchase/purchaseManage");
+		getPurcharseDetail(mav);
+		return mav;
+	}
+	
+	/**
+	 * 新增采购
+	 * @param request
+	 * @return
+	 */
 	@RequestMapping("/toPurchase")
-	public ModelAndView toPurchase(HttpServletRequest request){
+	public ModelAndView addPurchase(HttpServletRequest request){
 		ModelAndView mav = new ModelAndView("/webpage/back/purchase/purchase");
 		Map<String, Object> params = new HashMap<>();
 		params.put("startRow", 0);
@@ -64,29 +83,69 @@ public class PurchaseController {
 		return mav;
 	}
 	
+	
 	/**
-	 * 提交采购
+	 * 提交采购单
 	 * @param request
 	 * @return
 	 */
-	@RequestMapping("/purchase")
-	public ModelAndView purchase(HttpServletRequest request){
-		ModelAndView mav = new ModelAndView("/webpage/back/purchase/purchase");
+	@RequestMapping("/doPurchase")
+	public ModelAndView doPurchase(PurchaseOrderVo purchaseOrderVo, HttpServletRequest request){
+		ModelAndView mav = new ModelAndView("/webpage/back/purchase/purchaseManage");
+		//1、构建采购单对象
+		String detailJson = purchaseOrderVo.getPurchaseOrderDetailsJson();
+		JSONArray detailJsonArray = JSONArray.fromObject(detailJson);
+		List<PurchaseOrderDetailVo> purchaseOrderDetails = (List<PurchaseOrderDetailVo>) JSONArray.toCollection(detailJsonArray, PurchaseOrderDetailVo.class);
+		purchaseOrderVo.setPurchaseOrderDetails(purchaseOrderDetails);
+		
+		//2、获取用户（采购员）信息
+		EmployeeVo employeeVo = (EmployeeVo)request.getSession().getAttribute("employee");
+		purchaseOrderVo.setEmployeeId(employeeVo.getEmployeeId());
+		
+		//3、保存采购单
+		purchaseOrderService.savePurchaseOrder(purchaseOrderVo);
+		
+		//4、查询采购单位
+		getPurcharseDetail(mav);
 		
 		return mav;
 	}
 	
 	private void queryBaseData(ModelAndView mav, Long employeeId){
-		GoodsVo goodsVo = new GoodsVo();
-		goodsVo.setPageNo(1);
-		goodsVo.setPageSize(100);
-		List<GoodsVo> goodses = goodsService.selectByParam(goodsVo);
+		//商品
+		Map<String, Object> params = new HashMap<>();
+		params.put("startRow", 0);
+		params.put("pageSize", 100);
+		List<GoodsVo> goodses = goodsService.selectByParam(params);
 		mav.addObject("goodses", goodses);
 		
-		Map<String, Object> params = new HashMap<>();
+		//供应商
+		Map<String, Object> params2 = new HashMap<>();
 		params.put("employeeId", employeeId);
-		List<Supplier> suppliers = supplierService.querySelective(params);
+		List<Supplier> suppliers = supplierService.querySelective(params2);
 		mav.addObject("suppliers", suppliers);
+		
+		//采购单及采购明细
+		getPurcharseDetail(mav);
+	}
+	
+	
+	/**
+	 * 查询采购单及采购明细
+	 * @param mav
+	 */
+	private void getPurcharseDetail(ModelAndView mav){
+		Map<String, Object> params = new HashMap<>();
+		params.put("startRow", 0);
+		params.put("pageSize", 5);
+		List<PurchaseOrderVo> purchases = purchaseOrderService.querySelective(params);
+		for (PurchaseOrderVo purchaseOrderVo : purchases) {
+			Map<String, Object> detailParams = new HashMap<>();
+			detailParams.put("purchaseOrderId", purchaseOrderVo.getPurchaseOrderId());
+			List<PurchaseOrderDetailVo> details = purchaseOrderDetailService.querySelective(detailParams);
+			purchaseOrderVo.setPurchaseOrderDetails(details);
+		}
+		mav.addObject("purchaseOrders", purchases);
 	}
 
 }

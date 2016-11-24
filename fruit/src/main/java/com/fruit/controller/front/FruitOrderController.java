@@ -118,6 +118,8 @@ public class FruitOrderController {
 		
 		if(null != orderVo){
 			orderVo.setAddressId(Long.parseLong(addressId));
+			
+			//2、将订单对象保存至数据库
 			fruitOrderService.saveOrder(orderVo);
 			mav.addObject("orderOk", true);
 			

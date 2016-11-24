@@ -219,7 +219,7 @@
     where goods_id = #{goodsId,jdbcType=BIGINT}
   </update>
   
-  <select id="selectByParam" resultMap="BaseResultMap" parameterType="com.fruit.model.vo.GoodsVo" >
+  <select id="selectByParam" resultMap="BaseResultMap" parameterType="java.util.HashMap" >
     select 
     <include refid="Base_Column_List" />
     from goods
@@ -275,8 +275,60 @@
     </if>
   </select>
   
+  <select id="selectCountByParam" resultType="java.lang.Long" parameterType="java.util.HashMap" >
+    select 
+    count(*)
+    from goods
+    where 1 = 1 
+    <if test="goodsName != null" >
+      and goods_name = #{goodsName,jdbcType=VARCHAR}
+    </if>
+    <if test="producingArea != null" >
+      and producing_area = #{producingArea,jdbcType=VARCHAR}
+    </if>
+    <if test="marketPrice != null" >
+      and market_price = #{marketPrice,jdbcType=BIGINT}
+    </if>
+    <if test="sellPrice != null" >
+      and sell_price = #{sellPrice,jdbcType=BIGINT}
+    </if>
+    <if test="description != null" >
+      and description = #{description,jdbcType=VARCHAR}
+    </if>
+    <if test="goodsImageUrl != null" >
+      and goods_image_url = #{goodsImageUrl,jdbcType=VARCHAR}
+    </if>
+    <if test="tag != null" >
+      and tag = #{tag,jdbcType=VARCHAR}
+    </if>
+    <if test="goodsTypeId != null" >
+      and goods_type_id = #{goodsTypeId,jdbcType=BIGINT}
+    </if>
+    <if test="goodsCategory != null" >
+      and goods_category = #{goodsCategory,jdbcType=TINYINT}
+    </if>
+    <if test="employeeId != null" >
+      and employee_id = #{employeeId,jdbcType=BIGINT}
+    </if>
+    <if test="goodsStatus != null" >
+      and goods_status = #{goodsStatus,jdbcType=TINYINT}
+    </if>
+    <if test="putawayTime != null" >
+      and putaway_time = #{putawayTime,jdbcType=TIMESTAMP}
+    </if>
+    <if test="soldOutTime != null" >
+      and sold_out_time = #{soldOutTime,jdbcType=TIMESTAMP}
+    </if>
+    <if test="createTime != null" >
+      and create_time = #{createTime,jdbcType=TIMESTAMP}
+    </if>
+    <if test="remark != null" >
+      and remark = #{remark,jdbcType=VARCHAR}
+    </if>
+  </select>
   
-  <select id="search" resultMap="BaseResultMap" parameterType="com.fruit.model.vo.GoodsVo" >
+  
+  <select id="search" resultMap="BaseResultMap" parameterType="java.util.HashMap" >
     select 
     <include refid="Base_Column_List" />
     from goods
@@ -319,6 +371,48 @@
     
     <if test="startRow != null" >
       limit #{startRow,jdbcType=BIGINT}, #{pageSize,jdbcType=BIGINT}
+    </if>
+  </select>
+  
+  <select id="searchCount" resultType="java.lang.Long" parameterType="java.util.HashMap" >
+    select 
+    count(*)
+    from goods
+    where 1 = 2 
+    <if test="goodsName != null" >
+      <if test="isSearchOr">or</if>
+      <if test="!isSearchOr">and</if>
+      goods_name like concat('%',#{goodsName,jdbcType=VARCHAR},'%')
+    </if>
+    <if test="producingArea != null" >
+      <if test="isSearchOr">or</if>
+      <if test="!isSearchOr">and</if>
+      producing_area like concat(#{producingArea,jdbcType=VARCHAR},'%')
+    </if>
+    <if test="description != null" >
+      <if test="isSearchOr">or</if>
+      <if test="!isSearchOr">and</if>
+      description like concat('%',#{description,jdbcType=VARCHAR},'%')
+    </if>
+    <if test="tag != null" >
+      <if test="isSearchOr">or</if>
+      <if test="!isSearchOr">and</if>
+      tag like concat('%',#{tag,jdbcType=VARCHAR},'%')
+    </if>
+    <if test="goodsTypeId != null" >
+      <if test="isSearchOr">or</if>
+      <if test="!isSearchOr">and</if>
+      goods_type_id = #{goodsTypeId,jdbcType=BIGINT}
+    </if>
+    <if test="goodsCategory != null" >
+      <if test="isSearchOr">or</if>
+      <if test="!isSearchOr">and</if>
+      goods_category = #{goodsCategory,jdbcType=TINYINT}
+    </if>
+    <if test="goodsStatus != null" >
+      <if test="isSearchOr">or</if>
+      <if test="!isSearchOr">and</if>
+      goods_status like concat(#{goodsStatus,jdbcType=TINYINT},'%')
     </if>
   </select>
 </mapper>

@@ -9,7 +9,7 @@ public class PurchaseOrderDetail {
 
     private Long goodsId;
 
-    private Short quantity;
+    private Integer quantity;
 
     private Date createTime;
 
@@ -45,11 +45,11 @@ public class PurchaseOrderDetail {
         this.goodsId = goodsId;
     }
 
-    public Short getQuantity() {
+    public Integer getQuantity() {
         return quantity;
     }
 
-    public void setQuantity(Short quantity) {
+    public void setQuantity(Integer quantity) {
         this.quantity = quantity;
     }
 

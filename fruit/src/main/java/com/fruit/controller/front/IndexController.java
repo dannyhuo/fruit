@@ -1,7 +1,9 @@
 package com.fruit.controller.front;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -27,23 +29,27 @@ public class IndexController {
 		goodsVo.setPageNo(1);
 		goodsVo.setPageSize(5);
 		
+		Map<String, Object> params = new HashMap<>();
+		params.put("startRow", 0);
+		params.put("pageSize", 5);
+		
 		List<List<GoodsVo>> gooddes = new ArrayList<List<GoodsVo>>();
-		goodsVo.setGoodsCategory(GOODS_CATEGORY.JIN_KOU.getCode());
-		gooddes.add(goodsService.selectByParam(goodsVo));
-		goodsVo.setGoodsCategory(GOODS_CATEGORY.GUO_CHAN.getCode());
-		gooddes.add(goodsService.selectByParam(goodsVo));
-		goodsVo.setGoodsCategory(GOODS_CATEGORY.JIANG_GUO.getCode());
-		gooddes.add(goodsService.selectByParam(goodsVo));
-		goodsVo.setGoodsCategory(GOODS_CATEGORY.GUA_GUO.getCode());
-		gooddes.add(goodsService.selectByParam(goodsVo));
-		goodsVo.setGoodsCategory(GOODS_CATEGORY.JU_GUO.getCode());
-		gooddes.add(goodsService.selectByParam(goodsVo));
-		goodsVo.setGoodsCategory(GOODS_CATEGORY.HE_GUO.getCode());
-		gooddes.add(goodsService.selectByParam(goodsVo));
-		goodsVo.setGoodsCategory(GOODS_CATEGORY.REN_GUO.getCode());
-		gooddes.add(goodsService.selectByParam(goodsVo));
-		goodsVo.setGoodsCategory(GOODS_CATEGORY.QI_TA.getCode());
-		gooddes.add(goodsService.selectByParam(goodsVo));
+		params.put("goodsCategory",GOODS_CATEGORY.JIN_KOU.getCode());
+		gooddes.add(goodsService.selectByParam(params));
+		params.put("goodsCategory",GOODS_CATEGORY.GUO_CHAN.getCode());
+		gooddes.add(goodsService.selectByParam(params));
+		params.put("goodsCategory",GOODS_CATEGORY.JIANG_GUO.getCode());
+		gooddes.add(goodsService.selectByParam(params));
+		params.put("goodsCategory",GOODS_CATEGORY.GUA_GUO.getCode());
+		gooddes.add(goodsService.selectByParam(params));
+		params.put("goodsCategory",GOODS_CATEGORY.JU_GUO.getCode());
+		gooddes.add(goodsService.selectByParam(params));
+		params.put("goodsCategory",GOODS_CATEGORY.HE_GUO.getCode());
+		gooddes.add(goodsService.selectByParam(params));
+		params.put("goodsCategory",GOODS_CATEGORY.REN_GUO.getCode());
+		gooddes.add(goodsService.selectByParam(params));
+		params.put("goodsCategory",GOODS_CATEGORY.QI_TA.getCode());
+		gooddes.add(goodsService.selectByParam(params));
 		mav.addObject("goodses", gooddes);
 		return mav;
 	}
@@ -55,8 +61,9 @@ public class IndexController {
 		if(null == goodsVo.getKeyWords() || "".equals(goodsVo.getKeyWords().trim())){
 			goodsVo = new GoodsVo();
 		}
-		
-		mav.addObject("listGoodses", goodsService.searchByKeyWords(goodsVo));
+		Map<String, Object> params = new HashMap<>();
+		params.put("keyWords", goodsVo.getKeyWords().trim());
+		mav.addObject("listGoodses", goodsService.searchByKeyWords(params));
 		
 		mav.addObject("keyWords", goodsVo.getKeyWords());
 		

@@ -5,6 +5,7 @@
     <id column="purchase_order_id" property="purchaseOrderId" jdbcType="BIGINT" />
     <result column="purchase_order_name" property="purchaseOrderName" jdbcType="VARCHAR" />
     <result column="employee_id" property="employeeId" jdbcType="BIGINT" />
+    <result column="supplier_id" property="supplierId" jdbcType="BIGINT" />
     <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
     <result column="supply_time" property="supplyTime" jdbcType="TIMESTAMP" />
     <result column="remark" property="remark" jdbcType="VARCHAR" />
@@ -21,7 +22,7 @@
   </resultMap>
   
   <sql id="Base_Column_List" >
-    purchase_order_id, purchase_order_name, employee_id, create_time, supply_time, remark
+    purchase_order_id, purchase_order_name, employee_id, supplier_id, create_time, supply_time, remark
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
     select 
@@ -33,15 +34,15 @@
     delete from purchase_order
     where purchase_order_id = #{purchaseOrderId,jdbcType=BIGINT}
   </delete>
-  <insert id="insert" parameterType="com.fruit.model.PurchaseOrder" >
+  <insert id="insert" parameterType="com.fruit.model.PurchaseOrder" useGeneratedKeys="true" keyProperty="purchaseOrderId">
     insert into purchase_order (purchase_order_id, purchase_order_name, 
-      employee_id, create_time, supply_time, 
+      employee_id, supplier_id, create_time, supply_time, 
       remark)
     values (#{purchaseOrderId,jdbcType=BIGINT}, #{purchaseOrderName,jdbcType=VARCHAR}, 
-      #{employeeId,jdbcType=BIGINT}, #{createTime,jdbcType=TIMESTAMP}, #{supplyTime,jdbcType=TIMESTAMP}, 
+      #{employeeId,jdbcType=BIGINT}, #{supplierId,jdbcType=BIGINT}, #{createTime,jdbcType=TIMESTAMP}, #{supplyTime,jdbcType=TIMESTAMP}, 
       #{remark,jdbcType=VARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="com.fruit.model.PurchaseOrder" >
+  <insert id="insertSelective" parameterType="com.fruit.model.PurchaseOrder" useGeneratedKeys="true" keyProperty="purchaseOrderId">
     insert into purchase_order
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="purchaseOrderId != null" >
@@ -52,6 +53,9 @@
       </if>
       <if test="employeeId != null" >
         employee_id,
+      </if>
+      <if test="supplierId != null" >
+        supplier_id,
       </if>
       <if test="createTime != null" >
         create_time,
@@ -73,6 +77,9 @@
       <if test="employeeId != null" >
         #{employeeId,jdbcType=BIGINT},
       </if>
+      <if test="supplierId != null" >
+        #{supplierId,jdbcType=BIGINT},
+      </if>
       <if test="createTime != null" >
         #{createTime,jdbcType=TIMESTAMP},
       </if>
@@ -93,6 +100,9 @@
       <if test="employeeId != null" >
         employee_id = #{employeeId,jdbcType=BIGINT},
       </if>
+      <if test="supplierId != null" >
+        supplier_id = #{supplierId,jdbcType=BIGINT},
+      </if>
       <if test="createTime != null" >
         create_time = #{createTime,jdbcType=TIMESTAMP},
       </if>
@@ -109,6 +119,7 @@
     update purchase_order
     set purchase_order_name = #{purchaseOrderName,jdbcType=VARCHAR},
       employee_id = #{employeeId,jdbcType=BIGINT},
+      supplier_id = #{supplierId,jdbcType=BIGINT},
       create_time = #{createTime,jdbcType=TIMESTAMP},
       supply_time = #{supplyTime,jdbcType=TIMESTAMP},
       remark = #{remark,jdbcType=VARCHAR}
@@ -127,6 +138,9 @@
     </if>
     <if test="employeeId != null" >
       and employee_id = #{employeeId,jdbcType=BIGINT}
+    </if>
+    <if test="supplierId != null" >
+      and supplier_id = #{supplierId,jdbcType=BIGINT}
     </if>
     <if test="createTime != null" >
       and create_time = #{createTime,jdbcType=TIMESTAMP}

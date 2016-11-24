@@ -151,6 +151,48 @@ public class Enums {
 	}
 	
 	/**
+	 * 订单出库状态枚举
+	 * @author huoqiang
+	 *
+	 */
+	public static enum ORDER_OUT_STORE_STATUS {
+		WAIT_OUT_STORE((byte)0,"待出库"),
+		OUT_STORED((byte)1,"已出库");
+		
+		private byte code;
+		private String cnName;
+
+		ORDER_OUT_STORE_STATUS(byte code, String cnName){
+			this.code = code;
+			this.cnName = cnName;
+		}
+		public byte getCode(){
+			return this.code;
+		}
+		public String getCnName(){
+			return this.cnName;
+		}
+		
+		public static String getCnName(byte code){
+			for(ORDER_OUT_STORE_STATUS item: ORDER_OUT_STORE_STATUS.values()){
+				if(item.getCode() == code){
+					return item.getCnName();
+				}
+			}
+			return null;
+		}
+		
+		public static Byte getCodeByName(String key){
+			for(ORDER_OUT_STORE_STATUS item: ORDER_OUT_STORE_STATUS.values()){
+				if(item.getCnName().equals(key)){
+					return item.getCode();
+				}
+			}
+			return null;
+		}
+	}
+	
+	/**
 	 * 雇员角色枚举
 	 * @author huoqiang
 	 *
@@ -233,6 +275,49 @@ public class Enums {
 		
 		public static Byte getCodeByName(String key){
 			for(EMPLOYEE_STATUS item: EMPLOYEE_STATUS.values()){
+				if(item.getCnName().equals(key)){
+					return item.getCode();
+				}
+			}
+			return null;
+		}
+	}
+	
+	
+	/**
+	 * 采购状态
+	 * @author huoqiang
+	 *
+	 */
+	public static enum PURCHASE_STATUS {
+		WAIT_SUPPLY((byte)0,"待供货"),
+		SUPPLIED((byte)1,"已供货");
+		
+		private byte code;
+		private String cnName;
+
+		PURCHASE_STATUS(byte code, String cnName){
+			this.code = code;
+			this.cnName = cnName;
+		}
+		public byte getCode(){
+			return this.code;
+		}
+		public String getCnName(){
+			return this.cnName;
+		}
+		
+		public static String getCnName(byte code){
+			for(PURCHASE_STATUS item: PURCHASE_STATUS.values()){
+				if(item.getCode() == code){
+					return item.getCnName();
+				}
+			}
+			return null;
+		}
+		
+		public static Byte getCodeByName(String key){
+			for(PURCHASE_STATUS item: PURCHASE_STATUS.values()){
 				if(item.getCnName().equals(key)){
 					return item.getCode();
 				}

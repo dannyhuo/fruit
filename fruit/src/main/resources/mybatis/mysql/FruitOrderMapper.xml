@@ -24,7 +24,7 @@
     delete from fruit_order
     where order_id = #{orderId,jdbcType=BIGINT}
   </delete>
-  <insert id="insert" parameterType="com.fruit.model.FruitOrder"  useGeneratedKeys="true" keyProperty="orderId">
+  <insert id="insert" parameterType="com.fruit.model.FruitOrder" useGeneratedKeys="true" keyProperty="orderId">
     insert into fruit_order (order_id, customer_id, address_id, create_time, 
       order_pay, order_ought_pay, status, 
       remark)

@@ -8,6 +8,8 @@ public class PurchaseOrder {
     private String purchaseOrderName;
 
     private Long employeeId;
+    
+    private Long supplierId;
 
     private Date createTime;
 
@@ -39,7 +41,15 @@ public class PurchaseOrder {
         this.employeeId = employeeId;
     }
 
-    public Date getCreateTime() {
+    public Long getSupplierId() {
+		return supplierId;
+	}
+
+	public void setSupplierId(Long supplierId) {
+		this.supplierId = supplierId;
+	}
+
+	public Date getCreateTime() {
         return createTime;
     }
 

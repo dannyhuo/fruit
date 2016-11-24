@@ -57,21 +57,28 @@
 				</#if>
 
 				<p>
-					采购名称：<input type="text" name="purchase_order_name" class="common_input"/>
+					采购名称：<input type="text" id="purchase_order_name" class="common_input"/>
 				</p>
 				<p>
 					供应商采购：
-					<select name="">
+					<select id="supplierId" class="common_input">
 						<#if suppliers?has_content>
 							<#list suppliers as supplier>
-								<option value="${supplier.supplier_id}">${supplier.supplierName}</option>
+								<option value="${supplier.supplierId}">${supplier.supplierName}</option>
 							</#list>
 						</#if>
 					</select>
 				</p>
 				<p>
+					商品明细列表：
+					<div id="purchase_detail" class="purchase_detail">
+						
+					</div>
+					<input type="hidden" id="purchaseDetail"/>
+				</p>
+				<p>
 					商品：
-					<select name="">
+					<select id="goods_select" name="" class="common_input">
 						<#if goodses?has_content>
 							<#list goodses as goods>
 								<option value="${goods.goodsId}">${goods.goodsName}</option>
@@ -79,7 +86,90 @@
 						</#if>
 					</select>
 				</p>
+				<p>
+					采购数量：<input id="goods_num" type="text" class="common_input" value="100"/>
+					<input type="hidden" id="index_hidden" value="0" />
+					
+					<input id="add_btn" type="button" onclick="addDetail();" value="添加明细"/>
+				</p>
+				<p>
+					<input type="button" onclick="submitPurchase();" value="提交采购" class="common_btn"/>
+				</p>
 			</div>
 		</div>
+		<script>
+			function addDetail(){
+				var sel = document.getElementById("goods_select");
+				if(sel && sel.length < 1){
+					return;
+				}
+				var num = document.getElementById("goods_num").value;
+				var indexInput = document.getElementById("index_hidden");
+				indexInput.value++;
+				var pDetail = [indexInput.value];
+				pDetail.push(":");
+				
+				var purchaseGoodsId = 0;
+				for(var i = 0; i < sel.length; i++){
+					if(sel[i].selected){
+						pDetail.push(sel[i].text);
+						sel.removeChild(sel[i]);
+						purchaseGoodsId = sel[i].value;
+						break;
+					}
+				}
+				
+				pDetail.push(",");
+				pDetail.push(num);
+				pDetail.push("份");
+				
+				pDetail.push("<input type=\"hidden\" id=\""+purchaseGoodsId+"\" name=\"purchaseGoodsDetail\" value=\""+num+"\" />");
+				var detailDiv = document.getElementById("purchase_detail")
+				var goodsP = document.createElement("P");
+				goodsP.innerHTML = pDetail.join("");
+				detailDiv.appendChild(goodsP);
+			}
+			
+			
+			function submitPurchase(){
+				var items = document.getElementsByName("purchaseGoodsDetail");
+				var detailJson;
+				if(items && items.length > 0){
+					var details = [];
+					for(var i = 0; i < items.length; i++){
+						var item = {};
+						item.quantity = items[i].value;
+						item.goodsId = items[i].id;
+						item.repostoryId = 1;
+						details.push(item);
+					}
+					detailJson = JSON.stringify(details);
+				}
+				
+				var myForm = document.createElement("FORM");
+				myForm.action = "/fruit/back/purchaseController/doPurchase.do";
+				myForm.method = "POST";
+				//采购名称
+				var purchaseName = document.createElement("INPUT");
+				purchaseName.name = "purchaseOrderName";
+				purchaseName.value=document.getElementById("purchase_order_name").value;
+				myForm.appendChild(purchaseName);
+				
+				//采购供应商
+				var purchaseSupplier = document.createElement("INPUT");
+				purchaseSupplier.name = "supplierId";
+				purchaseSupplier.value=document.getElementById("supplierId").value;
+				myForm.appendChild(purchaseSupplier);
+				
+				//采购明细
+				var purchaseOrderDetailsJson = document.createElement("INPUT");
+				purchaseOrderDetailsJson.name = "purchaseOrderDetailsJson";
+				purchaseOrderDetailsJson.value=detailJson;
+				myForm.appendChild(purchaseOrderDetailsJson);
+				
+				myForm.submit();
+				
+			}
+		</script>
 	</body>
 </html>

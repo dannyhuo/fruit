@@ -12,7 +12,7 @@ public class GoodsVo extends Goods{
 	private String keyWords;
 	
 	private boolean isSearchOr = true;
-
+	
 	public Integer getPageNo() {
 		return pageNo;
 	}

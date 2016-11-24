@@ -310,7 +310,7 @@ COMMENT='商品库存'
 --创建索引
 CREATE INDEX `IDX_GOODS_INVENTORY_GOODS_ID` ON `goods_inventory`(`goods_id`) USING BTREE ;
 CREATE INDEX `IDX_GOODS_INVENTORY_GOODS_BATCH_NO` ON `goods_inventory`(`goods_batch_no`) USING BTREE ;
-CREATE UNIQUE INDEX `UNQ_IDX_GOODS_INVENTORY_REPOSTORY_ID` ON `goods_inventory`(`repostory_id`) USING BTREE ;
+CREATE INDEX `UNQ_IDX_GOODS_INVENTORY_REPOSTORY_ID` ON `goods_inventory`(`repostory_id`) USING BTREE ;
 CREATE INDEX `IDX_GOODS_INVENTORY_EXPIRED_TIME` ON `goods_inventory`(`expired_time`) USING BTREE ;
 CREATE INDEX `IDX_GOODS_INVENTORY_QUANTITY` ON `goods_inventory`(`quantity`) USING BTREE ;
 CREATE INDEX `IDX_GOODS_INVENTORY_SELLING_QUANTITY` ON `goods_inventory`(`selling_quantity`) USING BTREE ;
@@ -357,6 +357,7 @@ CREATE TABLE `purchase_order` (
 `purchase_order_id`  bigint(11) NOT NULL AUTO_INCREMENT COMMENT '仓库ID' ,
 `purchase_order_name` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '采购名称' ,
 `employee_id`  bigint(11) NOT NULL COMMENT '采购员编号' ,
+`supplier_id`  bigint(11) NOT NULL COMMENT '供应商编号' ,
 `create_time` datetime not null default NOW() COMMENT '采购时间' ,
 `supply_time` datetime not null default NOW() COMMENT '最后供货时间' ,
 `remark` varchar(500) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '备注' ,
@@ -371,6 +372,7 @@ COMMENT='采购单'
 CREATE INDEX `IDX_PURCHASE_ORDER_CREATE_TIME` ON `purchase_order`(`create_time`) USING BTREE ;
 CREATE INDEX `IDX_PURCHASE_ORDER_SUPPLY_TIME` ON `purchase_order`(`supply_time`) USING BTREE ;
 CREATE INDEX `IDX_PURCHASE_ORDER_EMPLOYEE_ID` ON `purchase_order`(`employee_id`) USING BTREE ;
+CREATE INDEX `IDX_PURCHASE_ORDER_SUPPLIER_ID` ON `purchase_order`(`supplier_id`) USING BTREE ;
 
 
 
@@ -463,6 +465,7 @@ CREATE TABLE `fruit_order_detail` (
 `total_pay`  bigint(11) NOT NULL COMMENT '总金额' ,
 `total_ought_pay`  bigint(11) NOT NULL COMMENT '应付总金额' ,
 `create_time` datetime not null default NOW() COMMENT '创建时间' ,
+`status` tinyint(2) NOT NULL default 0 COMMENT '状态，0：待出库， 1：已出库' ,
 `remark` varchar(500) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '备注' ,
 PRIMARY KEY (`order_detail_id`)
 )

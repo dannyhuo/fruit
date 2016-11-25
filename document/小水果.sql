@@ -1,4 +1,3 @@
-
 -- ----------------------------
 --tab1 Table structure for `customer`
 -- ----------------------------
@@ -31,7 +30,6 @@ ENGINE=InnoDB
 DEFAULT CHARACTER SET=utf8 COLLATE=utf8_general_ci
 COMMENT='消费者'
 ;
-
 --创建索引
 CREATE INDEX `IDX_CUSTOMER_NO` ON `customer`(`customer_no`) USING BTREE ;
 CREATE INDEX `IDX_CUSTOMER_CREATE_TIME` ON `customer`(`create_time`) USING BTREE ;
@@ -40,9 +38,6 @@ CREATE INDEX `IDX_CUSTOMER_LOGIN_NAME` ON `customer`(`login_name`) USING BTREE ;
 CREATE INDEX `IDX_CUSTOMER_MOBILE_NUMBER` ON `customer`(`mobile_number`) USING BTREE ;
 CREATE INDEX `IDX_CUSTOMER_QQ` ON `customer`(`qq`) USING BTREE ;
 CREATE INDEX `IDX_CUSTOMER_WECHAT` ON `customer`(`wechat`) USING BTREE ;
-
-
-
 
 -- ----------------------------
 --tab2 Table structure for `delivery_address`
@@ -76,27 +71,8 @@ CREATE INDEX `IDX_ADDRESS_NO` ON `delivery_address`(`address_alias`) USING BTREE
 CREATE INDEX `IDX_ADDRESS_CREATE_TIME` ON `delivery_address`(`create_time`) USING BTREE ;
 CREATE INDEX `IDX_ADDRESS_UPDATE_TIME` ON `delivery_address`(`update_time`) USING BTREE ;
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 -- ----------------------------
---tab Table structure for `dept`
+--tab3 Table structure for `dept`
 -- ----------------------------
 DROP TABLE IF EXISTS `dept`;
 CREATE TABLE `dept` (
@@ -112,9 +88,8 @@ DEFAULT CHARACTER SET=utf8 COLLATE=utf8_general_ci
 COMMENT='部门'
 ;
 
-
 -- ----------------------------
---tab Table structure for `employee`
+--tab4 Table structure for `employee`
 -- ----------------------------
 DROP TABLE IF EXISTS `employee`;
 CREATE TABLE `employee` (
@@ -141,14 +116,11 @@ ENGINE=InnoDB
 DEFAULT CHARACTER SET=utf8 COLLATE=utf8_general_ci
 COMMENT='员工'
 ;
-
 --创建索引
 CREATE INDEX `IDX_EMPLOYEE_LOGIN_NAME` ON `employee`(`login_name`) USING BTREE ;
 
-
-
 -- ----------------------------
---tab Table structure for `menu_authority`
+--tab5 Table structure for `menu_authority`
 -- ----------------------------
 DROP TABLE IF EXISTS `menu_authority`;
 CREATE TABLE `menu_authority` (
@@ -164,14 +136,12 @@ ENGINE=InnoDB
 DEFAULT CHARACTER SET=utf8 COLLATE=utf8_general_ci
 COMMENT='菜单权限'
 ;
-
 --创建索引
 CREATE INDEX `IDX_MENU_AUTHORITY_BACK_MENU_ID` ON `menu_authority`(`back_menu_id`) USING BTREE ;
 CREATE INDEX `IDX_MENU_AUTHORITY_ROLE` ON `menu_authority`(`role`) USING BTREE ;
 
-
 -- ----------------------------
---tab Table structure for `back_menu`
+--tab6 Table structure for `back_menu`
 -- ----------------------------
 DROP TABLE IF EXISTS `back_menu`;
 CREATE TABLE `back_menu` (
@@ -187,13 +157,12 @@ ENGINE=InnoDB
 DEFAULT CHARACTER SET=utf8 COLLATE=utf8_general_ci
 COMMENT='菜单权限'
 ;
-
 --创建索引
 CREATE INDEX `IDX_BACK_MENU_NAME` ON `back_menu`(`menu_name`) USING BTREE ;
 CREATE INDEX `IDX_BACK_MENU_URL` ON `back_menu`(`menu_url`) USING BTREE ;
 
 -- ----------------------------
---tab Table structure for `goods_type`
+--tab7 Table structure for `goods_type`
 -- ----------------------------
 DROP TABLE IF EXISTS `goods_type`;
 CREATE TABLE `goods_type` (
@@ -208,28 +177,13 @@ ENGINE=InnoDB
 DEFAULT CHARACTER SET=utf8 COLLATE=utf8_general_ci
 COMMENT='商品类型'
 ;
-
 --创建索引
 CREATE INDEX `IDX_GOODS_TYPE_TYPE_NAME` ON `goods_type`(`goods_type_name`) USING BTREE ;
 CREATE INDEX `IDX_GOODS_TYPE_GOODS_CATEGORY` ON `goods_type`(`goods_category`) USING BTREE ;
 CREATE INDEX `IDX_GOODS_TYPE_CREATE_TIME` ON `goods_type`(`create_time`) USING BTREE ;
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 -- ----------------------------
---tab Table structure for `outbound_order_detail`
+--tab8 Table structure for `outbound_order_detail`
 -- ----------------------------
 DROP TABLE IF EXISTS `outbound_order_detail`;
 CREATE TABLE `outbound_order_detail` (
@@ -247,7 +201,6 @@ ENGINE=InnoDB
 DEFAULT CHARACTER SET=utf8 COLLATE=utf8_general_ci
 COMMENT='出库明细'
 ;
-
 --创建索引
 CREATE INDEX `IDX_OUTBOUND_ORDER_DETAIL_ID` ON `outbound_order_detail`(`outbound_order_id`) USING BTREE ;
 CREATE INDEX `IDX_OUTBOUND_ORDER_DETAIL_ORDER_DETAIL_ID` ON `outbound_order_detail`(`order_detail_id`) USING BTREE ;
@@ -255,12 +208,8 @@ CREATE INDEX `IDX_OUTBOUND_ORDER_DETAIL_GOODS_ID` ON `outbound_order_detail`(`go
 CREATE INDEX `IDX_OUTBOUND_ORDER_DETAIL_OUTBOUND_TIME` ON `outbound_order_detail`(`outbound_time`) USING BTREE ;
 CREATE INDEX `IDX_OUTBOUND_ORDER_DETAIL_CREATE_TIME` ON `outbound_order_detail`(`create_time`) USING BTREE ;
 
-
-
-
-
 -- ----------------------------
---tab Table structure for `outbound_order`
+--tab9 Table structure for `outbound_order`
 -- ----------------------------
 DROP TABLE IF EXISTS `outbound_order`;
 CREATE TABLE `outbound_order` (
@@ -275,18 +224,13 @@ ENGINE=InnoDB
 DEFAULT CHARACTER SET=utf8 COLLATE=utf8_general_ci
 COMMENT='出库单'
 ;
-
 --创建索引
 CREATE INDEX `IDX_OUTBOUND_ORDER_ID` ON `outbound_order`(`order_id`) USING BTREE ;
 CREATE INDEX `IDX_OUTBOUND_ORDER_EMPLOYEE_ID` ON `outbound_order`(`employee_id`) USING BTREE ;
 CREATE INDEX `IDX_OUTBOUND_ORDER_CREATE_TIME` ON `outbound_order`(`create_time`) USING BTREE ;
 
-
-
-
-
 -- ----------------------------
---tab Table structure for `goods_inventory`
+--tab10 Table structure for `goods_inventory`
 -- ----------------------------
 DROP TABLE IF EXISTS `goods_inventory`;
 CREATE TABLE `goods_inventory` (
@@ -306,7 +250,6 @@ ENGINE=InnoDB
 DEFAULT CHARACTER SET=utf8 COLLATE=utf8_general_ci
 COMMENT='商品库存'
 ;
-
 --创建索引
 CREATE INDEX `IDX_GOODS_INVENTORY_GOODS_ID` ON `goods_inventory`(`goods_id`) USING BTREE ;
 CREATE INDEX `IDX_GOODS_INVENTORY_GOODS_BATCH_NO` ON `goods_inventory`(`goods_batch_no`) USING BTREE ;
@@ -318,9 +261,8 @@ CREATE INDEX `IDX_GOODS_INVENTORY_SOLD_QUANTITY` ON `goods_inventory`(`sold_quan
 CREATE INDEX `IDX_GOODS_INVENTORY_CREATE_TIME` ON `goods_inventory`(`create_time`) USING BTREE ;
 CREATE UNIQUE INDEX `UNQ_IDX_GOODS_INVENTORY` ON `goods_inventory`(`goods_id`,`goods_batch_no`,`repostory_id`) USING BTREE ;
 
-
 -- ----------------------------
---tab Table structure for `purchase_order_detail`
+--tab11 Table structure for `purchase_order_detail`
 -- ----------------------------
 DROP TABLE IF EXISTS `purchase_order_detail`;
 CREATE TABLE `purchase_order_detail` (
@@ -339,7 +281,6 @@ ENGINE=InnoDB
 DEFAULT CHARACTER SET=utf8 COLLATE=utf8_general_ci
 COMMENT='采购明细'
 ;
-
 --创建索引
 CREATE INDEX `IDX_PURCHASE_ORDER_DETAIL_PURCHASE_ORDER_ID` ON `purchase_order_detail`(`purchase_order_id`) USING BTREE ;
 CREATE INDEX `IDX_PURCHASE_ORDER_DETAIL_GOODS_ID` ON `purchase_order_detail`(`goods_id`) USING BTREE ;
@@ -347,10 +288,8 @@ CREATE INDEX `IDX_PURCHASE_ORDER_DETAIL_REPOSTORY_ID` ON `purchase_order_detail`
 CREATE INDEX `IDX_PURCHASE_ORDER_DETAIL_CREATE_TIME` ON `purchase_order_detail`(`create_time`) USING BTREE ;
 CREATE INDEX `IDX_PURCHASE_ORDER_DETAIL_SUPPLY_TIME` ON `purchase_order_detail`(`supply_time`) USING BTREE ;
 
-
-
 -- ----------------------------
---tab Table structure for `purchase_order`
+--tab12 Table structure for `purchase_order`
 -- ----------------------------
 DROP TABLE IF EXISTS `purchase_order`;
 CREATE TABLE `purchase_order` (
@@ -367,21 +306,14 @@ ENGINE=InnoDB
 DEFAULT CHARACTER SET=utf8 COLLATE=utf8_general_ci
 COMMENT='采购单'
 ;
-
 --创建索引
 CREATE INDEX `IDX_PURCHASE_ORDER_CREATE_TIME` ON `purchase_order`(`create_time`) USING BTREE ;
 CREATE INDEX `IDX_PURCHASE_ORDER_SUPPLY_TIME` ON `purchase_order`(`supply_time`) USING BTREE ;
 CREATE INDEX `IDX_PURCHASE_ORDER_EMPLOYEE_ID` ON `purchase_order`(`employee_id`) USING BTREE ;
 CREATE INDEX `IDX_PURCHASE_ORDER_SUPPLIER_ID` ON `purchase_order`(`supplier_id`) USING BTREE ;
 
-
-
-
-
-
-
 -- ----------------------------
---tab Table structure for `repostory`
+--tab13 Table structure for `repostory`
 -- ----------------------------
 DROP TABLE IF EXISTS `repostory`;
 CREATE TABLE `repostory` (
@@ -403,7 +335,6 @@ ENGINE=InnoDB
 DEFAULT CHARACTER SET=utf8 COLLATE=utf8_general_ci
 COMMENT='仓库'
 ;
-
 --创建索引
 CREATE INDEX `IDX_REPOSTORY_NAME` ON `repostory`(`repostory_name`) USING BTREE ;
 CREATE INDEX `IDX_REPOSTORY_PROVINCE` ON `repostory`(`repostory_province`) USING BTREE ;
@@ -412,14 +343,8 @@ CREATE INDEX `IDX_REPOSTORY_COUNTY` ON `repostory`(`repostory_county`) USING BTR
 CREATE INDEX `IDX_REPOSTORY_ADDRESS` ON `repostory`(`repostory_address`) USING BTREE ;
 CREATE INDEX `IDX_REPOSTORY_EMPLOYEE_ID` ON `repostory`(`employee_id`) USING BTREE ;
 
-
-
-
-
-
-
 -- ----------------------------
---tab Table structure for `supplier`
+--tab14 Table structure for `supplier`
 -- ----------------------------
 DROP TABLE IF EXISTS `supplier`;
 CREATE TABLE `supplier` (
@@ -439,22 +364,14 @@ ENGINE=InnoDB
 DEFAULT CHARACTER SET=utf8 COLLATE=utf8_general_ci
 COMMENT='供应商'
 ;
-
 --创建索引
 CREATE INDEX `IDX_SUPPLIER_EMPLOYEE_ID` ON `supplier`(`employee_id`) USING BTREE ;
 CREATE INDEX `IDX_SUPPLIER_CATEGORY` ON `supplier`(`supplier_category`) USING BTREE ;
 CREATE INDEX `IDX_SUPPLIER_CONTACTS_MOBILE` ON `supplier`(`contacts_mobile`) USING BTREE ;
 CREATE INDEX `IDX_SUPPLIER_CONTACTS_PHONE` ON `supplier`(`contacts_phone`) USING BTREE ;
 
-
-
-
-
-
-
-
 -- ----------------------------
---tab Table structure for `fruit_order_detail` 是否添加发货状态
+--tab15 Table structure for `fruit_order_detail`
 -- ----------------------------
 DROP TABLE IF EXISTS `fruit_order_detail`;
 CREATE TABLE `fruit_order_detail` (
@@ -473,18 +390,13 @@ ENGINE=InnoDB
 DEFAULT CHARACTER SET=utf8 COLLATE=utf8_general_ci
 COMMENT='订单明细'
 ;
-
 --创建索引
 CREATE INDEX `IDX_ORDER_DETAIL_ORDER_ID` ON `fruit_order_detail`(`order_id`) USING BTREE ;
 CREATE INDEX `IDX_ORDER_DETAIL_GOODS_ID` ON `fruit_order_detail`(`goods_id`) USING BTREE ;
 CREATE INDEX `IDX_ORDER_DETAIL_CREATE_TIME` ON `fruit_order_detail`(`create_time`) USING BTREE ;
 
-
-
-
-
 -- ----------------------------
---tab Table structure for `fruit_order`  是否添加收货状态
+--tab16 Table structure for `fruit_order`
 -- ----------------------------
 DROP TABLE IF EXISTS `fruit_order`;
 CREATE TABLE `fruit_order` (
@@ -502,16 +414,12 @@ ENGINE=InnoDB
 DEFAULT CHARACTER SET=utf8 COLLATE=utf8_general_ci
 COMMENT='订单'
 ;
-
 --创建索引
 CREATE INDEX `IDX_ORDER_CUSTOMER_ID` ON `fruit_order`(`customer_id`) USING BTREE ;
 CREATE INDEX `IDX_ORDER_CREATE_TIME` ON `fruit_order`(`create_time`) USING BTREE ;
 
-
-
-
 -- ----------------------------
---tab Table structure for `shopping_cart`
+--tab17 Table structure for `shopping_cart`
 -- ----------------------------
 DROP TABLE IF EXISTS `shopping_cart`;
 CREATE TABLE `shopping_cart` (
@@ -528,18 +436,13 @@ ENGINE=InnoDB
 DEFAULT CHARACTER SET=utf8 COLLATE=utf8_general_ci
 COMMENT='购物车'
 ;
-
 --创建索引
 CREATE INDEX `IDX_SHOPPING_CART_CUSTOMER_ID` ON `shopping_cart`(`customer_id`) USING BTREE ;
 CREATE INDEX `IDX_SHOPPING_CART_GOODS_ID` ON `shopping_cart`(`goods_id`) USING BTREE ;
 CREATE INDEX `IDX_SHOPPING_CART_CREATE_TIME` ON `shopping_cart`(`create_time`) USING BTREE ;
 
-
-
-
-
 -- ----------------------------
---tab Table structure for `goods`
+--tab18 Table structure for `goods`
 -- ----------------------------
 DROP TABLE IF EXISTS `goods`;
 CREATE TABLE `goods` (
@@ -565,7 +468,6 @@ ENGINE=InnoDB
 DEFAULT CHARACTER SET=utf8 COLLATE=utf8_general_ci
 COMMENT='商品'
 ;
-
 --创建索引
 CREATE INDEX `IDX_GOODS_TAG` ON `goods`(`tag`) USING BTREE ;
 CREATE INDEX `IDX_GOODS_MARKET_PRICE` ON `goods`(`market_price`) USING BTREE ;
@@ -573,4 +475,3 @@ CREATE INDEX `IDX_GOODS_SELL_PRICE` ON `goods`(`sell_price`) USING BTREE ;
 CREATE INDEX `IDX_GOODS_PRODUCING_AREA` ON `goods`(`producing_area`) USING BTREE ;
 CREATE INDEX `IDX_GOODS_EMPLOYEE_ID` ON `goods`(`employee_id`) USING BTREE ;
 CREATE INDEX `IDX_GOODS_PUTAWAY_TIME` ON `goods`(`putaway_time`) USING BTREE ;
-

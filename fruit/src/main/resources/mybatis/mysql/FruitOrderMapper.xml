@@ -129,7 +129,7 @@
   <select id="querySelective" resultMap="BaseResultMap" parameterType="java.util.HashMap" >
     select 
     *
-    from fruit_order fo left join fruit_order_detail fod on fo.order_id = fod.order_id
+    from fruit_order fo 
     where 1 = 1
     <if test="customerId != null" >
       and fo.customer_id = #{customerId,jdbcType=BIGINT}

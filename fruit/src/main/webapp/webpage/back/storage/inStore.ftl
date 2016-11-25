@@ -12,7 +12,6 @@
 			<#include "/webpage/back/common/back_menu.ftl"/>
 			
 			<div class="my_back_content">
-				<a href="/fruit/back/purchaseController/toPurchase.do" class="common_btn">制作采购单</a>
 				<#if purchaseOrders?has_content>
 					<table cellspacing="0" cellpadding="0" border="0" class="out_store_order_list" style="border-top:1px dashed #cccccc;margin-top:20px;">
 						<tr>
@@ -28,7 +27,7 @@
 							<#assign index = index + 1/>
 							<tr class="out_Store_order">
 								<td align="center">${index}</td>
-								<td align="right">${purchaseOrder.purchaseOrderId}</td>
+								<td align="center">${purchaseOrder.purchaseOrderId}</td>
 								<td align="center">${purchaseOrder.purchaseOrderName}</td>
 								<td align="center">${purchaseOrder.supplyTime?string("yyyy-MM-dd HH:mm:ss")}</td>
 								<td align="center">${purchaseOrder.supplierId}</td>

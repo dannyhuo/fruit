@@ -1,0 +1,15 @@
+Insert into MENU_AUTHORITY (`menu_authority_id`,`back_menu_id`,`role`,`create_time`,`is_valid`,`remark`) values (2,6,0,'2016-11-22 17:05:14.0','Y',null);
+Insert into MENU_AUTHORITY (`menu_authority_id`,`back_menu_id`,`role`,`create_time`,`is_valid`,`remark`) values (3,7,0,'2016-11-22 17:05:17.0','Y',null);
+Insert into MENU_AUTHORITY (`menu_authority_id`,`back_menu_id`,`role`,`create_time`,`is_valid`,`remark`) values (4,8,0,'2016-11-22 17:19:22.0','Y',null);
+Insert into MENU_AUTHORITY (`menu_authority_id`,`back_menu_id`,`role`,`create_time`,`is_valid`,`remark`) values (5,9,0,'2016-11-22 17:19:26.0','Y',null);
+Insert into MENU_AUTHORITY (`menu_authority_id`,`back_menu_id`,`role`,`create_time`,`is_valid`,`remark`) values (6,10,0,'2016-11-23 10:09:20.0','Y',null);
+Insert into MENU_AUTHORITY (`menu_authority_id`,`back_menu_id`,`role`,`create_time`,`is_valid`,`remark`) values (7,11,0,'2016-11-23 11:03:14.0','Y',null);
+Insert into MENU_AUTHORITY (`menu_authority_id`,`back_menu_id`,`role`,`create_time`,`is_valid`,`remark`) values (8,12,0,'2016-11-23 11:27:21.0','Y',null);
+Insert into MENU_AUTHORITY (`menu_authority_id`,`back_menu_id`,`role`,`create_time`,`is_valid`,`remark`) values (9,14,0,'2016-11-23 15:10:12.0','Y',null);
+Insert into MENU_AUTHORITY (`menu_authority_id`,`back_menu_id`,`role`,`create_time`,`is_valid`,`remark`) values (10,8,3,'2016-11-23 15:35:39.0','Y',null);
+Insert into MENU_AUTHORITY (`menu_authority_id`,`back_menu_id`,`role`,`create_time`,`is_valid`,`remark`) values (11,9,3,'2016-11-23 15:36:02.0','Y',null);
+Insert into MENU_AUTHORITY (`menu_authority_id`,`back_menu_id`,`role`,`create_time`,`is_valid`,`remark`) values (12,14,4,'2016-11-23 15:36:09.0','Y',null);
+Insert into MENU_AUTHORITY (`menu_authority_id`,`back_menu_id`,`role`,`create_time`,`is_valid`,`remark`) values (13,15,0,'2016-11-24 09:32:05.0','Y',null);
+Insert into MENU_AUTHORITY (`menu_authority_id`,`back_menu_id`,`role`,`create_time`,`is_valid`,`remark`) values (14,16,0,'2016-11-24 09:32:13.0','Y',null);
+Insert into MENU_AUTHORITY (`menu_authority_id`,`back_menu_id`,`role`,`create_time`,`is_valid`,`remark`) values (15,15,1,'2016-11-24 09:32:22.0','Y',null);
+Insert into MENU_AUTHORITY (`menu_authority_id`,`back_menu_id`,`role`,`create_time`,`is_valid`,`remark`) values (16,16,1,'2016-11-24 09:32:31.0','Y',null);

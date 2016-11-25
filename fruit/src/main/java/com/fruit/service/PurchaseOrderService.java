@@ -8,11 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.fruit.dao.mysql.PurchaseOrderDetailMapper;
 import com.fruit.dao.mysql.PurchaseOrderMapper;
-import com.fruit.enu.Enums.SHOPPING_CART_STATUS;
-import com.fruit.model.FruitOrderDetail;
 import com.fruit.model.PurchaseOrder;
-import com.fruit.model.ShoppingCart;
-import com.fruit.model.vo.FruitOrderVo;
 import com.fruit.model.vo.PurchaseOrderDetailVo;
 import com.fruit.model.vo.PurchaseOrderVo;
 

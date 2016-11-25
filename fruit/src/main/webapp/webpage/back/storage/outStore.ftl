@@ -29,10 +29,10 @@
 								<td align="center">
 									<input name="shpCartGoodsCheck" type="checkbox" />${index}
 								</td>
-								<td align="right">
+								<td align="center">
 									${order.orderId}
 								</td>
-								<td align="left">时间${order.createTime}</td>
+								<td align="center">${order.createTime?string('yyyy-MM-dd HH:mm:ss')}</td>
 								<td align="center">${order.statusName}</td>
 								<td align="center">
 									${order.deliveryAddress.consignee}
@@ -58,7 +58,9 @@
 											状态：${orderDetail.statusCnName}
 										</td>
 										<td align="center">
-											<a href="">出库</a>
+											<#if orderDetail.status == 0>
+												<a href="/fruit/back/storeController/goodsOutStore.do?goodsId=${orderDetail.goodsId}&orderDetailId=${orderDetail.orderDetailId}&quantity=${orderDetail.quantity}">出库</a>
+											</#if>
 										</td>		
 									</tr>
 								</#list>

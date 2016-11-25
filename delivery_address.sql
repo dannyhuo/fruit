@@ -1,0 +1,3 @@
+
+Insert into DELIVERY_ADDRESS (`address_id`,`address_alias`,`customer_id`,`mobile_number`,`areacode`,`phone_number`,`consignee`,`province`,`city`,`county`,`address`,`postcode`,`is_valid`,`create_time`,`update_time`) values (1,'公司',6,'18016388888','021','32689999','霍先生','上海','上海','普陀','中江路302弄68号','230010','Y','2016-11-20 17:07:27.0',null);
+Insert into DELIVERY_ADDRESS (`address_id`,`address_alias`,`customer_id`,`mobile_number`,`areacode`,`phone_number`,`consignee`,`province`,`city`,`county`,`address`,`postcode`,`is_valid`,`create_time`,`update_time`) values (2,'家',6,'18016388888','021','32689999','霍先生','上海','上海','长宁','虹桥路8号','230110','Y','2016-11-21 17:12:43.0',null);

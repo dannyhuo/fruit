@@ -10,12 +10,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.fruit.dao.mysql.PurchaseOrderDetailMapper;
-import com.fruit.dao.mysql.PurchaseOrderMapper;
 import com.fruit.enu.Enums.EMPLOYEE_ROLE;
+import com.fruit.enu.Enums.ORDER_OUT_STORE_STATUS;
 import com.fruit.enu.Enums.ORDER_STATUS;
 import com.fruit.enu.Enums.PURCHASE_STATUS;
-import com.fruit.model.GoodsInventory;
 import com.fruit.model.vo.EmployeeVo;
 import com.fruit.model.vo.FruitOrderDetailVo;
 import com.fruit.model.vo.FruitOrderVo;
@@ -120,11 +118,11 @@ public class StoreController {
 		//修改订单出库状态
 		FruitOrderDetailVo fruitOrderDetailVo = new FruitOrderDetailVo();
 		fruitOrderDetailVo.setOrderDetailId(goodsInventoryVo.getOrderDetailId());
-		//TODO
-		//未设计
+		fruitOrderDetailVo.setStatus(ORDER_OUT_STORE_STATUS.OUT_STORED.getCode());
+		fruitOrderDetailService.updateByPrimaryKeySelective(fruitOrderDetailVo);
 		
 		//查询订单
-		mav.addObject("purchaseOrders", mav.addObject("outStoreOrders", getFruitOrder()));
+		mav.addObject("outStoreOrders", getFruitOrder());
 		return mav;
 	}
 	

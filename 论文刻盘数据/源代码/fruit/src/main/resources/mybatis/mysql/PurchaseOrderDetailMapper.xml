@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.fruit.dao.mysql.PurchaseOrderDetailMapper" >
+  <resultMap id="BaseResultMap" type="com.fruit.model.PurchaseOrderDetail" >
+    <id column="purchase_order_detail_id" property="purchaseOrderDetailId" jdbcType="BIGINT" />
+    <result column="purchase_order_id" property="purchaseOrderId" jdbcType="BIGINT" />
+    <result column="goods_id" property="goodsId" jdbcType="BIGINT" />
+    <result column="quantity" property="quantity" jdbcType="SMALLINT" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="repostory_id" property="repostoryId" jdbcType="BIGINT" />
+    <result column="status" property="status" jdbcType="TINYINT" />
+    <result column="supply_time" property="supplyTime" jdbcType="TIMESTAMP" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+  </resultMap>
+  
+  <resultMap id="PurchaseDetailResultMap" type="com.fruit.model.vo.PurchaseOrderDetailVo" >
+    <id column="purchase_order_detail_id" property="purchaseOrderDetailId" jdbcType="BIGINT" />
+    <result column="purchase_order_id" property="purchaseOrderId" jdbcType="BIGINT" />
+    <result column="goods_id" property="goodsId" jdbcType="BIGINT" />
+    <result column="quantity" property="quantity" jdbcType="SMALLINT" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="repostory_id" property="repostoryId" jdbcType="BIGINT" />
+    <result column="status" property="status" jdbcType="TINYINT" />
+    <result column="supply_time" property="supplyTime" jdbcType="TIMESTAMP" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+    
+    <result column="goods_name" property="goodsName" jdbcType="VARCHAR" />
+    <result column="goods_image_url" property="goodsImageUrl" jdbcType="VARCHAR" />
+  </resultMap>
+  
+  <sql id="Base_Column_List" >
+    purchase_order_detail_id, purchase_order_id, goods_id, quantity, create_time, repostory_id, 
+    status, supply_time, remark
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from purchase_order_detail
+    where purchase_order_detail_id = #{purchaseOrderDetailId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from purchase_order_detail
+    where purchase_order_detail_id = #{purchaseOrderDetailId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.fruit.model.PurchaseOrderDetail" >
+    insert into purchase_order_detail (purchase_order_detail_id, purchase_order_id, 
+      goods_id, quantity, create_time, 
+      repostory_id, status, supply_time, 
+      remark)
+    values (#{purchaseOrderDetailId,jdbcType=BIGINT}, #{purchaseOrderId,jdbcType=BIGINT}, 
+      #{goodsId,jdbcType=BIGINT}, #{quantity,jdbcType=SMALLINT}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{repostoryId,jdbcType=BIGINT}, #{status,jdbcType=TINYINT}, #{supplyTime,jdbcType=TIMESTAMP}, 
+      #{remark,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.fruit.model.PurchaseOrderDetail" >
+    insert into purchase_order_detail
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="purchaseOrderDetailId != null" >
+        purchase_order_detail_id,
+      </if>
+      <if test="purchaseOrderId != null" >
+        purchase_order_id,
+      </if>
+      <if test="goodsId != null" >
+        goods_id,
+      </if>
+      <if test="quantity != null" >
+        quantity,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="repostoryId != null" >
+        repostory_id,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="supplyTime != null" >
+        supply_time,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="purchaseOrderDetailId != null" >
+        #{purchaseOrderDetailId,jdbcType=BIGINT},
+      </if>
+      <if test="purchaseOrderId != null" >
+        #{purchaseOrderId,jdbcType=BIGINT},
+      </if>
+      <if test="goodsId != null" >
+        #{goodsId,jdbcType=BIGINT},
+      </if>
+      <if test="quantity != null" >
+        #{quantity,jdbcType=SMALLINT},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="repostoryId != null" >
+        #{repostoryId,jdbcType=BIGINT},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=TINYINT},
+      </if>
+      <if test="supplyTime != null" >
+        #{supplyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.fruit.model.PurchaseOrderDetail" >
+    update purchase_order_detail
+    <set >
+      <if test="purchaseOrderId != null" >
+        purchase_order_id = #{purchaseOrderId,jdbcType=BIGINT},
+      </if>
+      <if test="goodsId != null" >
+        goods_id = #{goodsId,jdbcType=BIGINT},
+      </if>
+      <if test="quantity != null" >
+        quantity = #{quantity,jdbcType=SMALLINT},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="repostoryId != null" >
+        repostory_id = #{repostoryId,jdbcType=BIGINT},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=TINYINT},
+      </if>
+      <if test="supplyTime != null" >
+        supply_time = #{supplyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where purchase_order_detail_id = #{purchaseOrderDetailId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.fruit.model.PurchaseOrderDetail" >
+    update purchase_order_detail
+    set purchase_order_id = #{purchaseOrderId,jdbcType=BIGINT},
+      goods_id = #{goodsId,jdbcType=BIGINT},
+      quantity = #{quantity,jdbcType=SMALLINT},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      repostory_id = #{repostoryId,jdbcType=BIGINT},
+      status = #{status,jdbcType=TINYINT},
+      supply_time = #{supplyTime,jdbcType=TIMESTAMP},
+      remark = #{remark,jdbcType=VARCHAR}
+    where purchase_order_detail_id = #{purchaseOrderDetailId,jdbcType=BIGINT}
+  </update>
+  
+  <select id="querySelective" resultMap="PurchaseDetailResultMap" parameterType="java.util.HashMap" >
+    select 
+    *
+    from purchase_order_detail pod left join goods g on pod.goods_id = g.goods_id  
+    where 1 = 1
+    <if test="purchaseOrderId != null" >
+      and purchase_order_id = #{purchaseOrderId,jdbcType=BIGINT}
+    </if>
+    <if test="goodsId != null" >
+      and goods_id = #{goodsId,jdbcType=BIGINT}
+    </if>
+    <if test="quantity != null" >
+      and quantity = #{quantity,jdbcType=SMALLINT}
+    </if>
+    <if test="createTime != null" >
+      and create_time = #{createTime,jdbcType=TIMESTAMP}
+    </if>
+    <if test="repostoryId != null" >
+      and repostory_id = #{repostoryId,jdbcType=BIGINT}
+    </if>
+    <if test="status != null" >
+      and status = #{status,jdbcType=TINYINT}
+    </if>
+    <if test="supplyTime != null" >
+      and supply_time = #{supplyTime,jdbcType=TIMESTAMP}
+    </if>
+    <if test="remark != null" >
+      and remark = #{remark,jdbcType=VARCHAR}
+    </if>
+  </select>
+</mapper>

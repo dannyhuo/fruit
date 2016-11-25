@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:task="http://www.springframework.org/schema/task" 
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
+	http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.1.xsd 
+	http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task-3.0.xsd 
+	http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.0.xsd
+	http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd
+	http://www.springframework.org/schema/mvc
+	http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd"
+	
+	default-autowire="byName" default-lazy-init="false">
+
+	<!-- ViewResolver（视图解析器）:freemarker的视图解析器 -->
+    <bean id="viewResolver" class="org.springframework.web.servlet.view.freemarker.FreeMarkerViewResolver">
+        <property name="cache" value="true" />
+        <!-- <property name="prefix" value="/pages/" /> -->
+        <property name="suffix" value=".ftl" />
+        <property name="viewClass" value="org.springframework.web.servlet.view.freemarker.FreeMarkerView"/>
+        <property name="contentType" value="text/html;charset=UTF-8"></property>
+        <property name="requestContextAttribute" value="request" />
+        <property name="exposeSpringMacroHelpers" value="true" /> <!-- 如果你需要使用Spring 对 Velocity宏命令的支持, 将这个属性设为true -->
+        <property name="exposeRequestAttributes" value="true" />  <!-- ture为将请求属性作为变量暴露给FreeMarker模板使用 -->
+        <property name="exposeSessionAttributes" value="true" />  <!-- ture为将会话属性作为变量暴露给FreeMarker模板使用 -->
+        <property name="order" value="0"/> 
+    </bean>
+    
+    <!-- ViewResolver（视图解析器）:jsp视图解析器-->  
+    <bean id="viewResolverCommon" class="org.springframework.web.servlet.view.InternalResourceViewResolver">  
+        <!-- <property name="prefix" value="/pages/"/> -->    
+        <property name="suffix" value=".jsp"/><!--可为空,方便实现自已的依据扩展名来选择视图解释类的逻辑  -->  
+        <property name="viewClass">  
+            <value>org.springframework.web.servlet.view.InternalResourceView</value>  
+        </property>  
+        <property name="order" value="1"/>  
+    </bean> 
+    
+    
+    <!-- 配置FreeMarkerConfigurer,配置freeMarker的模板属性 -->
+    <bean id="freemarkerConfig" class="org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer">
+        <property name="templateLoaderPath" value="" />
+        <property name="freemarkerSettings">
+            <props>
+                <prop key="template_update_delay">0</prop> <!-- 检查模板是否更新的时间间隔，默认时间是5秒，此处设成不检查 -->
+                <prop key="default_encoding">UTF-8</prop> <!-- freemarker的默认编码 -->
+                <prop key="number_format">0.##</prop> <!-- freemarker数据格式化问题(即数值超过四位数时有逗号) -->
+                <prop key="datetime_format">yyyy-MM-dd HH:mm:ss</prop> <!-- 设置freemarker时间格式转换 -->
+                <prop key="classic_compatible">true</prop>
+                <prop key="template_exception_handler">ignore</prop>
+            </props>
+        </property>
+    </bean>	
+    
+	<!-- 开启Spring MVC的 @RequestMapping注解功能(找到处理器方法) -->
+    <bean class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter"/>
+    
+    <!-- 开启Spring MVC的 @Controller注解功能(找到处理器类) -->
+    <bean class="org.springframework.web.servlet.mvc.annotation.DefaultAnnotationHandlerMapping"/>
+
+	<!-- springMVC 上传文件的配置 -->
+	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+        <property name="defaultEncoding" value="UTF-8"></property>
+        <property name="maxUploadSize" value="52428800"></property>
+        <property name="maxInMemorySize" value="4096" />
+    </bean>
+    
+    <!-- 自动扫描注解的路径 -->  
+    <context:component-scan base-package="com.fruit.controller.**" />
+   
+   
+    <!-- spring mvc 拦截器 -->
+  	<mvc:interceptors>
+   		<mvc:interceptor>
+   			<mvc:mapping path="/shoppingCart/*.do"/>
+   			<bean class="com.fruit.interceptor.LoginInterceptor"/>
+   		</mvc:interceptor>
+	</mvc:interceptors>
+	
+	<!-- spring mvc 后台管理系统权限拦截器 -->
+  	<mvc:interceptors>
+   		<mvc:interceptor>
+   			<mvc:mapping path="/back/*.do"/>
+   			<mvc:mapping path="/back/*/*.do"/>
+   			<bean class="com.fruit.interceptor.FruitBackInterceptor">
+   				<property name="uncheckUrls">
+   					<list>
+   						<value>/back/toLogin.do</value>
+   					</list>
+   				</property>
+   			</bean>
+   		</mvc:interceptor>
+	</mvc:interceptors>
+   	
+</beans>
+

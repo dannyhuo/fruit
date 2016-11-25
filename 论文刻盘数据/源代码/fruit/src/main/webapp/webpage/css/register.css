@@ -1,0 +1,52 @@
+body{
+	margin-left: 0px;
+	margin-top: 0px;
+	margin-right: 0px;
+	margin-bottom: 0px;
+	font-size: 12px;
+}
+
+/**logo及搜索部分*/
+.logo_and_search{
+	width: 1360px;
+	height: 85px;
+	background-color: #eeefee;
+}
+
+
+.register_words{
+	font-size: 30px;
+	font-weight: bold;
+	color: #009757;	
+}
+
+.register_pan{
+	width:1360px;
+	height:490px;
+	display: block;
+}
+
+.register_pan table{
+	width:100%;
+	height:100%;
+}
+
+
+.my_register{
+	width:1200px;
+	height:390px;
+	border: 1px solid #009757;
+	margin-top: 20px;
+	padding-top: 20px;
+}
+
+.register_btn{
+	width:260px;
+	height:30px;
+	background-color: #009757;
+	border: none;
+	color: #ffffff;
+	cursor: pointer;
+}
+
+

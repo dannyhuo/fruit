@@ -1,0 +1,100 @@
+.my_back{
+	width:1360px;
+	display: block;
+	height:800px;
+	height:auto !important;
+	min-height:800px;
+}
+
+.back_menu{
+	width:300px;
+	display: block;
+	height:100%;
+	height:auto !important;
+	min-height:800px;
+	float: left;
+	border-left: 1px dashed #cccccc;
+	border-right: 1px dashed #cccccc;
+	text-align: center;
+}
+
+.menu_item{
+	display: block;
+	text-decoration:none;
+}
+
+.menu_item:HOVER{
+	display: block;
+	color:#ffffff;
+	text-decoration:none;
+	background-color: #009757;
+}
+
+.menu_item:AFTER{
+	display: block;
+	color:#ffffff;
+	text-decoration:none;
+	background-color: #009757;
+}
+
+
+.my_back_content{
+	width:1030px;
+	display: block;
+	height:100%;
+	height:auto !important;
+	min-height:800px;
+	float: right;
+	padding-top:30px;
+	border-left: 1px dashed #cccccc;
+	border-right: 1px dashed #cccccc;
+}
+
+.common_btn{
+	width:320px;
+	height:30px;
+	background-color: #009757;
+	border: none;
+	color: #ffffff;
+	cursor: pointer;
+}
+
+.common_input{
+	width:320px;
+	height:30px;
+}
+
+
+/**后台出库页面start*****************************/
+.out_store_order_list{
+	width:100%;
+	border-left: 1px dashed #cccccc;
+	border-right: 1px dashed #cccccc;
+	border-bottom: 1px dashed #cccccc;
+}
+
+.out_Store_order td{
+	border-top: 1px dashed #cccccc;
+	border-bottom: 1px dashed #cccccc;
+	border-right: 1px dashed #cccccc;
+}
+
+/**后台出库页面end*****************************/
+
+/**后台商品管理start****************************************/
+.back_goodses_management_list{
+	width: 900px;
+	height:auto;
+	display: block;
+	margin-left:60px;
+	padding: 0px, 0px, 0px, 0px;
+}
+
+/******************************************/
+
+.purchase_detail{
+	width:800px;
+	height: auto;
+	min-height: 300px;
+	border: 1px solid #cccccc;
+}

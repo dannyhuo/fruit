@@ -1,0 +1,158 @@
+body{
+	margin-left: 0px;
+	margin-top: 0px;
+	margin-right: 0px;
+	margin-bottom: 0px;
+	font-size: 12px;
+}
+
+/*状态栏部分**/
+.my_login_status{
+	width: 1360px;
+	height: 35px;
+	background-color: #f7f9f8;
+}
+.my_login_status table{
+	height:100%;
+	margin: 0px,0px,0px,0px;
+	padding: 0xp,0px,0px,0px;
+}
+
+.my_login_status img{
+	width:20px;
+	height:20px;
+}
+
+.my_login_status a:link{
+	color:#22ac38;
+	font-size:15px;
+	font-weight: bold;
+	text-decoration: none;
+}
+
+.my_login_status a:hover{
+	color:#22ac38;
+	font-size:15px;
+	font-weight: bold;
+	text-decoration: underline;
+}
+
+.my_login_status a:visited{
+	color:#22ac38;
+	font-size:15px;
+	font-weight: bold;
+}
+
+.my_login_status a:active{
+	color:#22ac38;
+	font-size:15px;
+	font-weight: bold;
+}
+
+.my_login_status span{
+	font-size:15px;
+	color: #009757;
+	font-weight: bold;
+}
+
+
+
+
+
+/**logo及搜索部分*/
+.logo_and_search{
+	width: 1360px;
+	height: 85px;
+	background-color: #eeefee;
+}
+
+.search_input{
+	width:600px;
+	height:30px;
+	border:2px solid #22ac38;
+	color: #009757;
+}
+.search_btn{
+	width:50px;
+	height:30px;
+	background-color: #22ac38;
+	color: #ffffff;
+	cursor: pointer;
+	text-align: center;
+	font-size: 14px;
+	font-weight: bold;
+}
+
+.my_shopping_cart_table{
+	height:36px;
+	border:2px solid #009757;
+}
+.my_shopping_cart_icon{
+	width:27px;
+	background-image: url("/fruit/webpage/imgs/shopping_cart_icon.png");
+	background-repeat: no-repeat;
+	background-attachment:inherit;
+	padding-left: 23px;
+	padding-bottom: 9px;
+	font-size: 12px;
+	color: #ffffff;
+}
+
+.my_shopping_cart_money{
+	min-width: 40px;
+	color:#009757;
+	padding-right: 3px;
+}
+
+.my_shopping_cart_link{
+	
+}
+
+.my_shopping_cart_link{ text-decoration: none;}
+.my_shopping_cart_link:hover{ text-decoration: none;}
+.my_shopping_cart_link:active{border-bottom:3px solid #f90;}
+
+/**类型及广告位部分*/
+.type_and_ad{
+	width: 1360px;
+	height: 360px;
+}
+
+.type_and_ad table{
+	width:100%;
+	height:100%;
+}
+
+.type_and_ad table td{
+	text-align:center;
+}
+
+.my_category_menu_img{
+	cursor: pointer;
+}
+
+
+/**楼层栏部分*/
+.floor_flag{
+	width: 1360px;
+	height: 45px;
+	background-color: #f7f8f8;
+	padding-top: 7px;
+}
+
+.floor_icon{
+	background-image: url("/fruit/webpage/imgs/floor.png");
+	background-repeat:no-repeat;
+	background-attachment:inherit;
+	padding-left:6px;
+	width:49px;
+	height:38px;
+	color: #ffffff;
+}
+
+/**每楼层商品列表部分*/
+.floor_goods_list{
+	width: 1360px;
+	height: 300px;
+}
+

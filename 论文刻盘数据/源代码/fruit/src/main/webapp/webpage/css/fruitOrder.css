@@ -1,0 +1,42 @@
+.order_result_content{
+	width:1360px;
+	height:360px;
+	padding-left30px;
+	background-color: #ffffff;	
+}
+
+.order_result_orderid{
+	color:red;
+	font-size: 18px;
+	font-weight: bold;
+}
+
+.order_result_sucess{
+	color: green;
+	font-size: 16px;
+}
+
+.order_result_failed{
+	color: red;
+	font-size: 16px;
+}
+
+.deliverAddressView{
+	width:1360px;
+}
+
+.deliverAddressAddHidden{
+	width:1360px;
+	display: none;
+}
+
+.deliverAddressAddShow{
+	width:1360px;
+	display: block;
+}
+
+.addAddressBtn{
+	width:260px;
+	height:30px;
+	background-color: #009757;
+}
